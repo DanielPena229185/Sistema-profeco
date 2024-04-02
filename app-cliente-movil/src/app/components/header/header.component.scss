@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+.header-content {
+  display: flex;
+}
+
+.header-content-info > ion-title {
+  font-family: "Montserrat";
+  color: white;
+}
+
+.header {
+    --background: var(--ion-color-profeco-verde); 
+}  
