@@ -1,10 +1,10 @@
 <app-header></app-header>
 <ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="50" [pullMax]="50" (ionRefresh)="handleRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
+  <ion-refresher mode="md" slot="fixed" [pullFactor]="0.5" [pullMin]="50" [pullMax]="50" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content mode="md"></ion-refresher-content>
   </ion-refresher>
   <div class="lista-productos" *ngFor="let producto of productos">
-    <ion-card button class="carta-producto">
+    <ion-card button class="carta-producto" (click)="abrirCompararProducto(producto.id)">
       <img alt="Silhouette of mountains" src="{{producto.imagen}}" />
       <ion-card-header>
         <ion-card-title>{{producto.nombre}}</ion-card-title>

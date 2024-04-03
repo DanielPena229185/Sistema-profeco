@@ -1,17 +1,10 @@
-ion-tab-bar {
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
-}
-
 ion-tab-bar,
 ion-tab-button {
-  background: var(--ion-color-profeco-secondary);
+  --background: var(--ion-color-profeco-secondary);
 }
 
-ion-tab-button{
-    color: var(--ion-color-light);
+ion-tab-button {
+  --color: white;
+  --color-selected: var(--ion-color-profeco-primary);
+  --ripple-color: var(--ion-color-profeco-primary);
 }
-
-ion-tab-button.tab-selected{
-    color: var(--ion-color-profeco-primary);
-}
-
