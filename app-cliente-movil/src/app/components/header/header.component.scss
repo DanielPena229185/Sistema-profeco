@@ -1,11 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-.header-content {
+.header > div{
   display: flex;
+  align-items: center;
 }
 
-.header-content-info > ion-title {
+.header-title > p {
   font-family: "Montserrat";
   color: white;
+  font-size: x-large;
+  font-weight: lighter;
+}
+.header-title {
+  padding-left: 5%;
+}
+.header-title, .header-img {
+  padding: 0 1%;
+}
+
+.header-img > img {
+  height: 35px;
+  width: 35px;
 }
 
 .header {

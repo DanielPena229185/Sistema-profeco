@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../components/header/header.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { HeaderComponent } from '../components/header/header.component';
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, HeaderComponent]
+  imports: [IonContent, CommonModule, HeaderComponent]
 })
 export class InicioPage implements OnInit {
 

@@ -1,7 +1,17 @@
+<app-header></app-header>
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Comparar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="50" [pullMax]="50" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="lista-productos" *ngFor="let producto of productos">
+    <ion-card button class="carta-producto">
+      <img alt="Silhouette of mountains" src="{{producto.imagen}}" />
+      <ion-card-header>
+        <ion-card-title>{{producto.nombre}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{producto.detalles}}
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
