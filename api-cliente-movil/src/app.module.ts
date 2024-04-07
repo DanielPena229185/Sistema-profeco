@@ -13,7 +13,7 @@ import { ProductsController } from './products/products.controller';
         transport:Transport.GRPC,
         options: {
           package: 'proto',
-          protoPath:join(__dirname,'../proto/product.proto'),
+          protoPath:join(`proto/product.proto`),
           url:'localhost:50051',
         }
       }

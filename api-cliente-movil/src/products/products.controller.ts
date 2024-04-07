@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Inject, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { Product, ProductListRequest, ProductName } from './products.types';
-import { map } from 'rxjs';
+import {CompareProductList, Product,ProductList,ProductListRequest} from './proto/product'
 
 @Controller('products')
 export class ProductsController implements OnModuleInit {
@@ -15,14 +14,14 @@ export class ProductsController implements OnModuleInit {
     }
 
     @Get('names')
-    async getProducts(){
-     const products = await this.productsService.GetProducts({});
+    async getProducts():Promise<ProductList>{
+     const products: ProductList = await this.productsService.GetProducts({});
         return products;
     }
 
-    @Get('by-price')
-     async getProductsByPrice(@Body() body){
-        const products = await this.productsService.GetProductsByPrice(body);
+    @Get('prices')
+     async getProductsByPrice(@Body() body:ProductListRequest):Promise<CompareProductList>{
+        const products: CompareProductList = await this.productsService.GetProductsByPrice(body);
         return  products;
     }
 
