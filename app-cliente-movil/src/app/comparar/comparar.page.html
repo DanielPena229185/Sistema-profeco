@@ -5,12 +5,12 @@
   </ion-refresher>
   <div class="lista-productos" *ngFor="let producto of productos">
     <ion-card button class="carta-producto" (click)="abrirCompararProducto(producto.id)">
-      <img alt="Silhouette of mountains" src="{{producto.imagen}}" />
+      <img alt="Silhouette of mountains" src="{{producto.imageUrl}}" />
       <ion-card-header>
-        <ion-card-title>{{producto.nombre}}</ion-card-title>
+        <ion-card-title>{{producto.name}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        {{producto.detalles}}
+        {{producto.details}}
       </ion-card-content>
     </ion-card>
   </div>
