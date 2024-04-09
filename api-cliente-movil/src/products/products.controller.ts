@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, OnModuleInit } from '@nestjs/common';
+import { Body, Controller, Get, Inject, OnModuleInit, Param } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import {
   CompareProductList,
@@ -6,6 +6,7 @@ import {
   ProductList,
   ProductListRequest,
 } from './proto/product';
+import { GetPricesByProductId } from './input/getPricesByProduct.dto';
 
 @Controller('products')
 export class ProductsController implements OnModuleInit {
@@ -22,12 +23,15 @@ export class ProductsController implements OnModuleInit {
     return products;
   }
 
-  @Get('prices')
+  @Get('prices/:productId')
   async getProductsByPrice(
-    @Body() body: ProductListRequest,
+    @Param() params: GetPricesByProductId,
   ): Promise<CompareProductList> {
+    const productListRequest: ProductListRequest = {
+      productName: params.productId
+    }
     const products: CompareProductList =
-      await this.productsService.GetProductsByPrice(body);
+      await this.productsService.GetProductsByPrice(productListRequest);
     return products;
   }
 }
