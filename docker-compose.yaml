@@ -1,0 +1,32 @@
+services:
+  mongodb:
+    image: mongo
+    container_name: my-mongodb
+    ports:
+      - "127.0.0.1:27017:27017"
+    networks:
+        - products_internal_network
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      retries: 5
+
+  products-microservice:
+    # build:
+    # context: .
+    # dockerfile: Dockerfile
+    image: silverflin/product-catalog-microservice:latest
+    ports:
+      - "0.0.0.0:50051:50051"
+    networks:
+      - products_internal_network
+      - profeco
+    depends_on:
+      - mongodb
+
+networks:
+  products_internal_network:
+    driver: bridge
+  profeco:
+    driver: bridge
+    external: true
