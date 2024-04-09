@@ -13,8 +13,10 @@ import {
   ModalController,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../components/header/header.component';
-import { ProductoDTO } from './comparar.types';
+import { ProductDTO, ProductsDTO } from './comparar.types';
 import { ComparacionProductoTiendasComponent } from '../components/comparacion-producto-tiendas/comparacion-producto-tiendas.component';
+import { CompararService } from './comparar.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-comparar',
@@ -33,15 +35,23 @@ import { ComparacionProductoTiendasComponent } from '../components/comparacion-p
     IonRefresher,
     IonRefresherContent,
     IonChip,
+    HttpClientModule
   ],
+  providers: [
+    CompararService
+  ]
 })
 export class CompararPage implements OnInit {
-  productos: ProductoDTO[] = [];
+  productos: ProductDTO[] = [];
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private readonly compararService: CompararService
+  ) {}
 
   ngOnInit() {
-    this.iniciarProductos();
+    this.getProductos();
+    //this.iniciarProductos();
   }
 
   handleRefresh(event) {
@@ -51,39 +61,50 @@ export class CompararPage implements OnInit {
     }, 2000);
   }
 
-  private iniciarProductos() {
-    this.productos = [
-      {
-        id: '001',
-        nombre: 'Arroz',
-        imagen: 'https://www.costco.com.mx/medias/sys_master/products/hbc/h81/114806758735902.jpg',
-        detalles: 'Arroz blanco de grano largo.',
+  // private iniciarProductos() {
+  //   this.productos = [
+  //     {
+  //       id: '001',
+  //       nombre: 'Arroz',
+  //       imagen: 'https://www.costco.com.mx/medias/sys_master/products/hbc/h81/114806758735902.jpg',
+  //       detalles: 'Arroz blanco de grano largo.',
+  //     },
+  //     {
+  //       id: '002',
+  //       nombre: 'Frijoles',
+  //       imagen: 'https://www.soriana.com/on/demandware.static/-/Sites-soriana-grocery-master-catalog/default/dwf4f40cfe/images/product/7501071301353_A.jpg',
+  //       detalles: 'Frijoles negros de la marca tradicional.',
+  //     },
+  //     {
+  //       id: '003',
+  //       nombre: 'Leche',
+  //       imagen: 'https://d1zc67o3u1epb0.cloudfront.net/media/catalog/product/2/7/2716_1_2.jpg?width=265&height=390&store=default&image-type=image',
+  //       detalles: 'Leche entera en envase de 1 litro.',
+  //     },
+  //     {
+  //       id: '004',
+  //       nombre: 'Huevo',
+  //       imagen: 'https://chedrauimx.vtexassets.com/arquivos/ids/27977575/7501101525513_00.jpg?v=638465072267700000',
+  //       detalles: 'Huevo blanco, tamaño grande, paquete de 12 unidades.',
+  //     },
+  //     {
+  //       id: '005',
+  //       nombre: 'Pan',
+  //       imagen: 'https://tienda.maqs.com.mx/wp-content/uploads/2021/12/411.jpg',
+  //       detalles: 'Pan blanco de caja, paquete de 500 gramos.',
+  //     },
+  //   ];
+  // }
+
+  private getProductos() {
+    this.compararService.getProducts().subscribe({
+      next: (response: ProductsDTO) => {
+        Array.prototype.push.apply(this.productos, response.product);
       },
-      {
-        id: '002',
-        nombre: 'Frijoles',
-        imagen: 'https://www.soriana.com/on/demandware.static/-/Sites-soriana-grocery-master-catalog/default/dwf4f40cfe/images/product/7501071301353_A.jpg',
-        detalles: 'Frijoles negros de la marca tradicional.',
-      },
-      {
-        id: '003',
-        nombre: 'Leche',
-        imagen: 'https://d1zc67o3u1epb0.cloudfront.net/media/catalog/product/2/7/2716_1_2.jpg?width=265&height=390&store=default&image-type=image',
-        detalles: 'Leche entera en envase de 1 litro.',
-      },
-      {
-        id: '004',
-        nombre: 'Huevo',
-        imagen: 'https://chedrauimx.vtexassets.com/arquivos/ids/27977575/7501101525513_00.jpg?v=638465072267700000',
-        detalles: 'Huevo blanco, tamaño grande, paquete de 12 unidades.',
-      },
-      {
-        id: '005',
-        nombre: 'Pan',
-        imagen: 'https://tienda.maqs.com.mx/wp-content/uploads/2021/12/411.jpg',
-        detalles: 'Pan blanco de caja, paquete de 500 gramos.',
-      },
-    ];
+      error: ((error) => {
+        
+      })
+    })
   }
 
   async abrirCompararProducto(productoId: string) {

@@ -1,6 +1,14 @@
-export interface ProductoDTO {
-    id: string,
-    nombre: string,
-    imagen: string,
-    detalles: string,
+export interface ProductDTO {
+  id: string;
+  name: string;
+  imageUrl: string;
+  details: string;
+}
+
+export interface ProductsDTO {
+  product: ProductDTO[];
+}
+
+export interface searchParamsDTO {
+  
 }
