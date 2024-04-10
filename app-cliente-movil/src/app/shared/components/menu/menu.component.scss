@@ -1,0 +1,26 @@
+ion-content {
+  --background: var(--ion-color-profeco-green);
+}
+
+ion-list {
+  --background: var(--ion-color-profeco-green);
+  padding: 0;
+  list-style: none;
+}
+
+ion-item {
+  --background: var(--ion-color-profeco-green);
+  --color: var(--ion-color-profeco-brown);
+  --border-color: transparent;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+ion-toolbar {
+  --border-color: transparent;
+}
+
+ion-title {
+  font-size: x-large;
+  font-family: serif;
+  font-weight: bold;
+}

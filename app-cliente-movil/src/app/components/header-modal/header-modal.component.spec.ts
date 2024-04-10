@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ComparacionProductoTiendasComponent } from './comparacion-producto-tiendas.component';
+import { HeaderModalComponent } from './header-modal.component';
 
-describe('ComparacionProductoTiendasComponent', () => {
-  let component: ComparacionProductoTiendasComponent;
-  let fixture: ComponentFixture<ComparacionProductoTiendasComponent>;
+describe('HeaderModalComponent', () => {
+  let component: HeaderModalComponent;
+  let fixture: ComponentFixture<HeaderModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComparacionProductoTiendasComponent ],
+      declarations: [ HeaderModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ComparacionProductoTiendasComponent);
+    fixture = TestBed.createComponent(HeaderModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

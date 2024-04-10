@@ -1,7 +1,7 @@
 import { Component, EnvironmentInjector, OnInit, ViewChild, inject } from '@angular/core';
 import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { pricetags, home } from 'ionicons/icons';
+import { copy, home, pricetags, storefront } from 'ionicons/icons';
 
 @Component({
   selector: 'app-main',
@@ -18,7 +18,7 @@ export class MainPage implements OnInit {
   public environmentInjector = inject(EnvironmentInjector);
 
   constructor() {
-    addIcons({ pricetags, home });
+    addIcons({ home, pricetags, copy, storefront });
    }
 
   ngOnInit() {
