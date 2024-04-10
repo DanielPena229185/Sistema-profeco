@@ -1,11 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title slot="start">Precios en Tiendas</ion-title>
-    <ion-buttons slot="end">
-      <ion-button color="medium" (click)="closeModal()">Cerrar</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header-modal title='{{title}}'></app-header-modal>
 <ion-content>
   <div class="content-info" *ngIf="product">
     <ion-card class="carta-producto">
@@ -24,7 +17,7 @@
             <img alt="Silhouette of mountains" src={{price.imageUrl}} />
           </ion-thumbnail>
           <ion-label>{{price.marketName}}</ion-label>
-          <ion-chip color="success">{{price.price| dineroFormato}}</ion-chip>
+          <ion-chip color="success">{{price.price| moneyFormatter}}</ion-chip>
         </ion-item>
       </ion-list>
     </ion-card>

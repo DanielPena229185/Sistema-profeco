@@ -1,0 +1,17 @@
+<ion-menu side="start" menuId="content" [contentId]="contId">
+  <ion-header>
+    <ion-toolbar color="profeco-green" mode="md">
+      <ion-title>Servicios</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item button *ngFor="let item of options" (click)="goToPage(item)">
+          <ion-icon [name]="item.icon" slot="start" color="app"></ion-icon>
+          {{item.name}}
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
