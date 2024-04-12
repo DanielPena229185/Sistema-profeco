@@ -1,0 +1,63 @@
+/* main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:  rgba(0, 0, 0, 0.5);
+    opacity: 0.5;
+    z-index: 50;
+}
+
+.modal-container-prices {
+    --translate-x: -50%;
+    --translate-y: -50%;
+    --rotate: 0;
+    --skew-x: 0;
+    --skew-y: 0;
+    --scale-x: 1;
+    --scale-y: 1;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(var(--translate-x), var(--translate-y)) rotate(var(--rotate)) skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x)) scaleY(var(--scale-y));
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    z-index: 50;
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 1); 
+} */
+/* Estilos para el fondo oscuro transparente */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Negro con opacidad al 50% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para el contenido del modal */
+.modal-info {
+    background-color: white; /* Fondo blanco para el contenido del modal */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+}
+
+.modal h2 {
+    margin: 0;
+}
+  
+.my-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+.body-margin {
+    margin: 0;
+}
+
+/* Estilo base del botón */
+.button {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Estilo del botón cuando el cursor está sobre él */
+.button:hover {
+    transform: scale(1.02);
+}
+
+/* Estilo del botón cuando el cursor está presionado sobre él */
+.button:active {
+    user-select: none;
+    transform: scale(0.95);
+}
+
+
+
+:root {
+    /** profeco-primary **/
+    --color-profeco-primary: #6a1b31;
+    --color-profeco-primary-rgb: 106, 27, 49;
+    --color-profeco-primary-contrast: #ffffff;
+    --color-profeco-primary-contrast-rgb: 255, 255, 255;
+    --color-profeco-primary-shade: #5d182b;
+    --color-profeco-primary-tint: #793246;
+
+    /** profeco-secondary **/
+    --color-profeco-secondary: #13322b;
+    --color-profeco-secondary-rgb: 19, 50, 43;
+    --color-profeco-secondary-contrast: #ffffff;
+    --color-profeco-secondary-contrast-rgb: 255, 255, 255;
+    --color-profeco-secondary-shade: #112c26;
+    --color-profeco-secondary-tint: #2b4740;
+
+    /** profeco-green **/
+    --color-profeco-green: #0b231e;
+    --color-profeco-green-rgb: 11, 35, 30;
+    --color-profeco-green-contrast: #ffffff;
+    --color-profeco-green-contrast-rgb: 255, 255, 255;
+    --color-profeco-green-shade: #0a1f1a;
+    --color-profeco-green-tint: #233935;
+
+    /** profeco-brown **/
+    --color-profeco-brown: #b6915e;
+    --color-profeco-brown-rgb: 182, 145, 94;
+    --color-profeco-brown-contrast: #000000;
+    --color-profeco-brown-contrast-rgb: 0, 0, 0;
+    --color-profeco-brown-shade: #a08053;
+    --color-profeco-brown-tint: #bd9c6e;
+}
+
+color-profeco-green {
+    --color-base: var(--color-profeco-green);
+    --color-base-rgb: var(--color-profeco-green-rgb);
+    --color-contrast: var(--color-profeco-green-contrast);
+    --color-contrast-rgb: var(--color-profeco-green-contrast-rgb);
+    --color-shade: var(--color-profeco-green-shade);
+    --color-tint: var(--color-profeco-green-tint);
+}
+
+color-profeco-primary {
+    --color-base: var(--color-profeco-primary);
+    --color-base-rgb: var(--color-profeco-primary-rgb);
+    --color-contrast: var(--color-profeco-primary-contrast);
+    --color-contrast-rgb: var(--color-profeco-primary-contrast-rgb);
+    --color-shade: var(--color-profeco-primary-shade);
+    --color-tint: var(--color-profeco-primary-tint);
+}
+
+color-profeco-secondary {
+    --color-base: var(--color-profeco-secondary);
+    --color-base-rgb: var(--color-profeco-secondary-rgb);
+    --color-contrast: var(--color-profeco-secondary-contrast);
+    --color-contrast-rgb: var(--color-profeco-secondary-contrast-rgb);
+    --color-shade: var(--color-profeco-secondary-shade);
+    --color-tint: var(--color-profeco-secondary-tint);
+}
+
+color-profeco-brown {
+    --color-base: var(--color-profeco-brown);
+    --color-base-rgb: var(--color-profeco-brown-rgb);
+    --color-contrast: var(--color-profeco-brown-contrast);
+    --color-contrast-rgb: var(--color-profeco-brown-contrast-rgb);
+    --color-shade: var(--color-profeco-brown-shade);
+    --color-tint: var(--color-profeco-brown-tint);
+}

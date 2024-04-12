@@ -1,0 +1,13 @@
+<main>
+    <div class="container">
+        <div class="row row-cols-{{columns}}">
+            <div class="card button col" *ngFor="let product of products" (click)="goToProductPrices(product)">
+                <img alt="{{product.name}}" src="{{product.imageUrl}}" class="card-img-top product-image"/>
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.details}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
