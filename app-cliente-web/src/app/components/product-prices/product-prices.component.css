@@ -52,12 +52,32 @@
     overflow: auto;
 }
 
-.modal h2 {
-    margin: 0;
+.card {
+    border: 0px;
+}
+
+.modal-info-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-spinner {
+    color: var(--color-profeco-primary);
+}
+
+.my-spinner, .modal-info-loading-title {
+    margin: 0px 5px;
 }
   
 .my-card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

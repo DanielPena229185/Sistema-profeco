@@ -1,22 +1,31 @@
 <div class="modal">
-    <div class="card modal-info" style="width: 18rem;">
-        <div class="my-card-header">
-            <div class="my-card-header-start">
-                <h3>Precios</h3>
+    <div class="modal-info">
+        <div class="modal-info-loading" *ngIf="showLoading">
+            <div class="spinner-border my-spinner" role="status">
+                <span class="visually-hidden">Loading...</span>
             </div>
-            <div class="my-card-header-end">
-                <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+            <p class="modal-info-loading-title">Cargando precios...</p>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="my-card-header">
+                <div class="my-card-header-start">
+                    <h3>Precios</h3>
+                </div>
+                <div class="my-card-header-end">
+                    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+                </div>
             </div>
+            <img alt="{{data.name}}" src="{{data.imageUrl}}" class="card-img-top product-image" />
+            <div class="card-body">
+                <h5 class="card-title">{{data.name}}</h5>
+                <p class="card-text">{{data.details}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item <app-price-item [price]="50"></app-price-item></li>
+                <li class="list-group-item">A second item <app-price-item [price]="50"></app-price-item></li>
+                <li class="list-group-item">A third item <app-price-item [price]="50"></app-price-item></li>
+            </ul>
         </div>
-        <img alt="{{data.name}}" src="{{data.imageUrl}}" class="card-img-top product-image" />
-        <div class="card-body">
-            <h5 class="card-title">{{data.name}}</h5>
-            <p class="card-text">{{data.details}}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-        </ul>
     </div>
+
 </div>

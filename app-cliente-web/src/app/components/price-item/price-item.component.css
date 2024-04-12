@@ -1,0 +1,12 @@
+.chip {
+    display: inline-block;
+    background: #2dd55b;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+.chip > .container > p{
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}

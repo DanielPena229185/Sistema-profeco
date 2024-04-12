@@ -45,4 +45,8 @@ export class NavBarComponent {
   isActive(route: string): boolean {
     return this.router.url === route;
   }
+
+  goHome(): void {
+    this.router.navigate(['/inicio']);
+  }
 }

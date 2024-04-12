@@ -8,7 +8,7 @@ import { PostsComponent } from './posts/posts.component';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'products',
+        redirectTo: 'inicio',
         pathMatch: 'full'
     },
     {

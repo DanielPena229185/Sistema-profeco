@@ -4,6 +4,15 @@ main {
     margin: 25px;
 }
 
+.container-loading {
+    display: flex;
+    justify-content: center;
+}
+
+.my-spinner {
+    color: var(--color-profeco-primary);
+}
+
 .card {
     width: 18rem;
     margin: 10px;

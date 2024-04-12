@@ -1,5 +1,10 @@
 <main>
     <div class="container">
+        <div class="container-loading" *ngIf="showLoading">
+            <div class="spinner-border my-spinner" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
         <div class="row row-cols-{{columns}}">
             <div class="card button col" *ngFor="let product of products" (click)="goToProductPrices(product)">
                 <img alt="{{product.name}}" src="{{product.imageUrl}}" class="card-img-top product-image"/>

@@ -11,7 +11,9 @@ header {
 .header-container-start {
     display: flex;
     align-items: center;
-    padding: 10px 0px;
+    padding: 20px 0px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .header-container-start-title, .header-container-start-img{

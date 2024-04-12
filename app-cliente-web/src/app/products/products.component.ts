@@ -14,12 +14,14 @@ import { MatDialog } from '@angular/material/dialog';
 export class ProductsComponent implements OnInit {
   columns = 0;
   products: ProductDTO[] = [];
+  showLoading: boolean = true;
 
   constructor(private readonly dialog: MatDialog) {}
 
   ngOnInit() {
     this.initProducts();
     this.calculateColumns();
+    this.showLoading = false;
   }
 
   goToProductPrices(product: ProductDTO) {
