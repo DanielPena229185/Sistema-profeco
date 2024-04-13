@@ -1,0 +1,28 @@
+.container {
+    padding: 25px 0px;
+}
+
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-spinner {
+    color: var(--color-profeco-primary);
+}
+
+.title-container {
+    font-family: serif;
+    font-weight: lighter;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.message-container {
+    font-family: serif;
+    font-weight: lighter;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: x-large;
+}

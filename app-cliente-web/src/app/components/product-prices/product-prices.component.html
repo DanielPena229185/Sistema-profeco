@@ -1,30 +1,39 @@
 <div class="modal">
     <div class="modal-info">
-        <div class="modal-info-loading" *ngIf="showLoading">
+        <div class="modal-loading" *ngIf="showLoading">
             <div class="spinner-border my-spinner" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-            <p class="modal-info-loading-title">Cargando precios...</p>
+            <p>Cargando Precios...</p>
         </div>
-        <div class="card" style="width: 18rem;">
-            <div class="my-card-header">
-                <div class="my-card-header-start">
-                    <h3>Precios</h3>
-                </div>
-                <div class="my-card-header-end">
+        <div class="product-prices" *ngIf="!showLoading">
+            <div class="product-info">
+                <header class="header-product-info">
+                    <div class="header-product-info-name">
+                        <h4>{{product.name}}</h4>
+                    </div>
+                    <div class="header-product-info-details">
+                        <p>{{product.details}}</p>
+                    </div>
+                    <div class="header-product-info-img">
+                        <img class="product-img" [src]="product.imageUrl" alt={{product.name}}>
+                    </div>
+                </header>
+                <div class="header-end">
                     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
                 </div>
             </div>
-            <img alt="{{data.name}}" src="{{data.imageUrl}}" class="card-img-top product-image" />
-            <div class="card-body">
-                <h5 class="card-title">{{data.name}}</h5>
-                <p class="card-text">{{data.details}}</p>
+            <header class="header-product-prices">
+                <div class="header-end">
+                    <h3>Precios</h3>
+                </div>
+            </header>
+            <div class="price-list" [ngClass]="{'scroll-prices-list': shouldAddClass()}">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item item-price" *ngFor="let item of items">{{ item.nombreTienda
+                        }}<app-price-item [price]="item.price"></app-price-item></li>
+                </ul>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item <app-price-item [price]="50"></app-price-item></li>
-                <li class="list-group-item">A second item <app-price-item [price]="50"></app-price-item></li>
-                <li class="list-group-item">A third item <app-price-item [price]="50"></app-price-item></li>
-            </ul>
         </div>
     </div>
 

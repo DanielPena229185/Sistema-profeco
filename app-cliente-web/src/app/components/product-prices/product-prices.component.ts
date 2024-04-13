@@ -17,10 +17,20 @@ import { PriceItemComponent } from '../price-item/price-item.component';
 })
 export class ProductPricesComponent {
   showLoading: boolean = true;
-
+  items: { itemNumber: number, price: number, nombreTienda: string }[] = [
+    { itemNumber: 1, price: 75, nombreTienda: 'Tienda A' },
+    { itemNumber: 2, price: 90, nombreTienda: 'Tienda B' },
+    { itemNumber: 3, price: 105, nombreTienda: 'Tienda C' },
+    { itemNumber: 4, price: 110, nombreTienda: 'Tienda D' },
+    { itemNumber: 5, price: 115, nombreTienda: 'Tienda E' },
+    { itemNumber: 6, price: 115, nombreTienda: 'Tienda F' },
+    { itemNumber: 7, price: 115, nombreTienda: 'Tienda G' },
+    { itemNumber: 8, price: 115, nombreTienda: 'Tienda H' },
+    { itemNumber: 9, price: 115, nombreTienda: 'Tienda I' },
+  ];
   constructor(
     public dialogRef: MatDialogRef<ProductPricesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ProductDTO
+    @Inject(MAT_DIALOG_DATA) public product: ProductDTO
   ) {
     this.showLoading = false;
   }
@@ -30,4 +40,8 @@ export class ProductPricesComponent {
   }
 
   nothing() {}
+
+  shouldAddClass(): boolean {
+    return this.items.length > 4;
+  }
 }

@@ -1,6 +1,7 @@
 .chip {
     display: inline-block;
-    background: #2dd55b;
+    background: #3ed667b8;
+    border: 1px solid #2dd55b;
     padding: 5px;
     border-radius: 25px;
 }

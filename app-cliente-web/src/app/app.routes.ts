@@ -4,6 +4,7 @@ import { StoresComponent } from './stores/stores.component';
 import { HomeComponent } from './home/home.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { PostsComponent } from './posts/posts.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
     {
@@ -30,5 +31,9 @@ export const routes: Routes = [
     {
         path: 'publicaciones',
         component: PostsComponent
-    }
+    },
+    {
+        path: '**',
+        component: NotFoundComponent
+    },
 ];
