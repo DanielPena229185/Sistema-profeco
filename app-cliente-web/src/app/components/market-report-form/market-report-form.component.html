@@ -12,20 +12,17 @@
             <div class="form-conteiner">
                 <div class="row my-row two-columns">
                     <div class="col my-col">
-                        <select class="form-select" aria-label="Default select example" [disabled]="true" formControlName="selectMarket">
-                            <option *ngIf="marketSelected" [value]="marketSelected.id" selected>{{marketSelected.name}}</option>
-                            <option *ngFor="let market of markets" [value]="market.id">{{market.name}}</option>
+                        <select class="form-select" aria-label="Default select example" formControlName="selectMarket" (change)="selectMarketChange($event)">
+                            <option *ngIf="isReportEspecificMarket" [value]="marketSelected.id" selected>{{marketSelected.name}}</option>
+                            <option *ngIf="!isReportEspecificMarket" value="0" selected>Ninguno</option>
+                            <option *ngFor="let market of marketOptions" [value]="market.id">{{market.name}}</option>
                         </select>
-                        <div *ngIf="selectMarket.invalid && (selectMarket.dirty || selectMarket.touched)">
-                            <div *ngIf="selectMarket.errors?.['required']">Name is required.</div>
-                        </div>
                     </div>
                     <div class="col my-col">
-                        <select class="form-select" aria-label="Default select example">
-                            <option *ngIf="marketSelected" selected>Ninguno</option>
-                            <option *ngFor="let product of marketSelected.products" [value]="product.id">{{product.name}}</option>
+                        <select class="form-select" aria-label="Default select example" formControlName="selectProduct">
+                            <option *ngIf="!isReportEspecificMarket && !marketSelected" value="0">Ninguno</option>
+                            <option *ngFor="let product of productsOptions" [value]="product.id">{{product.name}}</option>
                         </select>
-                        
                     </div>
                 </div>
             </div>

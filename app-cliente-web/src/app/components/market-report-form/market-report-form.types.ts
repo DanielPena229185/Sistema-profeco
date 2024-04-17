@@ -3,7 +3,6 @@ export interface MarketDTO {
   name: string;
   urlImage: string;
   address: string;
-  products: ProductDTO[];
 }
 
 export interface ProductDTO{
@@ -11,4 +10,14 @@ export interface ProductDTO{
   name: string;
   price: number;
   urlImage: string;
+}
+
+export interface ProductOptionDTO {
+  id: string;
+  name: string;
+}
+
+export interface MarketOptionDTO {
+  id: string;
+  name: string;
 }
