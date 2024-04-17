@@ -1,0 +1,11 @@
+<div class="modal">
+    <div class="modal-info">
+        <form [formGroup]="reportForm">
+            <textarea formControlName="description"></textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                <div class="error-tag" *ngIf="description.errors?.['required']">Description is required</div>
+                <div class="error-tag" *ngIf="description.errors?.['required']">Description is required</div>
+            </div>
+        </form>
+    </div>
+</div>

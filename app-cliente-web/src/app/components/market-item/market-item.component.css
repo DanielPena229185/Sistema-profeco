@@ -1,0 +1,25 @@
+.my-dropdown-btn {
+    background-color: transparent;
+    font-size: larger;
+    color: black;
+    border: none;
+}
+
+.my-dropdown-item{
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.my-dropdown-item:hover {
+    background-color: var(--bs-light);
+}
+
+.my-dropdown-item-red {
+    font-weight: bold;
+    color: red;
+}
+
+.my-dropdown-item-blue {
+    font-weight: bold;
+    color: var(--bs-primary);
+}
