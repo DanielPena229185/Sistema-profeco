@@ -16,12 +16,17 @@ export const routes: Routes = [
     loadComponent: () => import('./posts/posts.page').then((m) => m.PostsPage),
   },
   {
-    path: 'stores',
+    path: 'markets',
     loadComponent: () =>
-      import('./stores/stores.page').then((m) => m.StoresPage), 
+      import('./markets/markets.page').then((m) => m.MarketsPage), 
   },
   {
     path: 'wishlist',
     loadComponent: () => import('./wishlist/wishlist.page').then( m => m.WishlistPage)
   },
+  {
+    path: 'markets',
+    loadComponent: () => import('./markets/markets.page').then( m => m.MarketsPage)
+  },
+
 ];
