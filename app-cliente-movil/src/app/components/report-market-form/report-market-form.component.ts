@@ -1,15 +1,49 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MarketDTO, MarketOptionDTO, ProductDTO, ProductOptionDTO } from './report-market-form.types';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonSelectOption, IonSelect } from "@ionic/angular/standalone";
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
+  MarketDTO,
+  MarketOptionDTO,
+  ProductDTO,
+  ProductOptionDTO,
+} from './report-market-form.types';
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonSelect,
+  IonSelectOption,
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-report-market-form',
   templateUrl: './report-market-form.component.html',
   styleUrls: ['./report-market-form.component.scss'],
   standalone: true,
-  imports: [IonCol, IonRow, IonGrid, IonContent, IonTitle, IonToolbar, IonHeader, CommonModule, FormsModule, ReactiveFormsModule, IonSelectOption, IonSelect]
+  imports: [
+    IonCol,
+    IonRow,
+    IonGrid,
+    IonContent,
+    IonTitle,
+    IonToolbar,
+    IonHeader,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonSelect,
+    IonSelectOption,
+  ],
 })
 export class ReportMarketFormComponent implements OnInit {
 
@@ -21,8 +55,10 @@ export class ReportMarketFormComponent implements OnInit {
   marketSelected: MarketDTO;
   productSelected: ProductDTO;
   reportForm: FormGroup;
+  defaultMarketOption: string;
+  defaultProductOption: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.initParams();
@@ -31,11 +67,15 @@ export class ReportMarketFormComponent implements OnInit {
   initParams() {
     this.checkIsEspecificReport();
     if (this.isEspecificReport) {
+      this.defaultMarketOption = this.marketId;
+      this.defaultProductOption = this.notAvaliableOption;
       this.getMarketByMarketId(this.marketId);
       this.getProductOptions(this.marketId);
       this.createFormEspecificReport(this.marketSelected);
     }
     if (!this.isEspecificReport) {
+      this.defaultMarketOption = this.notAvaliableOption;
+      this.defaultProductOption = this.notAvaliableOption;
       this.getMarketOptions();
       this.createFormGeneralReport();
     }
@@ -43,35 +83,36 @@ export class ReportMarketFormComponent implements OnInit {
 
   createFormEspecificReport(market: MarketDTO) {
     this.reportForm = new FormGroup({
-      selectMarket: new FormControl({
-        value: market.id,
-        disabled: true
-      }, Validators.required),
-      selectProduct: new FormControl({
-        value: this.notAvaliableOption,
-        disabled: false
-      }, Validators.required),
-      reportContent: new FormControl({
-        value: this.notAvaliableOption,
-        disabled: this.productSelected ? false : true
-      }, Validators.required)
+      selectMarket: new FormControl(Validators.required),
+      selectProduct: new FormControl(Validators.required),
+      reportContent: new FormControl(Validators.required
+      ),
     });
   }
 
   createFormGeneralReport() {
     this.reportForm = new FormGroup({
-      'selectMarket': new FormControl({
-        value: this.notAvaliableOption,
-        disabled: false
-      }, Validators.required),
-      selectProduct: new FormControl({
-        value: this.notAvaliableOption,
-        disabled: true
-      }, Validators.required),
-      reportContent: new FormControl({
-        value: this.notAvaliableOption,
-        disabled: this.productSelected ? false : true
-      }, Validators.required)
+      selectMarket: new FormControl(
+        {
+          value: this.notAvaliableOption,
+          disabled: false,
+        },
+        Validators.required
+      ),
+      selectProduct: new FormControl(
+        {
+          value: this.notAvaliableOption,
+          disabled: true,
+        },
+        Validators.required
+      ),
+      reportContent: new FormControl(
+        {
+          value: this.notAvaliableOption,
+          disabled: this.productSelected ? false : true,
+        },
+        Validators.required
+      ),
     });
   }
 
@@ -106,6 +147,7 @@ export class ReportMarketFormComponent implements OnInit {
 
   checkIsEspecificReport() {
     if (this.marketId) {
+      console.log('isEspecificReport');
       this.isEspecificReport = true;
     } else {
       this.isEspecificReport = false;
@@ -116,11 +158,11 @@ export class ReportMarketFormComponent implements OnInit {
     this.marketsOptions = [
       {
         id: '1',
-        name: 'Market 1'
+        name: 'Market 1',
       },
       {
         id: '2',
-        name: 'Market 2'
+        name: 'Market 2',
       },
     ];
   }
@@ -132,7 +174,7 @@ export class ReportMarketFormComponent implements OnInit {
           id: '1',
           name: 'Market 1',
           address: 'Address 1',
-          urlImg: 'urlImg1'
+          urlImg: 'urlImg1',
         };
         break;
       default:
@@ -140,7 +182,7 @@ export class ReportMarketFormComponent implements OnInit {
           id: '2',
           name: 'Market 2',
           address: 'Address 2',
-          urlImg: 'urlImg2'
+          urlImg: 'urlImg2',
         };
         break;
     }
@@ -153,7 +195,7 @@ export class ReportMarketFormComponent implements OnInit {
           id: '1',
           name: 'Product 1',
           urlImg: 'urlImg1',
-          detail: 'Detail 1'
+          detail: 'Detail 1',
         };
         break;
       default:
@@ -161,7 +203,7 @@ export class ReportMarketFormComponent implements OnInit {
           id: '2',
           name: 'Product 2',
           urlImg: 'urlImg2',
-          detail: 'Detail 2'
+          detail: 'Detail 2',
         };
         break;
     }
@@ -173,28 +215,28 @@ export class ReportMarketFormComponent implements OnInit {
         this.productsOptions = [
           {
             id: '1',
-            name: 'Product 1'
+            name: 'Product 1',
           },
           {
             id: '2',
-            name: 'Product 2'
+            name: 'Product 2',
           },
           {
             id: '3',
-            name: 'Product 3'
-          }
+            name: 'Product 3',
+          },
         ];
         break;
       default:
         this.productsOptions = [
           {
             id: '1',
-            name: 'Product 1'
+            name: 'Product 1',
           },
           {
             id: '2',
-            name: 'Product 2'
-          }
+            name: 'Product 2',
+          },
         ];
         break;
     }

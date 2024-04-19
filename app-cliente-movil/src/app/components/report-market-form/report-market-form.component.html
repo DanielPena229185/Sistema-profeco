@@ -8,10 +8,18 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <ion-select labelPlacement="stacked" label="Favorite fruit" value="{{marketId}}">
-                        <ion-select-option value={{notAvaliableOption}}>Selecciona Tienda</ion-select-option>
-                        <ion-select-option *ngIf="marketSelected" value={{marketId}}>{{marketSelected.name}}</ion-select-option>
-                        <ion-select-option *ngFor="let market of marketsOptions" value="market.id">{{market.name}}</ion-select-option>
+                    <ion-select name="selectMarket" [disabled]="isEspecificReport"
+                        [value]="defaultMarketOption">
+                        <ion-select-option [value]="marketSelected.id">{{marketSelected.name}}</ion-select-option>
+                        <ion-select-option *ngFor="let marketOption of marketsOptions" [value]="marketOption.id">{{marketOption.name}}</ion-select-option>
+                    </ion-select>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-select name="selectProduct" [value]="defaultProductOption"
+                        [disabled]="!marketSelected">
+                        <ion-select-option [value]="notAvaliableOption">Sin seleccionar</ion-select-option>
                     </ion-select>
                 </ion-col>
             </ion-row>
