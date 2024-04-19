@@ -48,7 +48,7 @@ import {
 export class ReportMarketFormComponent implements OnInit {
   @Input() marketId: string;
   isEspecificReport: boolean;
-  notAvaliableOption: string = 'Opción no disponible';
+  notAvaliableOption: string = 'no';
   marketsOptions: MarketOptionDTO[] = [];
   productsOptions: ProductOptionDTO[] = [];
   marketSelected: MarketDTO;

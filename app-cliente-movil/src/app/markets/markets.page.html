@@ -4,10 +4,10 @@
     <ion-row>
       <div class="lista-markets" *ngFor="let market of markets">
         <ion-col>
-          <ion-card button class="carta-market">
+          <ion-card class="carta-market">
             <div class="market-options">
-              <ion-button id="popover-button-{{market.id}}" class="my-button" color="light"
-                size="small">•••</ion-button>
+              <div id="popover-button-{{market.id}}" class="my-button" color="light"
+                size="small">•••</div>
               <ion-popover trigger="popover-button-{{market.id}}">
                 <ng-template>
                   <ion-content>
