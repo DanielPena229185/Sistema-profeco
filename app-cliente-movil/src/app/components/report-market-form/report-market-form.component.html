@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Genera tu Reporte</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+    <form [formGroup]="reportForm">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-select labelPlacement="stacked" label="Favorite fruit" value="{{marketId}}">
+                        <ion-select-option value={{notAvaliableOption}}>Selecciona Tienda</ion-select-option>
+                        <ion-select-option *ngIf="marketSelected" value={{marketId}}>{{marketSelected.name}}</ion-select-option>
+                        <ion-select-option *ngFor="let market of marketsOptions" value="market.id">{{market.name}}</ion-select-option>
+                    </ion-select>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

@@ -33,7 +33,7 @@ export class MenuComponent  implements OnInit {
   initMenuOptions() {
     this.options = [
       { name: 'Productos', url: '/products', icon: 'pricetags' },
-      { name: 'Tiendas', url: '/stores', icon: 'storefront' },
+      { name: 'Tiendas', url: '/markets', icon: 'storefront' },
       { name: 'Lista de deseos', url: '/wishlist', icon: 'heart-circle' },
       { name: 'Publicaciones', url: '/posts', icon: 'copy' }
     ]
