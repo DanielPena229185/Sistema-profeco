@@ -46,7 +46,6 @@ import {
   ],
 })
 export class ReportMarketFormComponent implements OnInit {
-
   @Input() marketId: string;
   isEspecificReport: boolean;
   notAvaliableOption: string = 'Opción no disponible';
@@ -85,8 +84,7 @@ export class ReportMarketFormComponent implements OnInit {
     this.reportForm = new FormGroup({
       selectMarket: new FormControl(Validators.required),
       selectProduct: new FormControl(Validators.required),
-      reportContent: new FormControl(Validators.required
-      ),
+      reportContent: new FormControl(Validators.required),
     });
   }
 
@@ -130,24 +128,46 @@ export class ReportMarketFormComponent implements OnInit {
 
   onSelectedProduct(event: any) {
     const productId = event.target.value;
-    if (productId !== this.notAvaliableOption) {
-      this.getProductByProductId(productId);
+    if (productId === this.notAvaliableOption) {
+      this.selectProductIsNotAvaliableOption();
+    } else {
+      this.selectProductIsAvaliableOption(productId);
     }
   }
 
   onSelectedMarket(event: any) {
     const marketId = event.target.value;
-    if (marketId !== this.notAvaliableOption) {
-      this.getProductOptions(marketId);
-    }
     if (marketId === this.notAvaliableOption) {
-      this.productsOptions = [];
+      this.selectMarketIsNotAvaliableOption();
+    } else {
+      this.selectMarketIsAvaliableOption(marketId);
     }
+  }
+
+  private selectMarketIsNotAvaliableOption() {
+    this.defaultProductOption = this.notAvaliableOption;
+    this.marketSelected = null;
+    this.productSelected = null;
+    this.productsOptions = [];
+  }
+
+  private selectMarketIsAvaliableOption(marketId: string) {
+    this.getMarketByMarketId(marketId);
+    this.getProductOptions(marketId);
+    this.defaultProductOption = this.notAvaliableOption;
+  }
+
+  private selectProductIsNotAvaliableOption() {
+    this.productSelected = null;
+    this.defaultProductOption = this.notAvaliableOption;
+  }
+
+  private selectProductIsAvaliableOption(productId: string) {
+    this.getProductByProductId(productId);
   }
 
   checkIsEspecificReport() {
     if (this.marketId) {
-      console.log('isEspecificReport');
       this.isEspecificReport = true;
     } else {
       this.isEspecificReport = false;

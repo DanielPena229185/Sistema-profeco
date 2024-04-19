@@ -21,3 +21,5 @@ export interface ProductDTO {
     urlImg: string;
     detail: string;
 }
+
+export const NO_OPTION_AVAILABLE = 'Opción no disponible';
