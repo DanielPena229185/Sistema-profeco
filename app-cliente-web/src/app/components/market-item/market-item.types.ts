@@ -1,5 +1,5 @@
 export interface MarketOption{
-    actionOtion: ActionOption;
+    actionOption: ActionOption;
     title: string;
     color: string;
 }

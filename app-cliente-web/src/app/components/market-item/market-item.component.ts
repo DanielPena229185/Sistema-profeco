@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActionOption, MarketOption } from './market-item.types';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,16 +13,16 @@ import { MarketReportFormComponent } from '../market-report-form/market-report-f
 })
 export class MarketItemComponent {
 
-  id: string = '1';
+  @Input() id: string;
 
   marketOptions: MarketOption[] = [
     {
-      actionOtion: ActionOption.REPORT,
+      actionOption: ActionOption.REPORT,
       title: 'Reportar',
       color: 'red',
     },
     {
-      actionOtion: ActionOption.ADDWISHLIST,
+      actionOption: ActionOption.ADDWISHLIST,
       title: 'Agregar a la lista de deseos',
       color: 'blue',
     },
