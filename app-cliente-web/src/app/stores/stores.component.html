@@ -1,0 +1,7 @@
+<main>
+    <div class="container">
+        <div class="row row-cols-{{columns}}">
+            <app-market-item class="market-card col" *ngFor="let market of markets" [id]="market.id"></app-market-item>
+        </div>
+    </div>
+</main>

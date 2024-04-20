@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductDTO, ProductsDTO } from './products.types';
+import { FormGroup } from '@angular/forms';
 import {
   IonContent,
   IonCard,
