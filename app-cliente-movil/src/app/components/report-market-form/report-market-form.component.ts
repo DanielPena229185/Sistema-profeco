@@ -1,29 +1,39 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import {
-  MarketDTO,
-  MarketOptionDTO,
-  ProductDTO,
-  ProductOptionDTO,
-} from './report-market-form.types';
 import {
   IonHeader,
   IonToolbar,
-  IonTitle,
-  IonContent,
-  IonGrid,
   IonRow,
+  IonGrid,
   IonCol,
+  IonList,
+  IonItem,
   IonSelect,
   IonSelectOption,
+  IonLabel,
+  IonTextarea,
+  IonContent,
+  IonTitle,
+  IonButton,
+  ModalController,
 } from '@ionic/angular/standalone';
+import {
+  MarketDTO,
+  MarketOptionDTO,
+  MarketReportForm,
+  ProductDTO,
+  ProductOptionDTO,
+} from './report-market-form.types';
+import { CommonModule } from '@angular/common';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  FormsModule,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-report-market-form',
@@ -31,89 +41,124 @@ import {
   styleUrls: ['./report-market-form.component.scss'],
   standalone: true,
   imports: [
-    IonCol,
-    IonRow,
-    IonGrid,
-    IonContent,
+    IonButton,
     IonTitle,
+    IonContent,
+    IonTextarea,
+    IonLabel,
+    IonItem,
+    IonList,
+    IonCol,
+    IonGrid,
+    IonRow,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     IonToolbar,
     IonHeader,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     IonSelect,
     IonSelectOption,
   ],
 })
 export class ReportMarketFormComponent implements OnInit {
-  @Input() marketId: string;
-  isEspecificReport: boolean;
-  notAvaliableOption: string = 'no';
-  marketsOptions: MarketOptionDTO[] = [];
-  productsOptions: ProductOptionDTO[] = [];
-  marketSelected: MarketDTO;
-  productSelected: ProductDTO;
-  reportForm: FormGroup;
-  defaultMarketOption: string;
-  defaultProductOption: string;
+  //Constantes
+  NO_AVAILABLE = 'No disponible';
 
-  constructor() {}
+  //Atributos
+  @Input() marketId: string;
+  isEspecificReport: boolean = false;
+  optionMarkets: MarketOptionDTO[] = [];
+  marketSelected: MarketDTO;
+  optionProducts: ProductOptionDTO[] = [];
+  productSelected: ProductDTO;
+
+  //Form
+  reportForm: FormGroup;
+
+  constructor(private readonly modalCtrl: ModalController) {}
 
   ngOnInit() {
     this.initParams();
   }
 
   initParams() {
-    this.checkIsEspecificReport();
+    this.isEspecificReport = this.checkReportType(this.marketId);
     if (this.isEspecificReport) {
-      this.defaultMarketOption = this.marketId;
-      this.defaultProductOption = this.notAvaliableOption;
-      this.getMarketByMarketId(this.marketId);
-      this.getProductOptions(this.marketId);
-      this.createFormEspecificReport(this.marketSelected);
+      this.initConfigEspecificReport();
+      return;
     }
-    if (!this.isEspecificReport) {
-      this.defaultMarketOption = this.notAvaliableOption;
-      this.defaultProductOption = this.notAvaliableOption;
-      this.getMarketOptions();
-      this.createFormGeneralReport();
-    }
+    this.initConfigGeneralReport();
   }
 
-  createFormEspecificReport(market: MarketDTO) {
-    this.reportForm = new FormGroup({
-      selectMarket: new FormControl(Validators.required),
-      selectProduct: new FormControl(Validators.required),
-      reportContent: new FormControl(Validators.required),
-    });
+  checkReportType(marketId: string): boolean {
+    if (marketId) {
+      return true;
+    }
+    return false;
   }
 
-  createFormGeneralReport() {
+  initConfigEspecificReport() {
+    this.getMarketByMarketId(this.marketId);
+    this.getProductsByMarketId(this.marketId);
+    this.configFormEspecificReport();
+  }
+
+  initConfigGeneralReport() {
+    this.configFormGeneralReport();
+    this.getMarkets();
+  }
+
+  //Configuracion del formulario
+  configFormEspecificReport() {
     this.reportForm = new FormGroup({
       selectMarket: new FormControl(
         {
-          value: this.notAvaliableOption,
-          disabled: false,
+          value: this.marketId,
+          disabled: true,
         },
         Validators.required
       ),
       selectProduct: new FormControl(
         {
-          value: this.notAvaliableOption,
-          disabled: true,
+          value: this.NO_AVAILABLE,
+          disabled: false,
         },
-        Validators.required
+        [Validators.required, this.mustNotSelectNoOption()]
       ),
-      reportContent: new FormControl(
-        {
-          value: this.notAvaliableOption,
-          disabled: this.productSelected ? false : true,
-        },
-        Validators.required
-      ),
+      reportContent: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(45),
+        Validators.maxLength(250),
+        this.noEmptyReportContent(),
+      ]),
     });
   }
 
+  configFormGeneralReport() {
+    this.reportForm = new FormGroup({
+      selectMarket: new FormControl(
+        {
+          value: this.NO_AVAILABLE,
+          disabled: false,
+        },
+        [Validators.required, this.mustNotSelectNoOption()]
+      ),
+      selectProduct: new FormControl(
+        {
+          value: this.NO_AVAILABLE,
+          disabled: true,
+        },
+        [Validators.required, this.mustNotSelectNoOption()]
+      ),
+      reportContent: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(45),
+        Validators.maxLength(250),
+      ]),
+    });
+  }
+
+  //Metodos para obtener los controles del formulario
   get selectMarket() {
     return this.reportForm.get('selectMarket');
   }
@@ -126,113 +171,70 @@ export class ReportMarketFormComponent implements OnInit {
     return this.reportForm.get('reportContent');
   }
 
-  onSelectedProduct(event: any) {
-    const productId = event.target.value;
-    if (productId === this.notAvaliableOption) {
-      this.selectProductIsNotAvaliableOption();
-    } else {
-      this.selectProductIsAvaliableOption(productId);
-    }
+  //Metodos para validar el formulario
+  mustNotSelectNoOption(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (control.value === this.NO_AVAILABLE) {
+        return { mustNotSelectNoOption: true };
+      }
+      return null;
+    };
   }
 
-  onSelectedMarket(event: any) {
-    const marketId = event.target.value;
-    if (marketId === this.notAvaliableOption) {
-      this.selectMarketIsNotAvaliableOption();
-    } else {
-      this.selectMarketIsAvaliableOption(marketId);
-    }
+  noEmptyReportContent(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      const trimmedValue = value ? value.trim() : '';
+      const characterCount = trimmedValue.replace(/\s/g, '').length;
+      if (characterCount < 45) {
+        return { noEmptyReportContent: true };
+      }
+      return null;
+    };
   }
 
-  private selectMarketIsNotAvaliableOption() {
-    this.defaultProductOption = this.notAvaliableOption;
-    this.marketSelected = null;
-    this.productSelected = null;
-    this.productsOptions = [];
-  }
-
-  private selectMarketIsAvaliableOption(marketId: string) {
-    this.getMarketByMarketId(marketId);
-    this.getProductOptions(marketId);
-    this.defaultProductOption = this.notAvaliableOption;
-  }
-
-  private selectProductIsNotAvaliableOption() {
-    this.productSelected = null;
-    this.defaultProductOption = this.notAvaliableOption;
-  }
-
-  private selectProductIsAvaliableOption(productId: string) {
-    this.getProductByProductId(productId);
-  }
-
-  checkIsEspecificReport() {
-    if (this.marketId) {
-      this.isEspecificReport = true;
-    } else {
-      this.isEspecificReport = false;
-    }
-  }
-
-  getMarketOptions() {
-    this.marketsOptions = [
-      {
-        id: '1',
-        name: 'Market 1',
-      },
-      {
-        id: '2',
-        name: 'Market 2',
-      },
-    ];
-  }
-
+  //Metodos para obtener informacion de los mercados
   getMarketByMarketId(marketId: string) {
     switch (marketId) {
       case '1':
         this.marketSelected = {
           id: '1',
-          name: 'Market 1',
-          address: 'Address 1',
-          urlImg: 'urlImg1',
+          name: 'Walmart',
+          address: 'Av. Guerrero y Michoacan S/N, 85000 CIUDAD OBREGON, SONORA',
+          urlImg:
+            'https://th.bing.com/th/id/R.cba9989d9a166fd0b5d6ccc2c6e1e0f4?rik=uszVEE8zXTWMiw&riu=http%3a%2f%2f1000logos.net%2fwp-content%2fuploads%2f2017%2f05%2fEmblem-Walmart.jpg&ehk=uYehZzXhw1a4kdy%2budI%2f8jlOhYVTg7BvqpZMdsw%2fRAo%3d&risl=&pid=ImgRaw&r=0',
         };
         break;
       default:
         this.marketSelected = {
           id: '2',
-          name: 'Market 2',
-          address: 'Address 2',
-          urlImg: 'urlImg2',
+          name: 'Bodega Aurrera',
+          address: '5 De Febrero 3300 Reforma,, 85070 Cajeme, Sonora',
+          urlImg:
+            'https://th.bing.com/th/id/R.af77da9676b6928af3e2f6618c0ef105?rik=lW%2fm2B%2b%2ffYfnCA&riu=http%3a%2f%2fcdn.corporate.walmart.com%2f46%2fb5%2f9152b1d44bcf91bf37e4d6b4834b%2fbodega-aurrera-exterior-walmex.JPG&ehk=QZOKmuc0JtE3FgGnTdTQTVQ6x10teXNovy5olTQhVPg%3d&risl=1&pid=ImgRaw&r=0',
         };
         break;
     }
   }
 
-  getProductByProductId(productId: string) {
-    switch (productId) {
-      case '1':
-        this.productSelected = {
-          id: '1',
-          name: 'Product 1',
-          urlImg: 'urlImg1',
-          detail: 'Detail 1',
-        };
-        break;
-      default:
-        this.productSelected = {
-          id: '2',
-          name: 'Product 2',
-          urlImg: 'urlImg2',
-          detail: 'Detail 2',
-        };
-        break;
-    }
+  getMarkets() {
+    this.optionMarkets = [
+      {
+        id: '1',
+        name: 'Walmart',
+      },
+      {
+        id: '2',
+        name: 'Bodega Aurrera',
+      }
+    ];
   }
 
-  getProductOptions(marketId: string) {
+  //Metodos para obtener informacion de los productos
+  getProductsByMarketId(marketId: string) {
     switch (marketId) {
-      case '1':
-        this.productsOptions = [
+      case '2':
+        this.optionProducts = [
           {
             id: '1',
             name: 'Product 1',
@@ -248,17 +250,89 @@ export class ReportMarketFormComponent implements OnInit {
         ];
         break;
       default:
-        this.productsOptions = [
+        this.optionProducts = [
           {
             id: '1',
-            name: 'Product 1',
+            name: 'Arroz',
           },
           {
             id: '2',
-            name: 'Product 2',
+            name: 'Frijoles',
           },
         ];
         break;
     }
+  }
+
+  getProductByProductId(productId: string) {
+    switch (productId) {
+      case '1':
+        this.productSelected = {
+          id: '1',
+          name: 'Arroz',
+          urlImg:
+            'https://www.costco.com.mx/medias/sys_master/products/hbc/h81/114806758735902.jpg',
+          detail: 'Arroz blanco de grano largo.',
+        };
+        break;
+      default:
+        this.productSelected = {
+          id: '2',
+          name: 'Frijoles',
+          urlImg:
+            'https://www.soriana.com/on/demandware.static/-/Sites-soriana-grocery-master-catalog/default/dwf4f40cfe/images/product/7501071301353_A.jpg',
+          detail: 'Frijoles negros de la marca tradicional.',
+        };
+        break;
+    }
+  }
+
+  //Metodos para obtener la informacion del formulario
+  onSelectMarketChange(event){
+    const marketId = event.target.value;
+    if(marketId === this.NO_AVAILABLE){
+      this.marketNoAvailableSelected();
+      return;
+    }
+    this.marketAvailableSelected(marketId);
+    
+  }
+
+  onSelectProductChange(event) {
+    const productId = event.target.value;
+    if (productId === this.NO_AVAILABLE) {
+      this.resetProductSelected();
+      return;
+    }
+    this.getProductByProductId(productId);
+  }
+
+  resetProductSelected() {
+    this.productSelected = null;
+  }
+
+  marketAvailableSelected(marketId: string){
+    this.reportForm.get('selectProduct').enable();
+    this.getMarketByMarketId(marketId);
+    this.getProductsByMarketId(marketId);
+  }
+
+  marketNoAvailableSelected(){
+    this.reportForm.get('selectProduct').setValue(this.NO_AVAILABLE);
+    this.reportForm.get('selectProduct').disable();
+    this.resetProductSelected();
+  }
+
+  sendReport() {
+    if (this.reportForm.invalid) {
+      this.reportForm.markAllAsTouched();
+      return;
+    }
+    const report: MarketReportForm = {
+      marketSelected: this.marketSelected,
+      productSelected: this.productSelected,
+      reportContent: this.reportContent.value,
+    };
+    this.modalCtrl.dismiss();
   }
 }

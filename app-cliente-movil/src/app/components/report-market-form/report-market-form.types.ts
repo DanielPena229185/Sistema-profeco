@@ -22,4 +22,8 @@ export interface ProductDTO {
     detail: string;
 }
 
-export const NO_OPTION_AVAILABLE = 'Opción no disponible';
+export interface MarketReportForm {
+    marketSelected: MarketDTO;
+    productSelected: ProductDTO;
+    reportContent: string;
+  }

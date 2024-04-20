@@ -19,7 +19,6 @@ import {
   ProductDTO,
   ProductOptionDTO,
 } from './market-report-form.types';
-import { min } from 'rxjs';
 
 @Component({
   selector: 'app-market-report-form',
