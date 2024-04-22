@@ -1,0 +1,11 @@
+main {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px;
+}
+
+.market-card {
+    width: 18rem;
+    margin: 10px;
+    padding: 0;
+}

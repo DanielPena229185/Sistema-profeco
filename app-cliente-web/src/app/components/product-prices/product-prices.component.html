@@ -1,0 +1,40 @@
+<div class="modal">
+    <div class="modal-info">
+        <div class="modal-loading" *ngIf="showLoading">
+            <div class="spinner-border my-spinner" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Cargando Precios...</p>
+        </div>
+        <div class="product-prices" *ngIf="!showLoading">
+            <div class="product-info">
+                <header class="header-product-info">
+                    <div class="header-product-info-name">
+                        <h4>{{product.name}}</h4>
+                    </div>
+                    <div class="header-product-info-details">
+                        <p>{{product.details}}</p>
+                    </div>
+                    <div class="header-product-info-img">
+                        <img class="product-img" [src]="product.imageUrl" alt={{product.name}}>
+                    </div>
+                </header>
+                <div class="header-end">
+                    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+                </div>
+            </div>
+            <header class="header-product-prices">
+                <div class="header-end">
+                    <h3>Precios</h3>
+                </div>
+            </header>
+            <div class="price-list" [ngClass]="{'scroll-prices-list': shouldAddClass()}">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item item-price" *ngFor="let item of items">{{ item.nombreTienda
+                        }}<app-price-item [price]="item.price"></app-price-item></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

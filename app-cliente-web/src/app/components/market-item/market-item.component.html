@@ -1,0 +1,19 @@
+<div class="card effect-market-item">
+    <div class="dropdown my-dropdown">
+        <button class="my-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            •••
+        </button>
+        <ul class="dropdown-menu">
+            <li [className]="'my-dropdown-item my-dropdown-item-'+marketOption.color"
+                *ngFor="let marketOption of marketOptions" (click)="onAction(marketOption.actionOption)">
+                {{marketOption.title}}</li>
+        </ul>
+    </div>
+    <img src="https://imgs.search.brave.com/ovvIogcvvx6G7SEG7nUWMESM0ecniYbf9ScHfioPjaQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly8xMDAw/bWFyY2FzLm5ldC93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMC8w/Mi9XYWxtYXJ0LWxv/Z28tMS01MDB4Mjk2/LmpwZw"
+        alt="Walmart">
+    <div class="card-body">
+        <h5 class="card-title">Walmart</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+    </div>
+</div>

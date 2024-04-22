@@ -1,0 +1,19 @@
+.my-button {
+  padding: 20px;
+  color: black;
+}
+
+.my-button:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.market-options {
+  display: flex;
+  justify-content: end;
+}
+
+ion-card {
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

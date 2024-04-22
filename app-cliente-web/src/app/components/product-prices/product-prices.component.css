@@ -1,0 +1,103 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-info {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+
+@media (max-width: 768px) {
+  .modal-info {
+    width: 90%;
+  }
+}
+
+.modal-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-spinner {
+  color: var(--color-profeco-primary);
+}
+
+.modal-loading > p {
+  margin: 0;
+}
+
+.modal-loading > p,
+.modal-loading > .my-spinner {
+    margin: 0px 5px;
+}
+
+.modal-info-loading-title {
+  display: flex;
+  align-items: center;
+}
+
+.product-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.product-prices {
+  width: 100%;
+}
+
+.price-list {
+  width: 100%;
+}
+
+.header-product-prices {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.header-product-info-img {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.product-img {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-prices-list {
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
+.item-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
