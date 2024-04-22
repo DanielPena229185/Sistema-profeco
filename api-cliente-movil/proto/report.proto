@@ -1,0 +1,67 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+package report;
+
+service ReportService{
+    rpc CreateReport (CreateReportDto) returns (Report) {}
+    rpc FindReportsByMarket (FindReportsByMarketDto) returns (ReportsList) {}
+    rpc ReportsPagination (stream PaginationDto) returns (stream ReportsList) {}
+}
+
+message Empty{
+    string text=1;
+}
+
+message PaginationDto{
+    int32 page = 1;
+    int32 skip = 2;
+}
+
+message FindReportsByMarketDto{
+    string id = 1;
+}
+
+message ReportsList{
+    repeated Report reports = 1;
+}
+
+message CreateReportDto{
+    User user = 1;
+    Market market = 2;
+    Product product = 3;
+}
+
+message Report{
+    string id = 1;
+    Status status = 2;
+    google.protobuf.Timestamp date_attended = 3;
+    User user = 4;
+    Market market = 5;
+    Product  product = 6;
+}
+
+enum Status{
+    ATTENDED = 0;
+    UNATTENDED = 1;
+}
+
+message User{
+    string id = 1;
+    string names = 2;
+    string lastnames = 3;
+    string email = 4;
+}
+
+message Market{
+    string id = 1;
+    string name =2;
+    string url_img=3;
+}
+
+message Product{
+    string id = 1;
+    string brand = 2;
+    string name = 3;
+    string url_img = 4;
+}
