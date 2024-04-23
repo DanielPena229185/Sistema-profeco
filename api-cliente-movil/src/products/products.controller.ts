@@ -7,19 +7,17 @@ import {
   ProductListRequest,
 } from './proto/product';
 import { GetPricesByProductId } from './input/getPricesByProduct.dto';
+import { ProductsService } from './products.service';
 
 @Controller('products')
-export class ProductsController implements OnModuleInit {
-  private productsService;
-  constructor(@Inject('PRODUCTS_SERVICE') private client: ClientGrpc) {}
-
-  onModuleInit() {
-    this.productsService = this.client.getService('Products');
-  }
-
+export class ProductsController {
+  
+constructor(
+  private readonly productsService:ProductsService,
+){}
   @Get('names')
-  async getProducts(): Promise<ProductList> {
-    const products: ProductList = await this.productsService.GetProducts({});
+  async getProducts():Promise<ProductList>{
+    const products:ProductList = await this.productsService.getProducts();
     return products;
   }
 
@@ -30,8 +28,7 @@ export class ProductsController implements OnModuleInit {
     const productListRequest: ProductListRequest = {
       productName: params.productId
     }
-    const products: CompareProductList =
-      await this.productsService.GetProductsByPrice(productListRequest);
+    const products: CompareProductList = await this.productsService.getProductsByPrice(productListRequest);
     return products;
   }
 }
