@@ -2,6 +2,7 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { CompareProductList, ProductList, ProductListRequest } from './proto/product';
 import { Observable } from 'rxjs';
+import { BusinessRuleException } from 'default/exceptions';
 
 @Injectable()
 export class ProductsService implements OnModuleInit {
@@ -20,7 +21,7 @@ export class ProductsService implements OnModuleInit {
 
     async getProductsByPrice(productListRequest:ProductListRequest){
       if(!productListRequest){
-        
+        throw new BusinessRuleException('Product name empty');
       }
       const $products:Observable<CompareProductList> = this.productsService.GetProductsByPrice(productListRequest);
       const products:CompareProductList = await $products.toPromise();
