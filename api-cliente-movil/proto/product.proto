@@ -15,11 +15,18 @@ message Product {
 message MarketPrice {
     string market_name = 1;
     float price = 2;
+    string id = 3;
 }
 
 service Products{
     rpc GetProductsByPrice(ProductListRequest) returns (CompareProductList){}
     rpc GetProducts(Empty) returns (ProductList){}
+    rpc GetProductById(ProductByIdRequest) returns (Product) {}
+    rpc GetCompareProductListById(ProductByIdRequest) returns (CompareProductList) {}
+}
+
+message ProductByIdRequest {
+    string product_id = 1;
 }
 
 message ProductListRequest {
