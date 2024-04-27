@@ -9,36 +9,27 @@
             </div>
         </div>
         <form class="form-report-market" [formGroup]="reportForm">
-            <div class="form-conteiner">
+            <div class="form-container">
                 <div class="row">
-                    <div class="col ">
+                    <div class="col">
                         <select class="form-select" aria-label="Default select example" formControlName="selectMarket"
-                            (change)="selectMarketChange($event)">
-                            <option *ngIf="isReportEspecificMarket" [value]="marketSelected.id" selected>
+                            (change)="onChangeSelectMarket($event)">
+                            <option [value]="NO_AVAILABLE">{{NO_AVAILABLE}}</option>
+                            <option *ngIf="isEspecificReport && marketSelected" [value]="marketSelected.id">
                                 {{marketSelected.name}}</option>
-                            <option *ngIf="!isReportEspecificMarket" value="0" selected>Ninguno</option>
-                            <option *ngFor="let market of marketOptions" [value]="market.id">{{market.name}}</option>
+                            <option *ngFor="let optionMarket of optionMarkets" [value]="optionMarket.id">
+                                {{optionMarket.name}}</option>
                         </select>
-                        <div *ngIf="selectMarket.invalid && (selectMarket.dirty || selectMarket.touched)"
-                            class="errors-forms">
-                            <div *ngIf="selectMarket.errors?.['mustNotSelectNoOption']">
-                                No se puede seleccionar la opción "Ninguno".
-                            </div>
+                        <div class="error-forms"
+                            *ngIf="selectMarket.invalid && (selectMarket.dirty || selectMarket.touched)">
+                            <!-- <div *ngIf="selectMarket.errors?.['']">Debes seleccionar una tienda</div> -->
                         </div>
                     </div>
                     <div class="col">
                         <select class="form-select" aria-label="Default select example" formControlName="selectProduct"
-                            (change)="selectProductChange($event)">
-                            <option value="0" selected>Ninguno</option>
-                            <option *ngFor="let product of productsOptions" [value]="product.id">{{product.name}}
-                            </option>
+                            (change)="onChangeSelectProduct($event)">
+                            <option [value]="NO_AVAILABLE">{{NO_AVAILABLE}}</option>
                         </select>
-                        <div *ngIf="selectProduct.invalid && (selectProduct.dirty || selectProduct.touched)"
-                            class="errors-forms">
-                            <div *ngIf="selectProduct.errors?.['mustNotSelectNoOption']">
-                                No se puede seleccionar la opción "Ninguno".
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -72,24 +63,15 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="marketSelected && productSelected" class="row">
-                    <div class="col input-report-content">
-                        <textarea class="form-control" formControlName="reportContent" placeholder="Escribe tu reporte"
-                            rows="3"></textarea>
-                        <div *ngIf="reportContent.invalid && (reportContent.dirty || reportContent.touched)"
-                            class="errors-forms">
-                            <div *ngIf="reportContent.errors?.['minlength']">
-                                El reporte debe tener al menos 45 caracteres.
-                            </div>
-                            <div *ngIf="reportContent.errors?.['required']">
-                                El reporte es requerido.
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <textarea class="form-control" formControlName="reportContent" placeholder="Escribe aquí tu reporte"
+                        rows="3"></textarea>
                 </div>
             </div>
         </form>
-        <div *ngIf="marketSelected && productSelected" class="row">
+        <div class="row">
             <div class="col">
                 <button type="button" class="btn btn-send-report" (click)="createReport()">Enviar</button>
             </div>
