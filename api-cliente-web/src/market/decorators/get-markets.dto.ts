@@ -24,7 +24,7 @@ const avaliableRelations = ['company'];
 export const GetMarketsQueryDTO = createParamDecorator(
   (data, ctx: ExecutionContext) => {    
     const request = ctx.switchToHttp().getRequest();
-    const page: number = parsePage(request.query['fields'] as string);
+    const page: number = parsePage(request.query['page'] as string);
     const count: number = parseCount(request.query['count'] as string);
     const fields: string = request.query['fields'] as string;
     if (!fields) {

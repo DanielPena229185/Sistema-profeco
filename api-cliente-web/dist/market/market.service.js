@@ -24,7 +24,12 @@ let MarketService = class MarketService {
     async getAllMarkets(getAllMarketsRequest) {
         const response = this.marketService.GetAllMarkets(getAllMarketsRequest);
         const merketResponse = await response.toPromise();
-        return merketResponse;
+        return merketResponse.markets;
+    }
+    async getMarketById(getMarketByIdRequest) {
+        const response = this.marketService.GetMarketById(getMarketByIdRequest);
+        const marketResponse = await response.toPromise();
+        return marketResponse.market;
     }
 };
 exports.MarketService = MarketService;

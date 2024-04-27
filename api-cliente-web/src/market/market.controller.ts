@@ -1,8 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { MarketService } from './market.service';
 import { GetMarketsQueryDTO } from './decorators/get-markets.dto';
 import { GetMarketsDTO } from './input-dto/get-markets-query.dto';
-import { GetAllMarketsRequest } from 'src/microservices/market.interface';
+import { GetAllMarketsRequest, GetMarketByIdRequest } from 'src/microservices/market.interface';
+import { GetMarketByIdQueryDTO } from './decorators/get-market-by-id';
+import { GetMarketByIdDTO } from './input-dto/get-market-by-id-query.dto';
 
 @Controller('market')
 export class MarketController {
@@ -25,5 +27,17 @@ export class MarketController {
       }
     };
     return this.marketService.getAllMarkets(getAllMarketsRequest);
+  }
+
+  @Get(':id')
+  getMarketById(@GetMarketByIdQueryDTO() query: GetMarketByIdDTO, @Param('id') id: string){
+    const getMarketByIdRequest: GetMarketByIdRequest = {
+      query: {
+        marketId: id,
+        fields: query.fields.join(','),
+        relations: query.relations.join(',')
+      }
+    }
+    return this.marketService.getMarketById(getMarketByIdRequest);
   }
 }

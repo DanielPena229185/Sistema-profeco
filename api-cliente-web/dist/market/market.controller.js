@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const market_service_1 = require("./market.service");
 const get_markets_dto_1 = require("./decorators/get-markets.dto");
 const get_markets_query_dto_1 = require("./input-dto/get-markets-query.dto");
+const get_market_by_id_1 = require("./decorators/get-market-by-id");
+const get_market_by_id_query_dto_1 = require("./input-dto/get-market-by-id-query.dto");
 let MarketController = class MarketController {
     constructor(marketService) {
         this.marketService = marketService;
@@ -37,6 +39,16 @@ let MarketController = class MarketController {
         };
         return this.marketService.getAllMarkets(getAllMarketsRequest);
     }
+    getMarketById(query, id) {
+        const getMarketByIdRequest = {
+            query: {
+                marketId: id,
+                fields: query.fields.join(','),
+                relations: query.relations.join(',')
+            }
+        };
+        return this.marketService.getMarketById(getMarketByIdRequest);
+    }
 };
 exports.MarketController = MarketController;
 __decorate([
@@ -46,6 +58,14 @@ __decorate([
     __metadata("design:paramtypes", [get_markets_query_dto_1.GetMarketsDTO]),
     __metadata("design:returntype", void 0)
 ], MarketController.prototype, "getMarkets", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, get_market_by_id_1.GetMarketByIdQueryDTO)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [get_market_by_id_query_dto_1.GetMarketByIdDTO, String]),
+    __metadata("design:returntype", void 0)
+], MarketController.prototype, "getMarketById", null);
 exports.MarketController = MarketController = __decorate([
     (0, common_1.Controller)('market'),
     __metadata("design:paramtypes", [market_service_1.MarketService])

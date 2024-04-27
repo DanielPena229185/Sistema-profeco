@@ -1,0 +1,1 @@
+{"version":3,"file":"get-market-by-id-query.dto.js","sourceRoot":"","sources":["../../../src/market/input-dto/get-market-by-id-query.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,gBAAgB;IAIzB,YAAY,MAAgB,EAAE,SAAmB;QAC7C,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;QACrB,IAAI,CAAC,SAAS,GAAG,SAAS,CAAC;IAC/B,CAAC;CACJ;AARD,4CAQC"}
