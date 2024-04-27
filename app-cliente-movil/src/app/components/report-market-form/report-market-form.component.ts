@@ -75,7 +75,7 @@ export class ReportMarketFormComponent implements OnInit {
   //Form
   reportForm: FormGroup;
 
-  constructor(private readonly modalCtrl: ModalController) {}
+  constructor(private readonly modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.initParams();
@@ -288,14 +288,14 @@ export class ReportMarketFormComponent implements OnInit {
   }
 
   //Metodos para obtener la informacion del formulario
-  onSelectMarketChange(event){
+  onSelectMarketChange(event) {
     const marketId = event.target.value;
-    if(marketId === this.NO_AVAILABLE){
+    if (marketId === this.NO_AVAILABLE) {
       this.marketNoAvailableSelected();
       return;
     }
     this.marketAvailableSelected(marketId);
-    
+
   }
 
   onSelectProductChange(event) {
@@ -311,13 +311,13 @@ export class ReportMarketFormComponent implements OnInit {
     this.productSelected = null;
   }
 
-  marketAvailableSelected(marketId: string){
+  marketAvailableSelected(marketId: string) {
     this.reportForm.get('selectProduct').enable();
     this.getMarketByMarketId(marketId);
     this.getProductsByMarketId(marketId);
   }
 
-  marketNoAvailableSelected(){
+  marketNoAvailableSelected() {
     this.reportForm.get('selectProduct').setValue(this.NO_AVAILABLE);
     this.reportForm.get('selectProduct').disable();
     this.resetProductSelected();

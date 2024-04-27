@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActionOption, MarketOption } from './market-item.types';
+import { ActionOption, MarketDTO, MarketOption } from './market-item.types';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MarketReportFormComponent } from '../market-report-form/market-report-form.component';
@@ -13,7 +13,7 @@ import { MarketReportFormComponent } from '../market-report-form/market-report-f
 })
 export class MarketItemComponent {
 
-  @Input() id: string;
+  @Input() market: MarketDTO;
 
   marketOptions: MarketOption[] = [
     {
@@ -32,7 +32,7 @@ export class MarketItemComponent {
 
   goToReportMarket() {
     this.dialog.open(MarketReportFormComponent, {
-      data: this.id,
+      data: this.market.id,
     });
   }
 
