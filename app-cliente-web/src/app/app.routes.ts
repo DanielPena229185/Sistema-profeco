@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
-import { StoresComponent } from './stores/stores.component';
 import { HomeComponent } from './home/home.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { PostsComponent } from './posts/posts.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MarketsComponent } from './markets/markets.component';
 
 export const routes: Routes = [
     {
@@ -22,7 +22,7 @@ export const routes: Routes = [
     },
     {
         path: 'tiendas',
-        component: StoresComponent
+        component: MarketsComponent
     },
     {
         path: 'lista-de-deseos',

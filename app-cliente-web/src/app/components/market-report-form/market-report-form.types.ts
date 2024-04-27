@@ -28,3 +28,12 @@ export interface MarketReportForm {
   productSelected: ProductDTO;
   reportContent: string;
 }
+
+export interface SearchParamsDTO {
+  fields : string;
+  relations: string;
+  page: number;
+  count: number;
+  name: string;
+  address: string;
+}

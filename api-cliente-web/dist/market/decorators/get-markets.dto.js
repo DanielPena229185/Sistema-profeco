@@ -19,7 +19,7 @@ const avaliableFields = [
 const avaliableRelations = ['company'];
 exports.GetMarketsQueryDTO = (0, common_1.createParamDecorator)((data, ctx) => {
     const request = ctx.switchToHttp().getRequest();
-    const page = (0, parse_page_1.parsePage)(request.query['fields']);
+    const page = (0, parse_page_1.parsePage)(request.query['page']);
     const count = (0, parse_count_1.parseCount)(request.query['count']);
     const fields = request.query['fields'];
     if (!fields) {
