@@ -1,0 +1,2 @@
+obj\Debug\net8.0\Protos/Deal.cs \
+obj\Debug\net8.0\Protos/DealGrpc.cs: Protos/deal.proto
