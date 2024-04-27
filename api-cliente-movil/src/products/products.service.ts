@@ -1,9 +1,9 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { CompareProductList, ProductList, ProductListRequest } from './proto/product';
+//import { CompareProductList, ProductList, ProductListRequest } from './proto/product';
 import { Observable } from 'rxjs';
 import { BusinessRuleException } from 'default/exceptions';
-import { Product, ProductByIdRequest } from './products.types';
+import { CompareProductList, Product, ProductByIdRequest, ProductList, ProductListRequest } from './products.types';
 
 @Injectable()
 export class ProductsService implements OnModuleInit {
