@@ -5,9 +5,10 @@ import {
   Product,
   ProductList,
   ProductListRequest,
-} from './proto/product';
+} from './products.types';
 import { GetPricesByProductId } from './input/getPricesByProduct.dto';
 import { ProductsService } from './products.service';
+import { ProductByIdRequest } from './products.types';
 
 @Controller('products')
 export class ProductsController {
@@ -21,14 +22,27 @@ constructor(
     return products;
   }
 
-  @Get('prices/:productId')
+  @Get('prices/:productName')
   async getProductsByPrice(
-    @Param() params: GetPricesByProductId,
+    @Param() params: ProductListRequest,
   ): Promise<CompareProductList> {
-    const productListRequest: ProductListRequest = {
-      productName: params.productId
-    }
-    const products: CompareProductList = await this.productsService.getProductsByPrice(productListRequest);
+    const products: CompareProductList = await this.productsService.getProductsByPrice(params);
     return products;
+  }
+
+  @Get(':productId')
+  async getProductById(
+    @Param() data:ProductByIdRequest
+  ):Promise<Product>{
+    const product:Product = await this.productsService.getProductById(data);
+    return product;
+  }
+
+  @Get('compare/:productId')
+  async getCompareProductListById(
+    @Param() data:ProductByIdRequest
+  ):Promise<CompareProductList>{
+    const product:CompareProductList = await this.productsService.getCompareProductListById(data);
+    return product;
   }
 }

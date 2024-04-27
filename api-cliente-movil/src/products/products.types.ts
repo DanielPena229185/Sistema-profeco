@@ -10,3 +10,22 @@ export interface Product {
     market:string;
     current_price:string;
 }
+
+interface MarketPrice{
+    market_name:string;
+    price:number;
+    id:string;
+}
+
+export interface CompareProductList{
+    product:Product;
+    prices:Array<MarketPrice>;
+}
+
+export interface ProductList{
+    product:Array<Product>;
+}
+
+export interface ProductByIdRequest{
+    product_id:string;
+}
