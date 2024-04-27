@@ -32,7 +32,7 @@ export class MarketItemComponent {
 
   goToReportMarket() {
     this.dialog.open(MarketReportFormComponent, {
-      //data: this.market.id,
+      data: this.market.id,
     });
   }
 

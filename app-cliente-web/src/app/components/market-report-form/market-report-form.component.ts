@@ -103,7 +103,7 @@ export class MarketReportFormComponent implements OnInit {
   }
 
   modifyFormControlsEspecificReport() {
-    this.selectMarket.setValue(this.marketSelected.id);
+    this.selectMarket.setValue(this.marketId);
     this.selectMarket.disable();
   }
 
