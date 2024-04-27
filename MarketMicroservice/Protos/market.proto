@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+option csharp_namespace = "Market";
+
+package market;
+
+service Market {
+	//GetAllMarkets
+	rpc GetAllMarkets(GetAllMarketsRequest) returns (GetAllMarketsResponse);
+	//GetMarketById
+	rpc GetMarketById(GetMarketByIdRequest) returns (GetMarketByIdResponse);
+}
+
+//PaginationParams
+message PaginationParams {
+	int32 page = 1;
+	int32 count = 2;
+}
+
+// GetAllMarkets()
+message GetAllMarketsRequest {
+	GetAllMarketsQuery query = 1;
+}
+
+//Query to get all markets
+message GetAllMarketsQuery {
+	PaginationParams paginationParams = 1;
+	string fields = 2;
+	string relations = 3;
+	string marketName = 4;
+	string address = 5;
+	bool exclusive = 6;
+}
+
+//Response to get all markets
+message GetAllMarketsResponse {
+	repeated MarketEntity markets = 1;
+}
+
+// GetMarketById()
+
+//Request to get market by id
+message GetMarketByIdRequest {
+	GetMarketByIdQuery query = 1;
+}
+
+//Response to get market by id
+message GetMarketByIdResponse {
+	MarketEntity market = 1;
+}
+
+message GetMarketByIdQuery {
+	string marketId = 1;
+	string fields = 2;
+	string relations = 3;
+}
+
+//Entities
+message CompanyEntity {
+	string id = 1;
+	string name = 2;
+	string urlImg = 3;
+}
+
+message MarketEntity {
+	string id = 1;
+	string name = 2;
+	string urlImg = 3;
+	string address = 4;
+	CompanyEntity company = 5;
+	string createdAt = 6;
+	string updatedAt = 7;
+}
