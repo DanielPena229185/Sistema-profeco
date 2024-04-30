@@ -8,7 +8,7 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <ion-select [value]="getDeafaultValue(isEspecificReport)" [disabled]="isEspecificReport" (ionChange)="onChangeSelectMarket($event)">
+                    <ion-select [value]="getDeafaultValueForSelectMarket(isEspecificReport)" [disabled]="isEspecificReport" (ionChange)="onChangeSelectMarket($event)">
                         <ion-select-option [value]="NO_AVAILABLE">No Disponible</ion-select-option>
                         <ion-select-option *ngIf="marketSelected && isEspecificReport" [value]="marketId">{{marketSelected.name}}</ion-select-option>
                         <ion-select-option *ngFor="let market of optionMarkets" [value]="market.id">{{market.name}}</ion-select-option>

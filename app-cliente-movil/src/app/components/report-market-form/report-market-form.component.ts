@@ -77,7 +77,8 @@ export class ReportMarketFormComponent implements OnInit {
     this.initParams();
   }
 
-  getDeafaultValue(isEspecificReport: boolean): string | number {
+  //Obtener valor por defecto para el select de mercado
+  getDeafaultValueForSelectMarket(isEspecificReport: boolean): string | number {
     if (isEspecificReport) {
       return this.marketId;
     }
@@ -111,6 +112,7 @@ export class ReportMarketFormComponent implements OnInit {
     };
   }
 
+  //Inicializar parámetros
   initParams() {
     if (this.isEspecificReport) {
       this.initConfigEspecificReport();
@@ -120,6 +122,7 @@ export class ReportMarketFormComponent implements OnInit {
     this.getMarketOptions();
   }
 
+  //Inicializar parámetros de búsqueda de opciones de mercados
   initSearchParamsMarketOptionDTO() {
     this.searchParamsMarketOptionDTO = {
       page: 0,
@@ -138,6 +141,7 @@ export class ReportMarketFormComponent implements OnInit {
     //this.getProductsOptionsByMarketId(this.marketId);
   }
 
+  //Validar tipo de reporte (específico o general)
   checkReportType(marketId: string): boolean {
     if (marketId) {
       return true;
@@ -145,6 +149,7 @@ export class ReportMarketFormComponent implements OnInit {
     return false;
   }
 
+  //Obtener mercado por id
   getMarketById(marketId: string) {
     const searchParamsMarketDTO: SearchParamsMarketDTO = {
       fields: 'id,name,urlImage,address',
@@ -162,6 +167,7 @@ export class ReportMarketFormComponent implements OnInit {
       });
   }
 
+  //Obtener tiendas 
   getMarketOptions() {
     this.marketReportFormService.getMarketsOptions(this.searchParamsMarketOptionDTO).subscribe({
       next: (response: MarketOptionDTO[]) => {
@@ -183,11 +189,13 @@ export class ReportMarketFormComponent implements OnInit {
     this.marketAvailable(marketId);
   }
 
+  //No se selecciona mercado
   marketNoAvailable() {
     this.optionProducts = [];
     this.marketSelected = null;
   }
 
+  //Se selecciona mercado
   marketAvailable(marketId: string) {
     this.getMarketById(marketId);
   }
