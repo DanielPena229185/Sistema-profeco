@@ -8,22 +8,24 @@ export interface ProductOptionDTO{
     name: string;
 }
 
-export interface MarketDTO {
-    id: string;
+export interface SearchParamsMarketOptionDTO{
+    page: number;
+    count: number;
+    fields: string;
+    relations: string;
+    exclusive: boolean;
     name: string;
     address: string;
-    urlImg: string;
 }
 
-export interface ProductDTO {
+export interface MarketDTO{
     id: string;
     name: string;
-    urlImg: string;
-    detail: string;
+    urlImage: string;
+    address: string;
 }
 
-export interface MarketReportForm {
-    marketSelected: MarketDTO;
-    productSelected: ProductDTO;
-    reportContent: string;
-  }
+export interface SearchParamsMarketDTO{
+    fields: string;
+    relations: string;
+}

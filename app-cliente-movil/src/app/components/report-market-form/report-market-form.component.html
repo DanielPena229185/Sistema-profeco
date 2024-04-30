@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Generar reporte</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+    <form>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-select [value]="getDeafaultValue(isEspecificReport)" [disabled]="isEspecificReport" (ionChange)="onChangeSelectMarket($event)">
+                        <ion-select-option [value]="NO_AVAILABLE">No Disponible</ion-select-option>
+                        <ion-select-option *ngIf="marketSelected && isEspecificReport" [value]="marketId">{{marketSelected.name}}</ion-select-option>
+                        <ion-select-option *ngFor="let market of optionMarkets" [value]="market.id">{{market.name}}</ion-select-option>
+                    </ion-select>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="marketSelected">
+                <ion-col>
+                    <img [src]="marketSelected.urlImage" [alt]="marketSelected.name">
+                    <h2>
+                        {{marketSelected.name}}
+                    </h2>
+                    <ion-label>
+                        {{marketSelected.address}}
+                    </ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

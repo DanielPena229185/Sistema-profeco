@@ -1,37 +1,27 @@
 <app-header></app-header>
-<ion-content [fullscreen]="true">
-  <ion-grid>
-    <ion-row>
-      <div class="lista-markets" *ngFor="let market of markets">
-        <ion-col>
-          <ion-card class="carta-market">
-            <div class="market-options">
-              <div id="popover-button-{{market.id}}" class="my-button" color="light"
-                size="small">•••</div>
-              <ion-popover trigger="popover-button-{{market.id}}">
-                <ng-template>
-                  <ion-content>
-                    <ion-list>
-                      <ion-item [button]="true" [detail]="false"
-                        (click)="openReportMarket(market.id)">Reportar</ion-item>
-                      <ion-item [button]="true" [detail]="false">Agregar a lista de deseos</ion-item>
-                    </ion-list>
-                  </ion-content>
-                </ng-template>
-              </ion-popover>
+<ion-content>
+    <ion-card *ngFor="let market of markets">
+        <img [src]="market.urlImage" [alt]="market.name">
+        <ion-card-title>
+            <div class="header-title">
+                <div>{{market.name}}</div>
+                <ion-button mode="ios" id="popover-button-{{market.id}}" class="button-options" shape="round">
+                    •••
+                </ion-button>
+                <ion-popover trigger="popover-button-{{market.id}}" [dismissOnSelect]="true">
+                    <ng-template>
+                        <ion-content>
+                            <ion-list>
+                                <ion-item button (click)="openReportMarket(market.id)">Reportar</ion-item>
+                                <ion-item button>Lista de deseos</ion-item>
+                            </ion-list>
+                        </ion-content>
+                    </ng-template>
+                </ion-popover>
             </div>
-            <img src="{{market.urlImg}}" alt={{market.name}} />
-            <ion-card-header>
-              <ion-card-title>{{market.name}}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-card-subtitle>
-                {{market.address}}
-              </ion-card-subtitle>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </div>
-    </ion-row>
-  </ion-grid>
+        </ion-card-title>
+        <ion-card-content>
+            {{market.address}}
+        </ion-card-content>
+    </ion-card>
 </ion-content>
