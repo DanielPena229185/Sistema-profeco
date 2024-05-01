@@ -1,19 +1,18 @@
-.my-button {
-  padding: 20px;
-  color: black;
+ion-card > img{
+  width: 100%;
 }
 
-.my-button:hover {
-  background-color: #f1f1f1;
-  cursor: pointer;
-}
-
-.market-options {
+.header-title{
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
+  padding: px;
 }
 
-ion-card {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.button-options{
+  --background: trasparent;
+  --background-hover: trasparent;
+  --background-activated: trasparent;
+  --background-focused: trasparent;
+  --color: black;
 }
