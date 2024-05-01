@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+
+option go_package = "github.com/silverflin/customer-service";
+
+package proto;
+
+message Customer {
+    string id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string email = 4;
+    string curp = 6;
+}
+
+service Customers {
+    rpc CreateCustomer(Customer) returns (Customer) {}
+    rpc GetCustomerById(CustomerByIdRequest) returns (Customer) {}
+}
+
+message CustomerByIdRequest {
+    string id = 1;
+}
