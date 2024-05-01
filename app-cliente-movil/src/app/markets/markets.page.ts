@@ -93,7 +93,7 @@ export class MarketsPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: ReportMarketFormComponent,
       componentProps: {
-        //marketId,
+        marketId,
       },
     });
     modal.present();

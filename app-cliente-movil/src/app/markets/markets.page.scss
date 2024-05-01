@@ -1,7 +1,12 @@
+ion-card > img{
+  width: 100%;
+}
+
 .header-title{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: px;
 }
 
 .button-options{

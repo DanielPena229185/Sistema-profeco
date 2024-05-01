@@ -2444,24 +2444,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dapgp\\.nuget\\packages\\": {}
+    "C:\\Users\\Dapgp\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
+      "projectUniqueName": "C:\\Users\\Dapgp\\OneDrive\\Documentos\\Repositories\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
       "projectName": "Market",
-      "projectPath": "E:\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
+      "projectPath": "C:\\Users\\Dapgp\\OneDrive\\Documentos\\Repositories\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
       "packagesPath": "C:\\Users\\Dapgp\\.nuget\\packages\\",
-      "outputPath": "E:\\Sistema-profeco\\MarketMicroservice\\obj\\",
+      "outputPath": "C:\\Users\\Dapgp\\OneDrive\\Documentos\\Repositories\\Sistema-profeco\\MarketMicroservice\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Dapgp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Dapgp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

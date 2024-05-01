@@ -1,9 +1,9 @@
 <app-header></app-header>
 <ion-content>
     <ion-card *ngFor="let market of markets">
-        <img [src]="market.urlImage" [alt]="market.name">
-        <ion-card-title>
-            <div class="header-title">
+        <img [src]="market.urlImg" [alt]="market.name">
+        <ion-card-header>
+            <ion-card-title class="header-title">
                 <div>{{market.name}}</div>
                 <ion-button mode="ios" id="popover-button-{{market.id}}" class="button-options" shape="round">
                     •••
@@ -18,8 +18,8 @@
                         </ion-content>
                     </ng-template>
                 </ion-popover>
-            </div>
-        </ion-card-title>
+            </ion-card-title>
+        </ion-card-header>
         <ion-card-content>
             {{market.address}}
         </ion-card-content>

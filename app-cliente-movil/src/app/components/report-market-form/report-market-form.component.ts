@@ -21,7 +21,7 @@ import {
   IonContent,
   IonRow,
   IonSelect,
-  IonSelectOption, IonLabel } from '@ionic/angular/standalone';
+  IonSelectOption, IonLabel, IonButtons, ModalController, IonTextarea } from '@ionic/angular/standalone';
 import { MarketDTO, MarketOptionDTO, ProductOptionDTO, SearchParamsMarketDTO, SearchParamsMarketOptionDTO } from './report-market-form.types';
 import { ReportMarketFormService } from './report-market-form.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,7 +32,7 @@ import { ProductDTO } from '../product-prices/product-prices';
   templateUrl: './report-market-form.component.html',
   styleUrls: ['./report-market-form.component.scss'],
   standalone: true,
-  imports: [IonLabel, 
+  imports: [IonTextarea, IonButtons, IonLabel, 
     IonRow,
     IonContent,
     IonTitle,
@@ -53,7 +53,7 @@ import { ProductDTO } from '../product-prices/product-prices';
 })
 export class ReportMarketFormComponent implements OnInit {
   //Constantes
-  NO_AVAILABLE = 'No disponible';
+  NO_AVAILABLE = 'Selecciona';
 
   //Atributos
   @Input() marketId: string;
@@ -68,7 +68,8 @@ export class ReportMarketFormComponent implements OnInit {
   reportForm: FormGroup;
 
   constructor(
-    private readonly marketReportFormService: ReportMarketFormService
+    private readonly marketReportFormService: ReportMarketFormService,
+    private readonly modalCtrl: ModalController,
   ) {}
 
   ngOnInit() {
@@ -138,7 +139,7 @@ export class ReportMarketFormComponent implements OnInit {
   initConfigEspecificReport() {
     //Para reportes específicos
     this.getMarketById(this.marketId);
-    //this.getProductsOptionsByMarketId(this.marketId);
+    this.getProductsOptionsByMarketId(this.marketId);
   }
 
   //Validar tipo de reporte (específico o general)
@@ -179,6 +180,18 @@ export class ReportMarketFormComponent implements OnInit {
     });
   }
 
+  getProductById(productId: string) {
+    //TODO: Implementar
+    //Ya está en el service, falta implementar en la api
+    console.log('getProductById', productId);
+  }
+
+  getProductsOptionsByMarketId(marketId: string) {
+    //TODO: Implementar
+    //Ya está en el service, falta implementar en la api
+    console.log('getProductsOptionsByMarketId', marketId);
+  }
+
   //On change select market
   onChangeSelectMarket(event: any) {
     const marketId = event.target.value;
@@ -198,5 +211,28 @@ export class ReportMarketFormComponent implements OnInit {
   //Se selecciona mercado
   marketAvailable(marketId: string) {
     this.getMarketById(marketId);
+    this.getProductsOptionsByMarketId(marketId);
+  }
+
+    //On change select product
+    onChangeSelectProduct(event: any) {
+      const productId = event.target.value;
+      if (productId === this.NO_AVAILABLE) {
+        this.productNoAvailable();
+        return;
+      }
+      this.productAvailable(productId);
+    }
+  
+    productNoAvailable() {
+      this.productSelected = null;
+    }
+  
+    productAvailable(productId: string) {
+      this.getProductById(productId);
+    }
+
+  close(){
+    this.modalCtrl.dismiss();
   }
 }

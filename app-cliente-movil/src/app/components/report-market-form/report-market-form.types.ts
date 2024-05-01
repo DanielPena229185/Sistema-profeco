@@ -21,7 +21,7 @@ export interface SearchParamsMarketOptionDTO{
 export interface MarketDTO{
     id: string;
     name: string;
-    urlImage: string;
+    urlImg: string;
     address: string;
 }
 

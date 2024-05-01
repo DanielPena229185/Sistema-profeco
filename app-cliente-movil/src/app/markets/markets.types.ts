@@ -2,7 +2,7 @@ export interface MarketDTO {
     id: string;
     name: string;
     address: string;
-    urlImage: string;
+    urlImg: string;
 } 
 export interface searchParamsDTO{
     page: number;
