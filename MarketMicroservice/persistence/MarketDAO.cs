@@ -12,36 +12,54 @@ public class MarketDAO
 
     public List<MarketEntity> GetAllMarkets(GetAllMarketsQueryDTO queryDTO)
     {
+        List<MarketEntity> markets = [];
         string query = CreateQueryGetAllMarkets(queryDTO);
         MySqlCommand myCommand = new MySqlCommand();
         var connection = DatabaseManager.getInstance();
-        myCommand.Connection = connection;
-        myCommand.CommandText = query;
-        if (queryDTO.HasWhere())
+        try
         {
-            if (queryDTO.HasMarketName())
+            myCommand.Connection = connection;
+            myCommand.CommandText = query;
+            if (queryDTO.HasWhere())
             {
-                myCommand.Parameters.AddWithValue("@market.name", $"%{queryDTO.Market_name}%");
+                if (queryDTO.HasMarketName())
+                {
+                    myCommand.Parameters.AddWithValue("@market.name", $"%{queryDTO.Market_name}%");
+                }
+                if (queryDTO.HasAddress())
+                {
+                    myCommand.Parameters.AddWithValue("@market.address", $"%{queryDTO.Address}%");
+                }
             }
-            if (queryDTO.HasAddress())
-            {
-                myCommand.Parameters.AddWithValue("@market.address", $"%{queryDTO.Address}%");
-            }
+            MySqlDataReader myReader = myCommand.ExecuteReader();
+            markets = MapToMarkets(myReader, queryDTO.Fields, queryDTO.Relations);
         }
-        MySqlDataReader myReader = myCommand.ExecuteReader();
-        return MapToMarkets(myReader, queryDTO.Fields, queryDTO.Relations);
+        finally
+        {
+            connection.Close();
+        }
+        return markets;
     }
 
     public MarketEntity GetMarketById(GetMarketByIdQueryDTO queryDTO)
     {
+        MarketEntity market = new();
         string query = CreateQueryGetMarketById(queryDTO);
         MySqlCommand myCommand = new MySqlCommand();
         var connection = DatabaseManager.getInstance();
-        myCommand.Connection = connection;
-        myCommand.CommandText = query;
-        myCommand.Parameters.AddWithValue("@market.id", queryDTO.MarketId);
-        MySqlDataReader myReader = myCommand.ExecuteReader();
-        return MapToMarkets(myReader, queryDTO.Fields, queryDTO.Relations)[0];
+        try
+        {
+            myCommand.Connection = connection;
+            myCommand.CommandText = query;
+            myCommand.Parameters.AddWithValue("@market.id", queryDTO.MarketId);
+            MySqlDataReader myReader = myCommand.ExecuteReader();
+            market = MapToMarkets(myReader, queryDTO.Fields, queryDTO.Relations)[0];
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return market;
     }
 
     private string CreateQueryGetMarketById(GetMarketByIdQueryDTO query)

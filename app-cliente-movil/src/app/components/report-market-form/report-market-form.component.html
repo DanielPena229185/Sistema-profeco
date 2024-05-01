@@ -1,102 +1,69 @@
-<ion-header mode="md">
+<ion-header>
     <ion-toolbar>
-        <ion-title> Generar Reporte </ion-title>
+        <ion-toolbar class="header">
+            <div class="header-content">
+                <div class="header-title">
+                    <p>GENERAR REPORTE</p>
+                </div>
+                <div class="close-button" (click)="close()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white">
+                        <path d="M18 6 6 18M6 6l12 12" />
+                    </svg>
+                </div>
+            </div>
+        </ion-toolbar>
     </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true">
-    <form [formGroup]="reportForm">
+<ion-content class="ion-padding">
+    <form>
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <ion-list>
-                        <ion-item>
-                            <ion-select formControlName="selectMarket" (ionChange)="onSelectMarketChange($event)">
-                                <ion-select-option *ngIf="isEspecificReport"
-                                    [value]="marketId">{{marketSelected.name}}</ion-select-option>
-                                <ion-select-option [value]="NO_AVAILABLE">Ninguno</ion-select-option>
-                                <ion-select-option *ngFor="let market of optionMarkets"
-                                    [value]="market.id">{{market.name}}</ion-select-option>
-                            </ion-select>
-                        </ion-item>
-                        <div *ngIf="selectMarket.invalid && (selectMarket.dirty || selectMarket.touched)">
-                            <ion-item class="errors-forms" lines="none"
-                                *ngIf="selectMarket.errors?.['mustNotSelectNoOption']">
-                                No se puede seleccionar la opción "Ninguno".
-                            </ion-item>
-                        </div>
-                    </ion-list>
-                    <div *ngIf="marketSelected" class="market-info">
-                        <ion-item>
-                            <ion-label>
-                                <div class="market-info-name">
-                                    <h1>{{marketSelected.name}}</h1>
-                                </div>
-                                <div class="market-info-address">
-                                    <p>{{marketSelected.address}}</p>
-                                </div>
-                                <div class="market-info-img">
-                                    <img [src]="marketSelected.urlImg" [alt]="marketSelected.name">
-                                </div>
-                            </ion-label>
-                        </ion-item>
-                    </div>
+                    <ion-select label="Tienda" label-placement="floating" fill="outline" [value]="getDeafaultValueForSelectMarket(isEspecificReport)"
+                        [disabled]="isEspecificReport" (ionChange)="onChangeSelectMarket($event)">
+                        <ion-select-option [value]="NO_AVAILABLE">{{NO_AVAILABLE}}</ion-select-option>
+                        <ion-select-option *ngIf="marketSelected && isEspecificReport"
+                            [value]="marketId">{{marketSelected.name}}</ion-select-option>
+                        <ion-select-option *ngFor="let market of optionMarkets"
+                            [value]="market.id">{{market.name}}</ion-select-option>
+                    </ion-select>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="marketSelected" class="market-info">
+                <ion-col class="market-info-details">
+                    <img [src]="marketSelected.urlImg" [alt]="marketSelected.name">
+                    <h2>
+                        {{marketSelected.name}}
+                    </h2>
+                    <ion-label>
+                        {{marketSelected.address}}
+                    </ion-label>
                 </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col>
-                    <ion-list>
-                        <ion-item>
-                            <ion-select formControlName="selectProduct" (ionChange)="onSelectProductChange($event)">
-                                <ion-select-option [value]="NO_AVAILABLE">Ninguno</ion-select-option>
-                                <ion-select-option *ngFor="let product of optionProducts"
-                                    [value]="product.id">{{product.name}}</ion-select-option>
-                            </ion-select>
-                        </ion-item>
-                        <div *ngIf="selectProduct.invalid && (selectProduct.dirty || selectProduct.touched)">
-                            <ion-item class="errors-forms" lines="none"
-                                *ngIf="selectProduct.errors?.['mustNotSelectNoOption']">
-                                No se puede seleccionar la opción "Ninguno".
-                            </ion-item>
-                        </div>
-                    </ion-list>
-                    <div *ngIf="productSelected" class="product-info">
-                        <ion-item lines="none">
-                            <ion-label>
-                                <div class="product-info-name">
-                                    <h1>{{productSelected.name}}</h1>
-                                </div>
-                                <div class="product-info-address">
-                                    <p>{{productSelected.detail}}</p>
-                                </div>
-                                <div class="product-info-img">
-                                    <img [src]="productSelected.urlImg" [alt]="productSelected.name">
-                                </div>
-                            </ion-label>
-                        </ion-item>
-                    </div>
+                    <ion-select label="Producto" label-placement="floating" fill="outline" [value]="NO_AVAILABLE" [disabled]="!marketSelected">
+                        <ion-select-option [value]="NO_AVAILABLE">{{NO_AVAILABLE}}</ion-select-option>
+                        <ion-select-option *ngFor="let product of optionProducts"
+                            [value]="product.id">{{product.name}}</ion-select-option>
+                    </ion-select>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="marketSelected && productSelected" class="product-info">
+                <ion-col class="product-info-details">
+                    <img [src]="productSelected.imageUrl" [alt]="productSelected.name">
+                    <h2>{{productSelected.name}}</h2>
+                    <ion-label>{{productSelected.details}}</ion-label>
                 </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col>
-                    <ion-list>
-                        <ion-item>
-                            <ion-textarea formControlName="reportContent" label="Reporte"
-                                labelPlacement="floating"></ion-textarea>
-                        </ion-item>
-                        <div *ngIf="reportContent.invalid && (reportContent.dirty || reportContent.touched)">
-                            <ion-item class="errors-forms" lines="none" *ngIf="reportContent.errors?.['required']">
-                                El reporte es requerido.
-                            </ion-item>
-                            <ion-item class="errors-forms" lines="none" *ngIf="reportContent.errors?.['noEmptyReportContent'] || reportContent.errors?.['minlength']">
-                                El reporte debe tener al menos 45 caracteres.
-                            </ion-item>
-                        </div>
-                    </ion-list>
+                    <ion-item>
+                        <ion-textarea placeholder="Motivo de reporte"></ion-textarea>
+                    </ion-item>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </form>
-    <div class="button-create-report">
-        <ion-button (click)="sendReport()" expand="block">Enviar</ion-button>
-    </div>
 </ion-content>

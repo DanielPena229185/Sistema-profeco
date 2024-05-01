@@ -3,15 +3,13 @@ export interface MarketDTO {
     name: string;
     address: string;
     urlImg: string;
-}
-
-export interface MarketOptionsDTO {
-    text: string;
-    color: string;
-    marketOption: MarketOptions;
-}
-
-export enum MarketOptions {
-    REPORT = 'report',
-    ADDWISHLIST = 'addWishlist',
+} 
+export interface searchParamsDTO{
+    page: number;
+    count: number;
+    fields: string;
+    relations: string;
+    exclusive: boolean;
+    name: string;
+    address: string;
 }
