@@ -13,6 +13,8 @@ import (
 
 var conn *amqp.Connection
 
+var RABBIT_URL, RABBIT_PORT string
+
 func init() {
 	var err error
 	if os.Getenv("PRODUCT_MICROSERVICE_ENV") == "PROD" {
@@ -22,7 +24,11 @@ func init() {
 	}
 
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println("Error loading .env file")
+		log.Println("Loading exe env variables")
+		RABBIT_URL = "localhost"
+		RABBIT_PORT = "5672"
+
 	}
 
 	conn, err = amqp.Dial(fmt.Sprintf("amqp://guest:guest@%v:%v/", os.Getenv("RABBIT_URL"), os.Getenv("RABBIT_PORT")))

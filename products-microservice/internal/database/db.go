@@ -13,6 +13,8 @@ import (
 
 var Client *mongo.Client
 
+var DB_HOST, DB_PORT string
+
 func init() {
 	var err error
 
@@ -23,14 +25,16 @@ func init() {
 	}
 
 	if err != nil {
-		log.Fatal("ENV not loaded")
-		os.Exit(0)
+		log.Println("ENV not loaded")
+		log.Println("Loading exe env variables")
+		DB_HOST = "localhost"
+		DB_PORT = "27017"
 	}
 }
 
 func Connect() error {
-	dbURI := fmt.Sprintf("mongodb://%s:%s", os.Getenv("DB_HOST"), os.Getenv("DB_PORT"))
-
+	dbURI := fmt.Sprintf("mongodb://%s:%s",DB_HOST , DB_PORT)
+    
 	clientOptions := options.Client().ApplyURI(dbURI)
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {

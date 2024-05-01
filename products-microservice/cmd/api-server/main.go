@@ -12,6 +12,8 @@ import (
 	"google.golang.org/grpc"
 )
 
+var RPC_URL, RPC_PORT string
+
 func init() {
 	var err error
 
@@ -22,12 +24,16 @@ func init() {
 	}
 
 	if err != nil {
-		log.Fatalf("Error loading .env file \n %s", err.Error())
+		log.Printf("Error loading .env file \n %s", err.Error())
+		log.Println("Loading exe env variables")
+		RPC_URL = "localhost"
+		RPC_PORT = "50051"
 	}
+
 }
 
 func main() {
-	rpcURI := fmt.Sprintf("%v:%v", os.Getenv("RPC_URL"), os.Getenv("RPC_PORT"))
+	rpcURI := fmt.Sprintf("%v:%v", RPC_URL, RPC_PORT)
 	lis, err := net.Listen("tcp", rpcURI)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
