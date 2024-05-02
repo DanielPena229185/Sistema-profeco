@@ -5,12 +5,17 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { PostsComponent } from './posts/posts.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MarketsComponent } from './markets/markets.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'inicio',
+        redirectTo: 'login',
         pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     },
     {
         path: 'inicio',

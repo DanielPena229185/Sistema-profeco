@@ -1,0 +1,116 @@
+header {
+    background: var(--color-profeco-green);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.header-container-start {
+    display: flex;
+    align-items: center;
+    padding: 20px 0px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.header-container-start-title,
+.header-container-start-img {
+    margin: 0px 5px;
+}
+
+.header-container-start-title>h2 {
+    font-family: serif;
+    font-weight: lighter;
+    text-transform: uppercase;
+    color: white;
+}
+
+main {
+    height: 80%;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.card-login {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.my-input {
+    background: transparent;
+    border: 0px;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.my-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.button-login {
+    text-transform: uppercase;
+    background: var(--color-profeco-primary);
+    color: var(--color-profeco-primary-contrast);
+    padding: 10px;
+    border: 0px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.button-login:hover {
+    background: var(--color-profeco-primary-tint);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #7f7f7fbd;
+    margin: 10px 0;
+}
+
+.button-register{
+    text-transform: uppercase;
+    background: var(--color-profeco-secondary);
+    color: var(--color-profeco-secondary-contrast);
+    padding: 10px;
+    border: 0px;
+    border-radius: 5px;
+    margin-top: 10px;
+
+}
+
+.button-register:hover {
+    background: var(--color-profeco-secondary-tint);
+}
+
+.description-context {
+    font-size: 12px;
+    color: #969696;
+    margin-top: 5px;
+    text-align: center;
+}
