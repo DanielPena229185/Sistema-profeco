@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MarketDTO, SearchParamsDTO } from './markets.types';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../enviroment/enviroment';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'

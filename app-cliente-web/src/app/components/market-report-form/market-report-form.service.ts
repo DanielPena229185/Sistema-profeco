@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MarketDTO, MarketOptionDTO, ProductOptionDTO } from './market-report-form.types';
 import { Observable, count } from 'rxjs';
-import { environment } from '../../enviroment/enviroment';
+import { environment } from '../../environment/environment';
 import { MarketOption } from '../market-item/market-item.types';
 
 @Injectable({

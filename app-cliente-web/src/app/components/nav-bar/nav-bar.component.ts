@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavBarOption } from './nav-bar-types';
 import { CommonModule } from '@angular/common';
-import { environment } from '../../enviroment/enviroment';
+import { environment } from '../../environment/environment';
 
 @Component({
   selector: 'app-nav-bar',
