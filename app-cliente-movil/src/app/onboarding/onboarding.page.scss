@@ -1,0 +1,75 @@
+.header > div {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.header-title > p {
+  font-family: serif;
+  color: white;
+  font-size: x-large;
+  font-weight: lighter;
+}
+.header-title {
+  padding-left: 5%;
+}
+.header-title,
+.header-img {
+  padding: 0 1%;
+}
+
+.header-img > img {
+  height: 35px;
+  width: 35px;
+}
+
+.header {
+  --background: var(--ion-color-profeco-green);
+}
+
+.onboarging {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+.title {
+  font-weight: bold;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.my-input {
+  background: transparent;
+  border: 0px;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.my-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #96969692;
+  margin: 10px 0;
+}
+
+.description-context {
+  font-size: 12px;
+  color: #969696;
+  margin-top: 5px;
+  text-align: center;
+}
+

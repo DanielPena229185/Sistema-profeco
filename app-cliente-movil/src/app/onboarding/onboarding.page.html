@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <div>
+      <div class="header-title">
+        <p>PROFECO</p>
+      </div>
+      <div class="header-img">
+        <img src="/assets/imagenes/gobierno.png" alt="mexico">
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="onboarging">
+    <div class="onboarging-container">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="title header-text profeco-family">Registrarse</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <form>
+                  <div class="personal-info" *ngIf="onboardingPage===1">
+                    <div class="name input-form">
+                      <label class="profeco-family" for="name">Nombres</label>
+                      <input class="my-input profeco-family" name="name" type="text">
+                    </div>
+                    <div class="lastname input-form">
+                      <label class="profeco-family" for="lastname">Apellidos</label>
+                      <input class="my-input profeco-family" name="lastname" type="text">
+                    </div>
+                    <div class="curp input-form">
+                      <label class="profeco-family" for="curp">CURP</label>
+                      <input class="my-input profeco-family" name="curp" type="text">
+                    </div>
+                  </div>
+                  <div class="personal-info" *ngIf="onboardingPage===2">
+                    <div class="name input-form">
+                      <label class="profeco-family" for="name">Nombre</label>
+                      <input class="my-input profeco-family" name="name" type="text">
+                    </div>
+                    <div class="lastname input-form">
+                      <label class="profeco-family" for="lastname">Apellidos</label>
+                      <input class="my-input profeco-family" name="lastname" type="text">
+                    </div>
+                    <div class="curp input-form">
+                      <label class="profeco-family" for="curp">CURP</label>
+                      <input class="my-input profeco-family" name="curp" type="text">
+                    </div>
+                  </div>
+                </form>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button class="profeco-family" color="profeco-primary" expand="block" (click)="nextPage()">Siguiente</ion-button>
+              </ion-col>
+            </ion-row>
+            <hr>
+            <ion-row>
+              <ion-col>
+                <ion-button class="profeco-family" color="profeco-secondary" expand="block"
+                  fill="clear">Iniciar Sesión</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <p class="profeco-family description-context">Procuraduría Federal del Consumidor</p>
+      <p class="profeco-family description-context">Teléfono del Consumidor 55 5568 8722 y 800 468 8722</p>
+    </div>
+  </div>
+</ion-content>
