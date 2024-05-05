@@ -6,6 +6,7 @@ import { PostsComponent } from './posts/posts.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MarketsComponent } from './markets/markets.component';
 import { LoginComponent } from './login/login.component';
+import { OnboardingComponent } from './onboarding/onboarding.component';
 
 export const routes: Routes = [
     {
@@ -16,6 +17,10 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'onboarding',
+        component: OnboardingComponent
     },
     {
         path: 'inicio',
