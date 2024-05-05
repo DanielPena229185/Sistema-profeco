@@ -27,16 +27,16 @@
   --background: var(--ion-color-profeco-green);
 }
 
-.login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
+.onboarging {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 
-.title{
-    font-weight: bold;
+.title {
+  font-weight: bold;
 }
 
 .input-form {
@@ -59,6 +59,12 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
+.input-errors {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 hr {
   border: 0;
   height: 1px;
@@ -72,3 +78,4 @@ hr {
   margin-top: 5px;
   text-align: center;
 }
+
