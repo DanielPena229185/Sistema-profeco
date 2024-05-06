@@ -24,6 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type CustomerPreferencesClient interface {
 	AddVisitedProduct(ctx context.Context, in *AddVisitedProductRequest, opts ...grpc.CallOption) (*VisitedProductsList, error)
 	GetVisitedProductList(ctx context.Context, in *PreferencesDefaultRequest, opts ...grpc.CallOption) (*VisitedProductsList, error)
+	AddFavoriteMarket(ctx context.Context, in *FavoriteMarketRequest, opts ...grpc.CallOption) (*FavoriteMarketsList, error)
+	GetFavoriteMarketsList(ctx context.Context, in *PreferencesDefaultRequest, opts ...grpc.CallOption) (*FavoriteMarketsList, error)
 }
 
 type customerPreferencesClient struct {
@@ -52,12 +54,32 @@ func (c *customerPreferencesClient) GetVisitedProductList(ctx context.Context, i
 	return out, nil
 }
 
+func (c *customerPreferencesClient) AddFavoriteMarket(ctx context.Context, in *FavoriteMarketRequest, opts ...grpc.CallOption) (*FavoriteMarketsList, error) {
+	out := new(FavoriteMarketsList)
+	err := c.cc.Invoke(ctx, "/proto.CustomerPreferences/AddFavoriteMarket", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerPreferencesClient) GetFavoriteMarketsList(ctx context.Context, in *PreferencesDefaultRequest, opts ...grpc.CallOption) (*FavoriteMarketsList, error) {
+	out := new(FavoriteMarketsList)
+	err := c.cc.Invoke(ctx, "/proto.CustomerPreferences/GetFavoriteMarketsList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CustomerPreferencesServer is the server API for CustomerPreferences service.
 // All implementations must embed UnimplementedCustomerPreferencesServer
 // for forward compatibility
 type CustomerPreferencesServer interface {
 	AddVisitedProduct(context.Context, *AddVisitedProductRequest) (*VisitedProductsList, error)
 	GetVisitedProductList(context.Context, *PreferencesDefaultRequest) (*VisitedProductsList, error)
+	AddFavoriteMarket(context.Context, *FavoriteMarketRequest) (*FavoriteMarketsList, error)
+	GetFavoriteMarketsList(context.Context, *PreferencesDefaultRequest) (*FavoriteMarketsList, error)
 	mustEmbedUnimplementedCustomerPreferencesServer()
 }
 
@@ -70,6 +92,12 @@ func (UnimplementedCustomerPreferencesServer) AddVisitedProduct(context.Context,
 }
 func (UnimplementedCustomerPreferencesServer) GetVisitedProductList(context.Context, *PreferencesDefaultRequest) (*VisitedProductsList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVisitedProductList not implemented")
+}
+func (UnimplementedCustomerPreferencesServer) AddFavoriteMarket(context.Context, *FavoriteMarketRequest) (*FavoriteMarketsList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddFavoriteMarket not implemented")
+}
+func (UnimplementedCustomerPreferencesServer) GetFavoriteMarketsList(context.Context, *PreferencesDefaultRequest) (*FavoriteMarketsList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFavoriteMarketsList not implemented")
 }
 func (UnimplementedCustomerPreferencesServer) mustEmbedUnimplementedCustomerPreferencesServer() {}
 
@@ -120,6 +148,42 @@ func _CustomerPreferences_GetVisitedProductList_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CustomerPreferences_AddFavoriteMarket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FavoriteMarketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerPreferencesServer).AddFavoriteMarket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.CustomerPreferences/AddFavoriteMarket",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerPreferencesServer).AddFavoriteMarket(ctx, req.(*FavoriteMarketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerPreferences_GetFavoriteMarketsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PreferencesDefaultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerPreferencesServer).GetFavoriteMarketsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.CustomerPreferences/GetFavoriteMarketsList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerPreferencesServer).GetFavoriteMarketsList(ctx, req.(*PreferencesDefaultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CustomerPreferences_ServiceDesc is the grpc.ServiceDesc for CustomerPreferences service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +198,14 @@ var CustomerPreferences_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetVisitedProductList",
 			Handler:    _CustomerPreferences_GetVisitedProductList_Handler,
+		},
+		{
+			MethodName: "AddFavoriteMarket",
+			Handler:    _CustomerPreferences_AddFavoriteMarket_Handler,
+		},
+		{
+			MethodName: "GetFavoriteMarketsList",
+			Handler:    _CustomerPreferences_GetFavoriteMarketsList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

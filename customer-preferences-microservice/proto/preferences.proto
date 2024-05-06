@@ -8,6 +8,8 @@ package proto;
 service CustomerPreferences {
     rpc AddVisitedProduct(AddVisitedProductRequest) returns (VisitedProductsList) {}
     rpc GetVisitedProductList(PreferencesDefaultRequest) returns (VisitedProductsList) {}
+    rpc AddFavoriteMarket(FavoriteMarketRequest) returns (FavoriteMarketsList) {}
+    rpc GetFavoriteMarketsList(PreferencesDefaultRequest) returns (FavoriteMarketsList) {}
 }
 
 message VisitedProductsList {
@@ -19,6 +21,11 @@ message Product {
     string product_name = 2;
 }
 
+message Market {
+    string market_id = 1;
+    string market_name = 2;
+}
+
 message AddVisitedProductRequest {
     string user_id = 1;
     Product product = 2;
@@ -28,3 +35,11 @@ message PreferencesDefaultRequest {
     string user_id = 1;
 }
 
+message FavoriteMarketRequest {
+    string user_id = 1;
+    Market market = 2;
+}
+
+message FavoriteMarketsList {
+    repeated Market market = 1;
+}

@@ -19,6 +19,7 @@ var (
 type UserPreferences struct {
 	UserId          string                  `bson:"userId"`
 	VisitedProducts *pb.VisitedProductsList `bson:"visitedProducts"`
+	FavoriteMarkets *pb.FavoriteMarketsList `bson:"favoriteMarkets"`
 }
 
 func init() {
@@ -70,4 +71,30 @@ func GetVisitedProducts(userId string) (*pb.VisitedProductsList, error) {
 	}
 
 	return userPreferences.VisitedProducts, nil
+}
+
+func AddFavoriteMarket(userId string, market *pb.Market) (*pb.FavoriteMarketsList, error) {
+	collection := database.Client.Database(mongoDatabaseName).Collection(mongoCollectionName)
+
+	userPreferences, err := findUserPreferences(userId)
+
+	if err != nil {
+		userPreferences = &UserPreferences{
+			UserId:          userId,
+			FavoriteMarkets: &pb.FavoriteMarketsList{},
+		}
+	}
+
+    if userPreferences.FavoriteMarkets == nil {
+        userPreferences.FavoriteMarkets = &pb.FavoriteMarketsList{}
+    }
+    
+	userPreferences.FavoriteMarkets.Market = append(userPreferences.FavoriteMarkets.Market, market)
+
+	_, err = collection.InsertOne(context.TODO(), userPreferences)
+	if err != nil {
+		return nil, err
+	}
+
+	return userPreferences.FavoriteMarkets, nil
 }
