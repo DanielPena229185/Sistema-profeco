@@ -27,6 +27,7 @@ type CustomerPreferencesClient interface {
 	AddFavoriteMarket(ctx context.Context, in *FavoriteMarketRequest, opts ...grpc.CallOption) (*FavoriteMarketsList, error)
 	GetFavoriteMarketsList(ctx context.Context, in *PreferencesDefaultRequest, opts ...grpc.CallOption) (*FavoriteMarketsList, error)
 	AddProductToShoppingCart(ctx context.Context, in *AddProductRequest, opts ...grpc.CallOption) (*ShoppingCart, error)
+	GetShoppingCart(ctx context.Context, in *PreferencesDefaultRequest, opts ...grpc.CallOption) (*ShoppingCart, error)
 }
 
 type customerPreferencesClient struct {
@@ -82,6 +83,15 @@ func (c *customerPreferencesClient) AddProductToShoppingCart(ctx context.Context
 	return out, nil
 }
 
+func (c *customerPreferencesClient) GetShoppingCart(ctx context.Context, in *PreferencesDefaultRequest, opts ...grpc.CallOption) (*ShoppingCart, error) {
+	out := new(ShoppingCart)
+	err := c.cc.Invoke(ctx, "/proto.CustomerPreferences/GetShoppingCart", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CustomerPreferencesServer is the server API for CustomerPreferences service.
 // All implementations must embed UnimplementedCustomerPreferencesServer
 // for forward compatibility
@@ -91,6 +101,7 @@ type CustomerPreferencesServer interface {
 	AddFavoriteMarket(context.Context, *FavoriteMarketRequest) (*FavoriteMarketsList, error)
 	GetFavoriteMarketsList(context.Context, *PreferencesDefaultRequest) (*FavoriteMarketsList, error)
 	AddProductToShoppingCart(context.Context, *AddProductRequest) (*ShoppingCart, error)
+	GetShoppingCart(context.Context, *PreferencesDefaultRequest) (*ShoppingCart, error)
 	mustEmbedUnimplementedCustomerPreferencesServer()
 }
 
@@ -112,6 +123,9 @@ func (UnimplementedCustomerPreferencesServer) GetFavoriteMarketsList(context.Con
 }
 func (UnimplementedCustomerPreferencesServer) AddProductToShoppingCart(context.Context, *AddProductRequest) (*ShoppingCart, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddProductToShoppingCart not implemented")
+}
+func (UnimplementedCustomerPreferencesServer) GetShoppingCart(context.Context, *PreferencesDefaultRequest) (*ShoppingCart, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShoppingCart not implemented")
 }
 func (UnimplementedCustomerPreferencesServer) mustEmbedUnimplementedCustomerPreferencesServer() {}
 
@@ -216,6 +230,24 @@ func _CustomerPreferences_AddProductToShoppingCart_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CustomerPreferences_GetShoppingCart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PreferencesDefaultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerPreferencesServer).GetShoppingCart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.CustomerPreferences/GetShoppingCart",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerPreferencesServer).GetShoppingCart(ctx, req.(*PreferencesDefaultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CustomerPreferences_ServiceDesc is the grpc.ServiceDesc for CustomerPreferences service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -242,6 +274,10 @@ var CustomerPreferences_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddProductToShoppingCart",
 			Handler:    _CustomerPreferences_AddProductToShoppingCart_Handler,
+		},
+		{
+			MethodName: "GetShoppingCart",
+			Handler:    _CustomerPreferences_GetShoppingCart_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

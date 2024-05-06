@@ -60,3 +60,13 @@ func (s CustomerPreferencesServer) AddProductToShoppingCart(ctx context.Context,
 
 	return favoriteProductsList, nil
 }
+
+func (s CustomerPreferencesServer) GetShoppingCart(ctx context.Context, req *pb.PreferencesDefaultRequest) (*pb.ShoppingCart, error) {
+	shoppingCart, err := model.GetShoppingCart(req.UserId)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return shoppingCart, nil
+}

@@ -11,6 +11,7 @@ service CustomerPreferences {
     rpc AddFavoriteMarket(FavoriteMarketRequest) returns (FavoriteMarketsList) {}
     rpc GetFavoriteMarketsList(PreferencesDefaultRequest) returns (FavoriteMarketsList) {}
     rpc AddProductToShoppingCart(AddProductRequest) returns (ShoppingCart) {}
+    rpc GetShoppingCart(PreferencesDefaultRequest) returns (ShoppingCart) {}
 }
 
 message VisitedProductsList {

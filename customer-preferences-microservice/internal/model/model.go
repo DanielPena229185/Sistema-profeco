@@ -177,3 +177,16 @@ func AddProductToShoppingCart(userId string, product *pb.Product) (*pb.ShoppingC
 
 	return userPreferences.ShoppingCart, nil
 }
+
+func GetShoppingCart(userId string) (*pb.ShoppingCart, error) {
+	userPreferences, err := findUserPreferences(userId)
+	if err != nil {
+		return nil, err
+	}
+
+	if userPreferences.ShoppingCart == nil {
+		userPreferences.ShoppingCart = &pb.ShoppingCart{}
+	}
+
+	return userPreferences.ShoppingCart, nil
+}

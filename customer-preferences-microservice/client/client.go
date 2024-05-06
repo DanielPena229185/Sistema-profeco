@@ -60,6 +60,12 @@ func main() {
 		passedTests++
 	}
 
+	err = TestGetShoppingCart()
+	totalTests++
+	if err == nil {
+		passedTests++
+	}
+
 	fmt.Print("\n\n======\n")
 	fmt.Printf("Tests Passed: %d/%d", passedTests, totalTests)
 	fmt.Print("\n======\n\n")
@@ -164,5 +170,23 @@ func TestAddProductToShoppingCart() error {
 	}
 
 	fmt.Println("Passed: AddProductToShoppingCart Test")
+	return nil
+}
+
+func TestGetShoppingCart() error {
+	shoppingCart, err := client.GetShoppingCart(context.TODO(), &pb.PreferencesDefaultRequest{
+		UserId: "1",
+	})
+	if err != nil {
+		fmt.Println("Error getting shopping cart:", err)
+		return err
+	}
+
+	if shoppingCart.Product[0].ProductId != "1" {
+		fmt.Println("Error getting shopping cart: Product ID does not match")
+		return errors.New("Error getting shopping cart: Product ID does not match")
+	}
+
+	fmt.Println("Passed: GetShoppingCart Test")
 	return nil
 }
