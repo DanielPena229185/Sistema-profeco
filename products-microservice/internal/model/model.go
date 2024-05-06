@@ -119,6 +119,30 @@ func GetPricesFromProduct(productName string) []*pb.MarketPrice {
 	return nil
 }
 
+func UpdateProductPrice(product *pb.Product, newPrice float32, marketId string) error {
+	compareProductList := GetCompareProductListById(product.Id)
+
+	// TODO use bson.D to update the document instead of passing the reference of the new objet
+	for _, val := range compareProductList.Prices {
+		if marketId == val.Id {
+			val.Price = newPrice
+		}
+	}
+
+	collection := database.Client.Database(mongoDatabaseName).Collection(mongoCollectionName)
+
+	filter := bson.D{{"product.name", product.Name}}
+	update := bson.D{{"$set", bson.D{{"prices", compareProductList.Prices}}}}
+	// 	var result *pb.CompareProductList
+	updateResult := collection.FindOneAndUpdate(context.TODO(), filter, update)
+
+	if updateResult.Err() != nil {
+		return updateResult.Err()
+	}
+
+	return nil
+}
+
 type Market struct {
 	id         string
 	MarketName string
