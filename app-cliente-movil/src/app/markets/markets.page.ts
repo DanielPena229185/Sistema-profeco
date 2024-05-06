@@ -24,6 +24,7 @@ import { MarketDTO, searchParamsDTO } from './markets.types';
 import { ReportMarketFormComponent } from '../components/report-market-form/report-market-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MarketsService } from './markets.service';
+import { MarketReviewComponent } from '../components/market-review/market-review.component';
 
 @Component({
   selector: 'app-markets',
@@ -92,6 +93,16 @@ export class MarketsPage implements OnInit {
   async openReportMarket(marketId: string) {
     const modal = await this.modalCtrl.create({
       component: ReportMarketFormComponent,
+      componentProps: {
+        marketId,
+      },
+    });
+    modal.present();
+  }
+
+  async openReviewMarket(marketId: string) {
+    const modal = await this.modalCtrl.create({
+      component: MarketReviewComponent,
       componentProps: {
         marketId,
       },

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "23EqDH5rH6djwVgqBgFIDwV0c/cJYWGh56tiJPHpF+SPadCL+sp7Uc7zKfI8y0bR6gjKNfvYXmxkvG3AzoAObg==",
+  "dgSpecHash": "JR5Lm/jLiS6W66VoUzINHPyQ9oMxoEoSSrXPM1D6BQ8XRiw+93wcFEJmP8DeiBi4etIGSCTcI85znLCzeW8ieg==",
   "success": true,
-  "projectFilePath": "E:\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
+  "projectFilePath": "e:\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dapgp\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Dapgp\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",

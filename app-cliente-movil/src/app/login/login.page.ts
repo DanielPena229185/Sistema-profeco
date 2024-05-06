@@ -24,4 +24,8 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/onboarding']);
   }
 
+  goToMain() {
+    this.router.navigate(['/products']);
+  }
+
 }
