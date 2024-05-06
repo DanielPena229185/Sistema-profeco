@@ -12,8 +12,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-
-
 func init() {
 	var err error
 
@@ -27,9 +25,7 @@ func init() {
 		log.Fatalf("Error loading .env file \n %s", err.Error())
 	}
 
-    
 }
-
 
 func main() {
 	rpcURI := fmt.Sprintf("%v:%v", os.Getenv("RPC_URL"), os.Getenv("RPC_PORT"))
