@@ -55,8 +55,23 @@ func AddVisitedProduct(userId string, product *pb.Product) (*pb.VisitedProductsL
 		}
 		userPreferences.VisitedProducts.Product = make([]*pb.Product, 0)
 		userPreferences.VisitedProducts.Product = append(userPreferences.VisitedProducts.Product, product)
+
+		_, err = collection.InsertOne(context.TODO(), userPreferences)
+		if err != nil {
+			return nil, err
+		}
+		return userPreferences.VisitedProducts, nil
+
 	}
-	_, err = collection.InsertOne(context.TODO(), userPreferences)
+
+	if userPreferences.VisitedProducts == nil {
+		userPreferences.VisitedProducts = &pb.VisitedProductsList{}
+	}
+
+	userPreferences.VisitedProducts.Product = append(userPreferences.VisitedProducts.Product, product)
+
+	_, err = collection.UpdateOne(context.TODO(), bson.M{"userId": userId}, bson.M{"$set": bson.M{"visitedProducts": userPreferences.VisitedProducts}})
+
 	if err != nil {
 		return nil, err
 	}
@@ -70,30 +85,57 @@ func GetVisitedProducts(userId string) (*pb.VisitedProductsList, error) {
 		return nil, err
 	}
 
+	if userPreferences.VisitedProducts == nil {
+		userPreferences.VisitedProducts = &pb.VisitedProductsList{}
+	}
+
 	return userPreferences.VisitedProducts, nil
 }
 
 func AddFavoriteMarket(userId string, market *pb.Market) (*pb.FavoriteMarketsList, error) {
-	collection := database.Client.Database(mongoDatabaseName).Collection(mongoCollectionName)
+    collection := database.Client.Database(mongoDatabaseName).Collection(mongoCollectionName)
 
-	userPreferences, err := findUserPreferences(userId)
+    userPreferences, err := findUserPreferences(userId)
 
-	if err != nil {
-		userPreferences = &UserPreferences{
-			UserId:          userId,
-			FavoriteMarkets: &pb.FavoriteMarketsList{},
-		}
-	}
+    if err != nil {
+        userPreferences = &UserPreferences{
+            UserId:          userId,
+            FavoriteMarkets: &pb.FavoriteMarketsList{},
+        }
+        userPreferences.FavoriteMarkets.Market = make([]*pb.Market, 0)
+        userPreferences.FavoriteMarkets.Market = append(userPreferences.FavoriteMarkets.Market, market)
+
+        _, err = collection.InsertOne(context.TODO(), userPreferences)
+        if err != nil {
+            return nil, err
+        }
+        return userPreferences.FavoriteMarkets, nil
+
+    }
 
     if userPreferences.FavoriteMarkets == nil {
         userPreferences.FavoriteMarkets = &pb.FavoriteMarketsList{}
     }
-    
-	userPreferences.FavoriteMarkets.Market = append(userPreferences.FavoriteMarkets.Market, market)
 
-	_, err = collection.InsertOne(context.TODO(), userPreferences)
+    userPreferences.FavoriteMarkets.Market = append(userPreferences.FavoriteMarkets.Market, market)
+
+    _, err = collection.UpdateOne(context.TODO(), bson.M{"userId": userId}, bson.M{"$set": bson.M{"favoriteMarkets": userPreferences.FavoriteMarkets}})
+
+    if err != nil {
+        return nil, err
+    }
+
+    return userPreferences.FavoriteMarkets, nil
+}
+
+func GetFavoriteMarkets(userId string) (*pb.FavoriteMarketsList, error) {
+	userPreferences, err := findUserPreferences(userId)
 	if err != nil {
 		return nil, err
+	}
+
+	if userPreferences.FavoriteMarkets == nil {
+		userPreferences.FavoriteMarkets = &pb.FavoriteMarketsList{}
 	}
 
 	return userPreferences.FavoriteMarkets, nil

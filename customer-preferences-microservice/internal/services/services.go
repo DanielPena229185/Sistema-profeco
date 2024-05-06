@@ -40,3 +40,13 @@ func (s CustomerPreferencesServer) AddFavoriteMarket(ctx context.Context, req *p
 
     return favoriteMarketsList, nil
 }
+
+func (s CustomerPreferencesServer) GetFavoriteMarketsList(ctx context.Context, req *pb.PreferencesDefaultRequest) (*pb.FavoriteMarketsList, error) {
+    favoriteMarketsList, err := model.GetFavoriteMarkets(req.UserId)
+
+    if err != nil {
+        return nil, err
+    }
+
+    return favoriteMarketsList, nil
+}
