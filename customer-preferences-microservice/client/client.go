@@ -36,6 +36,12 @@ func main() {
 		passedTests++
 	}
 
+	err = TestGettingVisitedProductList()
+	totalTests++
+	if err == nil {
+		passedTests++
+	}
+
 	fmt.Print("\n\n======\n")
 	fmt.Printf("Tests Passed: %d/%d", passedTests, totalTests)
 	fmt.Print("\n======\n\n")
@@ -54,11 +60,29 @@ func TestAddingProductVisited() error {
 		return err
 	}
 
-	if productList.Product[0].ProductId != "2" {
+	if productList.Product[0].ProductId != "1" {
 		fmt.Println("Error adding product visited: Product ID does not match")
 		return errors.New("Error adding product visited: Product ID does not match")
 	}
 
 	fmt.Println("Passed: AddVisitedProduct Test")
+	return nil
+}
+
+func TestGettingVisitedProductList() error {
+	productList, err := client.GetVisitedProductList(context.TODO(), &pb.PreferencesDefaultRequest{
+		UserId: "1",
+	})
+	if err != nil {
+		fmt.Println("Error getting visited product list:", err)
+		return err
+	}
+
+	if productList.Product[0].ProductId != "1" {
+		fmt.Println("Error getting visited product list: Product ID does not match")
+		return errors.New("Error getting visited product list: Product ID does not match")
+	}
+
+	fmt.Println("Passed: GetVisitedProductList Test")
 	return nil
 }

@@ -62,3 +62,12 @@ func AddVisitedProduct(userId string, product *pb.Product) (*pb.VisitedProductsL
 
 	return userPreferences.VisitedProducts, nil
 }
+
+func GetVisitedProducts(userId string) (*pb.VisitedProductsList, error) {
+	userPreferences, err := findUserPreferences(userId)
+	if err != nil {
+		return nil, err
+	}
+
+	return userPreferences.VisitedProducts, nil
+}

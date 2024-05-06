@@ -12,11 +12,21 @@ type CustomerPreferencesServer struct {
 }
 
 func (s CustomerPreferencesServer) AddVisitedProduct(ctx context.Context, req *pb.AddVisitedProductRequest) (*pb.VisitedProductsList, error) {
-    visitedProductsList, err := model.AddVisitedProduct(req.UserId, req.Product)
+	visitedProductsList, err := model.AddVisitedProduct(req.UserId, req.Product)
 
-    if err != nil {
-        return nil, err
-    }
-    
+	if err != nil {
+		return nil, err
+	}
+
+	return visitedProductsList, nil
+}
+
+func (s CustomerPreferencesServer) GetVisitedProductList(ctx context.Context, req *pb.PreferencesDefaultRequest) (*pb.VisitedProductsList, error) {
+	visitedProductsList, err := model.GetVisitedProducts(req.UserId)
+
+	if err != nil {
+		return nil, err
+	}
+
 	return visitedProductsList, nil
 }
