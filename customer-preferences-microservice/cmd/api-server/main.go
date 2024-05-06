@@ -26,6 +26,8 @@ func init() {
 	if err != nil {
 		log.Fatalf("Error loading .env file \n %s", err.Error())
 	}
+
+    
 }
 
 

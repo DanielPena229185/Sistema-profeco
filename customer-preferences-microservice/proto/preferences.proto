@@ -27,3 +27,4 @@ message AddVisitedProductRequest {
 message PreferencesDefaultRequest {
     string user_id = 1;
 }
+
