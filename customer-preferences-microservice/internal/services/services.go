@@ -32,21 +32,31 @@ func (s CustomerPreferencesServer) GetVisitedProductList(ctx context.Context, re
 }
 
 func (s CustomerPreferencesServer) AddFavoriteMarket(ctx context.Context, req *pb.FavoriteMarketRequest) (*pb.FavoriteMarketsList, error) {
-    favoriteMarketsList, err := model.AddFavoriteMarket(req.UserId, req.Market)
+	favoriteMarketsList, err := model.AddFavoriteMarket(req.UserId, req.Market)
 
-    if err != nil {
-        return nil, err
-    }
+	if err != nil {
+		return nil, err
+	}
 
-    return favoriteMarketsList, nil
+	return favoriteMarketsList, nil
 }
 
 func (s CustomerPreferencesServer) GetFavoriteMarketsList(ctx context.Context, req *pb.PreferencesDefaultRequest) (*pb.FavoriteMarketsList, error) {
-    favoriteMarketsList, err := model.GetFavoriteMarkets(req.UserId)
+	favoriteMarketsList, err := model.GetFavoriteMarkets(req.UserId)
 
-    if err != nil {
-        return nil, err
-    }
+	if err != nil {
+		return nil, err
+	}
 
-    return favoriteMarketsList, nil
+	return favoriteMarketsList, nil
+}
+
+func (s CustomerPreferencesServer) AddProductToShoppingCart(ctx context.Context, req *pb.AddProductRequest) (*pb.ShoppingCart, error) {
+	favoriteProductsList, err := model.AddProductToShoppingCart(req.UserId, req.Product)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return favoriteProductsList, nil
 }

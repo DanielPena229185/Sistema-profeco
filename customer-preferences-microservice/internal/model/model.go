@@ -20,6 +20,7 @@ type UserPreferences struct {
 	UserId          string                  `bson:"userId"`
 	VisitedProducts *pb.VisitedProductsList `bson:"visitedProducts"`
 	FavoriteMarkets *pb.FavoriteMarketsList `bson:"favoriteMarkets"`
+	ShoppingCart    *pb.ShoppingCart        `bson:"shoppingCart"`
 }
 
 func init() {
@@ -93,39 +94,39 @@ func GetVisitedProducts(userId string) (*pb.VisitedProductsList, error) {
 }
 
 func AddFavoriteMarket(userId string, market *pb.Market) (*pb.FavoriteMarketsList, error) {
-    collection := database.Client.Database(mongoDatabaseName).Collection(mongoCollectionName)
+	collection := database.Client.Database(mongoDatabaseName).Collection(mongoCollectionName)
 
-    userPreferences, err := findUserPreferences(userId)
+	userPreferences, err := findUserPreferences(userId)
 
-    if err != nil {
-        userPreferences = &UserPreferences{
-            UserId:          userId,
-            FavoriteMarkets: &pb.FavoriteMarketsList{},
-        }
-        userPreferences.FavoriteMarkets.Market = make([]*pb.Market, 0)
-        userPreferences.FavoriteMarkets.Market = append(userPreferences.FavoriteMarkets.Market, market)
+	if err != nil {
+		userPreferences = &UserPreferences{
+			UserId:          userId,
+			FavoriteMarkets: &pb.FavoriteMarketsList{},
+		}
+		userPreferences.FavoriteMarkets.Market = make([]*pb.Market, 0)
+		userPreferences.FavoriteMarkets.Market = append(userPreferences.FavoriteMarkets.Market, market)
 
-        _, err = collection.InsertOne(context.TODO(), userPreferences)
-        if err != nil {
-            return nil, err
-        }
-        return userPreferences.FavoriteMarkets, nil
+		_, err = collection.InsertOne(context.TODO(), userPreferences)
+		if err != nil {
+			return nil, err
+		}
+		return userPreferences.FavoriteMarkets, nil
 
-    }
+	}
 
-    if userPreferences.FavoriteMarkets == nil {
-        userPreferences.FavoriteMarkets = &pb.FavoriteMarketsList{}
-    }
+	if userPreferences.FavoriteMarkets == nil {
+		userPreferences.FavoriteMarkets = &pb.FavoriteMarketsList{}
+	}
 
-    userPreferences.FavoriteMarkets.Market = append(userPreferences.FavoriteMarkets.Market, market)
+	userPreferences.FavoriteMarkets.Market = append(userPreferences.FavoriteMarkets.Market, market)
 
-    _, err = collection.UpdateOne(context.TODO(), bson.M{"userId": userId}, bson.M{"$set": bson.M{"favoriteMarkets": userPreferences.FavoriteMarkets}})
+	_, err = collection.UpdateOne(context.TODO(), bson.M{"userId": userId}, bson.M{"$set": bson.M{"favoriteMarkets": userPreferences.FavoriteMarkets}})
 
-    if err != nil {
-        return nil, err
-    }
+	if err != nil {
+		return nil, err
+	}
 
-    return userPreferences.FavoriteMarkets, nil
+	return userPreferences.FavoriteMarkets, nil
 }
 
 func GetFavoriteMarkets(userId string) (*pb.FavoriteMarketsList, error) {
@@ -139,4 +140,40 @@ func GetFavoriteMarkets(userId string) (*pb.FavoriteMarketsList, error) {
 	}
 
 	return userPreferences.FavoriteMarkets, nil
+}
+
+func AddProductToShoppingCart(userId string, product *pb.Product) (*pb.ShoppingCart, error) {
+	collection := database.Client.Database(mongoDatabaseName).Collection(mongoCollectionName)
+
+	userPreferences, err := findUserPreferences(userId)
+
+	if err != nil {
+		userPreferences = &UserPreferences{
+			UserId:       userId,
+			ShoppingCart: &pb.ShoppingCart{},
+		}
+		userPreferences.ShoppingCart.Product = make([]*pb.Product, 0)
+		userPreferences.ShoppingCart.Product = append(userPreferences.ShoppingCart.Product, product)
+
+		_, err = collection.InsertOne(context.TODO(), userPreferences)
+		if err != nil {
+			return nil, err
+		}
+		return userPreferences.ShoppingCart, nil
+
+	}
+
+	if userPreferences.ShoppingCart == nil {
+		userPreferences.ShoppingCart = &pb.ShoppingCart{}
+	}
+
+	userPreferences.ShoppingCart.Product = append(userPreferences.ShoppingCart.Product, product)
+
+	_, err = collection.UpdateOne(context.TODO(), bson.M{"userId": userId}, bson.M{"$set": bson.M{"shoppingCart": userPreferences.ShoppingCart}})
+
+	if err != nil {
+		return nil, err
+	}
+
+	return userPreferences.ShoppingCart, nil
 }

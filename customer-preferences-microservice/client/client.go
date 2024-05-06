@@ -42,17 +42,23 @@ func main() {
 		passedTests++
 	}
 
-    err = TestAddFavoriteMarket()
-    totalTests++
-    if err == nil {
-        passedTests++
-    }
+	err = TestAddFavoriteMarket()
+	totalTests++
+	if err == nil {
+		passedTests++
+	}
 
-    err = TestGetFavoriteMarketList()
-    totalTests++
-    if err == nil {
-        passedTests++
-    }
+	err = TestGetFavoriteMarketList()
+	totalTests++
+	if err == nil {
+		passedTests++
+	}
+
+	err = TestAddProductToShoppingCart()
+	totalTests++
+	if err == nil {
+		passedTests++
+	}
 
 	fmt.Print("\n\n======\n")
 	fmt.Printf("Tests Passed: %d/%d", passedTests, totalTests)
@@ -100,41 +106,63 @@ func TestGettingVisitedProductList() error {
 }
 
 func TestAddFavoriteMarket() error {
-    marketList, err := client.AddFavoriteMarket(context.TODO(), &pb.FavoriteMarketRequest{
-        UserId: "1",
-        Market: &pb.Market{
-            MarketId: "1",
-            MarketName: "Market 1",
-        },
-    })
-    if err != nil {
-        fmt.Println("Error adding favorite market:", err)
-        return err
-    }
+	marketList, err := client.AddFavoriteMarket(context.TODO(), &pb.FavoriteMarketRequest{
+		UserId: "1",
+		Market: &pb.Market{
+			MarketId:   "1",
+			MarketName: "Market 1",
+		},
+	})
+	if err != nil {
+		fmt.Println("Error adding favorite market:", err)
+		return err
+	}
 
-    if marketList.Market[0].MarketId != "1" {
-        fmt.Println("Error adding favorite market: Market ID does not match")
-        return errors.New("Error adding favorite market: Market ID does not match")
-    }
+	if marketList.Market[0].MarketId != "1" {
+		fmt.Println("Error adding favorite market: Market ID does not match")
+		return errors.New("Error adding favorite market: Market ID does not match")
+	}
 
-    fmt.Println("Passed: AddFavoriteMarket Test")
-    return nil
+	fmt.Println("Passed: AddFavoriteMarket Test")
+	return nil
 }
 
 func TestGetFavoriteMarketList() error {
-    marketList, err := client.GetFavoriteMarketsList(context.TODO(), &pb.PreferencesDefaultRequest{
-        UserId: "1",
-    })
-    if err != nil {
-        fmt.Println("Error getting favorite market list:", err)
-        return err
-    }
+	marketList, err := client.GetFavoriteMarketsList(context.TODO(), &pb.PreferencesDefaultRequest{
+		UserId: "1",
+	})
+	if err != nil {
+		fmt.Println("Error getting favorite market list:", err)
+		return err
+	}
 
-    if marketList.Market[0].MarketId != "1" {
-        fmt.Println("Error getting favorite market list: Market ID does not match")
-        return errors.New("Error getting favorite market list: Market ID does not match")
-    }
+	if marketList.Market[0].MarketId != "1" {
+		fmt.Println("Error getting favorite market list: Market ID does not match")
+		return errors.New("Error getting favorite market list: Market ID does not match")
+	}
 
-    fmt.Println("Passed: GetFavoriteMarketList Test")
-    return nil
+	fmt.Println("Passed: GetFavoriteMarketList Test")
+	return nil
+}
+
+func TestAddProductToShoppingCart() error {
+	shoppingCart, err := client.AddProductToShoppingCart(context.TODO(), &pb.AddProductRequest{
+		UserId: "1",
+		Product: &pb.Product{
+			ProductId:   "1",
+			ProductName: "Product 1",
+		},
+	})
+	if err != nil {
+		fmt.Println("Error adding product to shopping cart:", err)
+		return err
+	}
+
+	if shoppingCart.Product[0].ProductId != "1" {
+		fmt.Println("Error adding product to shopping cart: Product ID does not match")
+		return errors.New("Error adding product to shopping cart: Product ID does not match")
+	}
+
+	fmt.Println("Passed: AddProductToShoppingCart Test")
+	return nil
 }
