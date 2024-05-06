@@ -60,7 +60,7 @@ func main() {
 }
 
 func TestAddingProductVisited() error {
-	productList, err := client.AddVisitedProduct(context.TODO(), &pb.AddVisitedProductRequest{
+	productList, err := client.AddVisitedProduct(context.TODO(), &pb.AddProductRequest{
 		UserId: "1",
 		Product: &pb.Product{
 			ProductId:   "1",

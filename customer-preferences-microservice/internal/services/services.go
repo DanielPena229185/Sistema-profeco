@@ -11,7 +11,7 @@ type CustomerPreferencesServer struct {
 	pb.UnimplementedCustomerPreferencesServer
 }
 
-func (s CustomerPreferencesServer) AddVisitedProduct(ctx context.Context, req *pb.AddVisitedProductRequest) (*pb.VisitedProductsList, error) {
+func (s CustomerPreferencesServer) AddVisitedProduct(ctx context.Context, req *pb.AddProductRequest) (*pb.VisitedProductsList, error) {
 	visitedProductsList, err := model.AddVisitedProduct(req.UserId, req.Product)
 
 	if err != nil {

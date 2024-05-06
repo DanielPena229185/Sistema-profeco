@@ -6,13 +6,18 @@ package proto;
 
 
 service CustomerPreferences {
-    rpc AddVisitedProduct(AddVisitedProductRequest) returns (VisitedProductsList) {}
+    rpc AddVisitedProduct(AddProductRequest) returns (VisitedProductsList) {}
     rpc GetVisitedProductList(PreferencesDefaultRequest) returns (VisitedProductsList) {}
     rpc AddFavoriteMarket(FavoriteMarketRequest) returns (FavoriteMarketsList) {}
     rpc GetFavoriteMarketsList(PreferencesDefaultRequest) returns (FavoriteMarketsList) {}
+    rpc AddProductToShoppingCart(AddProductRequest) returns (ShoppingCart) {}
 }
 
 message VisitedProductsList {
+    repeated Product product = 1;
+}
+
+message ShoppingCart {
     repeated Product product = 1;
 }
 
@@ -26,7 +31,7 @@ message Market {
     string market_name = 2;
 }
 
-message AddVisitedProductRequest {
+message AddProductRequest {
     string user_id = 1;
     Product product = 2;
 }
