@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option go_package = "github.com/silverflin/preferences-microservice";
+
+package proto;
+
+
+service CustomerPreferences {
+    rpc AddVisitedProduct(AddVisitedProductRequest) returns (VisitedProductsList) {}
+    rpc GetVisitedProductList(PreferencesDefaultRequest) returns (VisitedProductsList) {}
+}
+
+message VisitedProductsList {
+    repeated Product product = 1;
+}
+
+message Product {
+    string product_id = 1;
+    string product_name = 2;
+}
+
+message AddVisitedProductRequest {
+    string user_id = 1;
+    Product product = 2;
+}
+
+message PreferencesDefaultRequest {
+    string user_id = 1;
+}
