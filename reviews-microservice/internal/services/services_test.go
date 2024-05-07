@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net"
 	"testing"
@@ -10,6 +11,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/test/bufconn"
 
+	"github.com/silverflin/Sistema-profeco/reviews-microservice/internal/model"
 	pb "github.com/silverflin/Sistema-profeco/reviews-microservice/proto"
 )
 
@@ -41,7 +43,23 @@ func bufDialer(context.Context, string) (net.Conn, error) {
 }
 
 func TestGetMarketReviews(t *testing.T) {
+	fmt.Println("TestGetMarketReviews")
 	ctx := context.Background()
+
+	model.CreateReview(model.CreateReviewInput{
+		UserId:   "1",
+		MarketId: "1",
+		Rating:   5,
+		Content:  "This is a test review",
+	})
+
+	model.CreateReview(model.CreateReviewInput{
+		UserId:   "2",
+		MarketId: "1",
+		Rating:   4,
+		Content:  "This is another test review",
+	})
+
 	conn, err := grpc.DialContext(
 		ctx,
 		"",
@@ -52,20 +70,31 @@ func TestGetMarketReviews(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to dial bufnet: %v", err)
 	}
+
 	defer conn.Close()
+
 	client := pb.NewReviewsClient(conn)
+
 	resp, err := client.GetMarketReviews(
 		ctx,
 		&pb.GetMarketReviewsRequest{MarketId: "1"},
 	)
+
 	if err != nil {
 		t.Fatalf("GetMarketReviews failed: %v", err)
 	}
-	log.Printf("Response: %+v", resp)
 
+	for _, review := range resp.Reviews {
+		if review.MarketId != "1" {
+			t.Fatalf("Expected marketId to be 1, got %v", review.MarketId)
+		}
+	}
+
+	fmt.Print("--- PASSED\n")
 }
 
 func TestCreateReview(t *testing.T) {
+	fmt.Println("TestCreateReview")
 	ctx := context.Background()
 	conn, err := grpc.DialContext(
 		ctx,
@@ -101,5 +130,7 @@ func TestCreateReview(t *testing.T) {
 	if resp.Review.Content != "This is a test review" {
 		t.Fatalf("Expected content to be 'This is a test review', got %v", resp.Review.Content)
 	}
+
+	fmt.Print("--- PASSED\n")
 
 }

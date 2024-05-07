@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/silverflin/Sistema-profeco/reviews-microservice/internal/database"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 var (
@@ -22,11 +23,11 @@ func init() {
 }
 
 type Review struct {
-	UserId    string `json:"user_id"`
-	MarketId  string `json:"market_id"`
-	CreatedAt string `json:"created_at"`
-	Rating    int32  `json:"rating"`
-	Content   string `json:"content"`
+	UserId    string `bson:"user_id"`
+	MarketId  string `bson:"market_id"`
+	CreatedAt string `bson:"created_at"`
+	Rating    int32  `bson:"rating"`
+	Content   string `bson:"content"`
 }
 
 type CreateReviewInput struct {
@@ -46,8 +47,6 @@ func CreateReview(input CreateReviewInput) (*Review, error) {
 
 	review.CreatedAt = time.Now().UTC().String()
 
-	fmt.Println("Review:", review)
-
 	collection := database.Client.Database(mongoDatabaseName).Collection(mongoCollectionName)
 
 	_, err := collection.InsertOne(context.TODO(), review)
@@ -56,4 +55,33 @@ func CreateReview(input CreateReviewInput) (*Review, error) {
 	}
 
 	return review, nil
+}
+
+func GetMarketReviews(marketId string) ([]Review, error) {
+	collection := database.Client.Database(mongoDatabaseName).Collection(mongoCollectionName)
+	CreateReview(CreateReviewInput{
+		UserId:   "2",
+		MarketId: "1",
+		Rating:   4,
+		Content:  "This is another test review",
+	})
+
+	filter := bson.D{{Key: "market_id", Value: marketId}}
+	cursor, err := collection.Find(context.Background(), filter)
+	if err != nil {
+		return nil, err
+	}
+
+	var reviews []Review
+
+	for cursor.Next(context.Background()) {
+		var review Review
+		cursor.Decode(&review)
+		reviews = append(reviews, review)
+	}
+
+	fmt.Println("model")
+	fmt.Println(reviews)
+
+	return reviews, nil
 }

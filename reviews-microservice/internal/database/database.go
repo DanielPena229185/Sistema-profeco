@@ -24,10 +24,10 @@ func init() {
 	}
 
 	if err != nil {
-        err = godotenv.Load("../../.env.development")
-        if err != nil {
-            log.Fatalf("Error loading .env file")
-        }
+		err = godotenv.Load("../../.env.development")
+		if err != nil {
+			log.Fatalf("Error loading .env file")
+		}
 	}
 }
 
@@ -54,7 +54,7 @@ func TestConnection() error {
 	var result bson.M
 	err := Client.
 		Database("admin").
-		RunCommand(context.TODO(), bson.D{{"ping", 1}}).
+		RunCommand(context.TODO(), bson.D{{Key: "ping", Value: 1}}).
 		Decode(&result)
 
 	if err != nil {
