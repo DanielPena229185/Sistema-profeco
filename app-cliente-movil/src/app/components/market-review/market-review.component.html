@@ -1,19 +1,63 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-toolbar class="header">
-          <div class="header-content">
-              <div class="header-title">
-                  <p>Calificar Tienda</p>
-              </div>
-              <div class="close-button" (click)="close()">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24"
-                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white">
-                      <path d="M18 6 6 18M6 6l12 12" />
-                  </svg>
-              </div>
-          </div>
-      </ion-toolbar>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-toolbar class="header">
+            <div class="header-content">
+                <div class="header-title">
+                    <p>Calificar Tienda</p>
+                </div>
+                <div class="close-button" (click)="close()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white">
+                        <path d="M18 6 6 18M6 6l12 12" />
+                    </svg>
+                </div>
+            </div>
+        </ion-toolbar>
+    </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+    <div class="market-info" *ngIf="market">
+        <div class="market-info-content">
+            <div class="market-info-image">
+                <img [src]="market.urlImg" alt="market-image">
+            </div>
+            <div class="market-info-details">
+                <h2 class="market-name">{{ market.name }}</h2>
+                <app-rating-star [maxValue]="5" [readonly]="true" [value]="5"></app-rating-star>
+                <p class="market-address">{{ market.address }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="make-comment">
+        <label for="comment">Comentario</label>
+        <app-rating-star class="rating-comment" [maxValue]="5" (valueChange)="ratingChange($event)"></app-rating-star>
+        <div class="comment-area">
+            <ion-textarea class="comment-textarea" name="comment" type="text" [autoGrow]="true"
+                [maxlength]="maxLenghtComment" [counter]="true" placeholder="Añade un comentario"></ion-textarea>
+            <div class="submit-comment">
+                <ion-button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white"
+                        style="width: 24px; height: 24px;">
+                        <path
+                            d="M3.464 16.828C2 15.657 2 14.771 2 11c0-3.771.0-5.657 1.464-6.828C4.93 3 7.286 3 12 3s7.071.0 8.535 1.172C22 5.343 22 7.229 22 11s0 4.657-1.465 5.828C19.072 18 16.714 18 12 18c-2.51.0-3.8 1.738-6 3v-3.212c-1.094-.163-1.899-.45-2.536-.96" />
+                    </svg>
+                </ion-button>
+            </div>
+        </div>
+    </div>
+    <div class="comments">
+        <div class="comment">
+            <div class="comment-content">
+                <p>Contenido del comentario</p>
+            </div>
+        </div>
+        <div class="comment">
+            <div class="comment-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum provident ipsa beatae modi minima iste
+                    libero quaerat quod magni quibusdam commodi dolorem aliquam adipisci id, consequatur mollitia amet
+                    aspernatur exercitationem.</p>
+            </div>
+        </div>
+    </div>
 </ion-content>

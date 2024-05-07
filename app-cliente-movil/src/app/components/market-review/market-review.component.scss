@@ -35,3 +35,56 @@
 .close-button {
   padding: 0px 10px;
 }
+
+.make-comment {
+  display: flex;
+  flex-direction: column;
+}
+
+.rating-comment{
+  padding: 10px 0px;
+}
+
+.comment-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 0px;
+}	
+
+.comment-area > ion-textarea{
+  --highlight-color-focused: var(--ion-color-profeco-primary);
+}	
+
+.submit-comment{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.submit-comment > ion-button {
+  max-height: 85px;
+  --background: var(--ion-color-profeco-primary);
+  --background-hover: var(--ion-color-profeco-primary-shade);
+  --background-activated: var(--ion-color-profeco-primary-shade);
+  --background-focused: var(--ion-color-profeco-primary-shade);
+  --color: white;
+  --ripple-color: var(--ion-color-profeco-secondary);
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0px;
+}
+
+.comment {
+  background-color: #f9f9f9;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.comment > p {
+  margin: 0;
+  font-size: small;
+}
