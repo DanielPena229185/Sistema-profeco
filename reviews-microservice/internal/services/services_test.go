@@ -33,6 +33,7 @@ func init() {
 			log.Fatalf("Server exited with error: %v", err)
 		}
 	}()
+
 }
 
 func bufDialer(context.Context, string) (net.Conn, error) {
@@ -92,6 +93,13 @@ func TestCreateReview(t *testing.T) {
 	if err != nil {
 		t.Fatalf("CreateReview failed: %v", err)
 	}
-	log.Printf("Response: %+v", resp)
+
+	if resp.Review.Rating != 5 {
+		t.Fatalf("Expected rating to be 5, got %v", resp.Review.Rating)
+	}
+
+	if resp.Review.Content != "This is a test review" {
+		t.Fatalf("Expected content to be 'This is a test review', got %v", resp.Review.Content)
+	}
 
 }
