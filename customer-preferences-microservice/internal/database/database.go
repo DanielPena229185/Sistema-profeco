@@ -1,4 +1,3 @@
-
 package database
 
 import (
@@ -8,6 +7,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -38,6 +38,21 @@ func Connect() error {
 		return err
 	}
 	Client = client
+
+	err = TestConnection()
+
+	if err != nil {
+		panic(err)
+	}
+
+	return nil
+}
+
+func TestConnection() error {
+	var result bson.M
+	if err := Client.Database("admin").RunCommand(context.TODO(), bson.D{{"ping", 1}}).Decode(&result); err != nil {
+		return err
+	}
 	return nil
 }
 
