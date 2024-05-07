@@ -47,4 +47,3 @@ networks:
     driver: bridge
   profeco:
     driver: bridge
-    external: true
