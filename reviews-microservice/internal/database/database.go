@@ -25,6 +25,7 @@ func init() {
 
 	if err != nil {
 		err = godotenv.Load("../../.env.development")
+        fmt.Println("Loading .env.development for test")
 		if err != nil {
 			log.Fatalf("Error loading .env file")
 		}
