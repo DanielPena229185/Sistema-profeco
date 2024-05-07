@@ -14,6 +14,21 @@ type ProductListServer struct {
 	pb.UnimplementedProductsServer
 }
 
+func (s ProductListServer) UpdateProductPrice(ctx context.Context, req *pb.UpdateProductPriceRequest) (*pb.Empty, error) {
+	// Find CompareProductList
+	// filteredProductList := model.GetProductPricesByProductName(req.Product.Name)
+	err := model.UpdateProductPrice(req.Product, req.NewPrice, req.MarketId)
+
+	if err != nil {
+		return nil, err
+	}
+
+	// find MarketPrice
+	// update price
+	// return updated product
+	return nil, nil
+}
+
 func (s ProductListServer) GetProductsByPrice(ctx context.Context, req *pb.ProductListRequest) (*pb.CompareProductList, error) {
 	log.Printf("New Request %v", req.ProductName)
 

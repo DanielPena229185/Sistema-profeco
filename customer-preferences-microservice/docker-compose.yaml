@@ -1,0 +1,28 @@
+services:
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "127.0.0.1:27017:27017"
+    networks:
+        - preferences_internal_network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+
+  customer-preferences-microservice:
+    # build:
+    # context: .
+    # dockerfile: Dockerfile
+    image: silverflin/customer-preferences-microservice:latest
+    ports:
+      - "50057:50057"
+    networks:
+      - preferences_internal_network
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+networks:
+  preferences_internal_network:
+    driver: bridge

@@ -1,4 +1,3 @@
-
 services:
 
   rabbitmq:
@@ -21,29 +20,13 @@ services:
     ports:
       - "127.0.0.1:27017:27017"
     networks:
-        - products_internal_network
+        - preferences_internal_network
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
 
-
-  products-microservice:
-    # build:
-    # context: .
-    # dockerfile: Dockerfile
-    image: silverflin/product-catalog-microservice:latest
-    ports:
-      - "0.0.0.0:50051:50051"
-    networks:
-      - products_internal_network
-      - profeco
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
-      mongodb:
-        condition: service_healthy
-
 networks:
-  products_internal_network:
+  preferences_internal_network:
     driver: bridge
   profeco:
     driver: bridge
+ 
