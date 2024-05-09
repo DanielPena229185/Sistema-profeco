@@ -1,0 +1,73 @@
+<div class="modal">
+    <div class="modal-info">
+        <div class="modal-header">
+            <div class="modal-header-start">
+                <h2>Calificar tienda</h2>
+            </div>
+            <div class="modal-header-end">
+                <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+            </div>
+        </div>
+        <div *ngIf="market" class="market-info">
+            <div class="img-market">
+                <img [src]="market.urlImg" [alt]="market.name">
+            </div>
+            <div class="name-market">
+                <h3>{{market.name}}</h3>
+                <app-rating-star [maxValue]="5" [readonly]="true" [value]="5"></app-rating-star>
+            </div>
+            <div class="address-market">
+                <p>{{market.address}}</p>
+            </div>
+        </div>
+        <div class="make-comment">
+            <h4 for="comment">Calificar</h4>
+            <app-rating-star class="rating-comment" [maxValue]="5"
+                (valueChange)="ratingChange($event)"></app-rating-star>
+            <div class="comment-area">
+                <textarea class="comment-textarea form-control" name="comment" type="text"
+                    placeholder="Añade un comentario"></textarea>
+                <div class="submit-comment">
+                    <button class="btn">
+                        Calificar
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="comments">
+            <div class="comment">
+                <div class="rate">
+                    <app-rating-star [maxValue]="5" [readonly]="true" [value]="5"></app-rating-star>
+                </div>
+                <div class="comment-content">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam saepe sequi quisquam error porro
+                        optio explicabo ducimus ipsum voluptatum est perferendis dolore earum, velit labore nihil
+                        adipisci?
+                        Unde, maiores error.</p>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="rate">
+                    <app-rating-star [maxValue]="5" [readonly]="true" [value]="3"></app-rating-star>
+                </div>
+                <div class="comment-content">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam saepe sequi quisquam error porro
+                        optio explicabo ducimus ipsum voluptatum est perferendis dolore earum, velit labore nihil
+                        adipisci?
+                        Unde, maiores error.</p>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="rate">
+                    <app-rating-star [maxValue]="5" [readonly]="true" [value]="1"></app-rating-star>
+                </div>
+                <div class="comment-content">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam saepe sequi quisquam error porro
+                        optio explicabo ducimus ipsum voluptatum est perferendis dolore earum, velit labore nihil
+                        adipisci?
+                        Unde, maiores error.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
