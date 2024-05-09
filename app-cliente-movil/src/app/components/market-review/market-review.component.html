@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="make-comment">
-        <label for="comment">Comentario</label>
+        <label for="comment">Calificar</label>
         <app-rating-star class="rating-comment" [maxValue]="5" (valueChange)="ratingChange($event)"></app-rating-star>
         <div class="comment-area">
             <ion-textarea class="comment-textarea" name="comment" type="text" [autoGrow]="true"
@@ -48,15 +48,33 @@
     </div>
     <div class="comments">
         <div class="comment">
+            <div class="rate">
+                <app-rating-star [maxValue]="5" [readonly]="true" [value]="5"></app-rating-star>
+            </div>
             <div class="comment-content">
-                <p>Contenido del comentario</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam saepe sequi quisquam error porro
+                    optio explicabo ducimus ipsum voluptatum est perferendis dolore earum, velit labore nihil adipisci?
+                    Unde, maiores error.</p>
             </div>
         </div>
         <div class="comment">
+            <div class="rate">
+                <app-rating-star [maxValue]="5" [readonly]="true" [value]="3"></app-rating-star>
+            </div>
             <div class="comment-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum provident ipsa beatae modi minima iste
-                    libero quaerat quod magni quibusdam commodi dolorem aliquam adipisci id, consequatur mollitia amet
-                    aspernatur exercitationem.</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam saepe sequi quisquam error porro
+                    optio explicabo ducimus ipsum voluptatum est perferendis dolore earum, velit labore nihil adipisci?
+                    Unde, maiores error.</p>
+            </div>
+        </div>
+        <div class="comment">
+            <div class="rate">
+                <app-rating-star [maxValue]="5" [readonly]="true" [value]="1"></app-rating-star>
+            </div>
+            <div class="comment-content">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam saepe sequi quisquam error porro
+                    optio explicabo ducimus ipsum voluptatum est perferendis dolore earum, velit labore nihil adipisci?
+                    Unde, maiores error.</p>
             </div>
         </div>
     </div>
