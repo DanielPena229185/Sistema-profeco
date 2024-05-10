@@ -36,7 +36,6 @@ interface Market{
 
 interface Product{
     id:string;
-    brand:string
     name:string;
     urlImg:string;
 }
