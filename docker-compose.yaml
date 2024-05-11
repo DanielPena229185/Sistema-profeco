@@ -3,9 +3,6 @@ services:
   rabbitmq:
     image: rabbitmq:3.13-management
     container_name: rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
     networks:
       - profeco
     healthcheck:
@@ -14,36 +11,82 @@ services:
       timeout: 3s
       retries: 30
 
-  mongodb:
+  
+
+  # Frontend 
+  # TODO
+  
+
+  # Backend services
+  
+  api-cliente-web:
+    image: silverflin/profeco-api-cliente-web:latest
+
+  api-cliente-movil:
+    image: silverflin/profeco-api-cliente-movil:latest
+
+  api-tienda:
+    image: silverflin/profeco-api-tienda:latest
+
+  # --- Microservices --- 
+
+  # Products microservice
+  product-mongodb:
     image: mongo
-    container_name: mongodb
-    ports:
-      - "127.0.0.1:27017:27017"
     networks:
-        - customer_internal_network
+        - products_internal_network
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
 
-
-  customer-microservice:
-    # build:
-    # context: .
-    # dockerfile: Dockerfile
-    image: silverflin/customer-microservice:latest
-    ports:
-      - "0.0.0.0:50059:50059"
+  products-microservice:
+    image: silverflin/product-catalog-microservice:latest
     networks:
-      - customer_internal_network
+      - products_internal_network
       - profeco
     depends_on:
       rabbitmq:
         condition: service_healthy
-      mongodb:
+      product-mongodb:
+        condition: service_healthy
+
+  # Reviews microservice
+  reviews-mongodb:
+    image: mongo
+    networks:
+        - reviews_internal_network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+
+  reviews-microservice:
+    image: silverflin/reviews-microservice:latest
+    networks:
+      - reviews_internal_network
+    depends_on:
+      reviews-mongodb:
+        condition: service_healthy
+
+  # Customer Preferences microservice
+  customer-preferences-mongodb:
+    image: mongo
+    networks:
+        - preferences_internal_network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+
+  customer-preferences-microservice:
+    image: silverflin/customer-preferences-microservice:latest
+    networks:
+      - preferences_internal_network
+    depends_on:
+      customer-preferences-mongodb:
         condition: service_healthy
 
 networks:
-  customer_internal_network:
+  products_internal_network:
     driver: bridge
   profeco:
     driver: bridge
-    external: true
+  reviews_internal_network:
+    driver: bridge
+  preferences_internal_network:
+    driver: bridge
