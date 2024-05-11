@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "material-icons": "^1.13.12",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.3",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
