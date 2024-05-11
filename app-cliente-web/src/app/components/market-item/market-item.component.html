@@ -4,7 +4,7 @@
             •••
         </button>
         <ul class="dropdown-menu">
-            <li [className]="'my-dropdown-item my-dropdown-item-'+marketOption.color"
+            <li [className]="'my-dropdown-item'"
                 *ngFor="let marketOption of marketOptions" (click)="onAction(marketOption.actionOption)">
                 {{marketOption.title}}</li>
         </ul>
