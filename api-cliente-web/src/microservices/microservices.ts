@@ -10,5 +10,23 @@ export const microservices: ClientsModuleOptions = [
             protoPath: join(`src/microservices/protos/market.proto`),
             url: 'localhost:5240',
         },
-    }
+    },
+    {
+        name: 'REPORTS_SERVICE',
+        transport: Transport.GRPC,
+        options: {
+          package: 'report',
+          protoPath: join(`proto/report.proto`),
+          url: 'localhost:50052',
+        },
+      },
+      {
+        name: 'MARKET_PACKAGE',
+        transport: Transport.GRPC,
+        options: {
+          package: 'market',
+          protoPath: join(`proto/market.proto`),
+          url: 'localhost:5240',
+        },
+      },
 ];

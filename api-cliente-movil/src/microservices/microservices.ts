@@ -17,7 +17,7 @@ export const ClientModules = ClientsModule.register([
     options: {
       package: 'report',
       protoPath: join(`proto/report.proto`),
-      url: 'localhost:50052',
+      url: 'localhost:5',
     },
   },
   {
