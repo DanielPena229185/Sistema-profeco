@@ -59,7 +59,6 @@ message Market{
 
 message Product{
     string id = 1;
-    string brand = 2;
-    string name = 3;
-    string urlImg = 4;
+    string name = 2;
+    string urlImg = 3;
 }

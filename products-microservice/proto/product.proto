@@ -23,6 +23,7 @@ service Products{
     rpc GetProducts(Empty) returns (ProductList){}
     rpc GetProductById(ProductByIdRequest) returns (Product) {}
     rpc GetCompareProductListById(ProductByIdRequest) returns (CompareProductList) {}
+    rpc UpdateProductPrice(UpdateProductPriceRequest) returns (Empty) {}
 }
 
 message ProductByIdRequest {
@@ -31,6 +32,12 @@ message ProductByIdRequest {
 
 message ProductListRequest {
     string product_name = 1;
+}
+
+message UpdateProductPriceRequest {
+    string market_id = 1;
+    Product product = 2;
+    float new_price = 3;
 }
 
 message Empty {}
