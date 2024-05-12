@@ -4,9 +4,6 @@ services:
   rabbitmq:
     image: rabbitmq:3.13-management
     container_name: rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
     networks:
       - profeco
     healthcheck:
@@ -17,9 +14,7 @@ services:
 
   mongodb:
     image: mongo
-    container_name: product-mongodb
-    ports:
-      - "127.0.0.1:27017:27017"
+    container_name: mongodb
     networks:
         - products_internal_network
     healthcheck:
@@ -27,12 +22,7 @@ services:
 
 
   products-microservice:
-    # build:
-    # context: .
-    # dockerfile: Dockerfile
     image: silverflin/product-catalog-microservice:latest
-    ports:
-      - "0.0.0.0:50051:50051"
     networks:
       - products_internal_network
       - profeco
