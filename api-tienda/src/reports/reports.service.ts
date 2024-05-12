@@ -1,20 +1,21 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { CreateReportDto, Report} from './reports.type';
+import { Report } from './reports.type';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class ReportsService implements OnModuleInit {
-    private reportsService;
-    constructor(@Inject('REPORTS_SERVICE') private client:ClientGrpc){}
+  private reportsService;
+  constructor(@Inject('REPORTS_SERVICE') private client: ClientGrpc) {}
 
-    onModuleInit() {
-        this.reportsService = this.client.getService('ReportService');
-    }
+  onModuleInit() {
+    this.reportsService = this.client.getService('ReportService');
+  }
 
-    async createReport(data:CreateReportDto){
-        const $report:Observable<Report> = this.reportsService.CreateReport(data);
-        const reportCreated = await $report.toPromise();
-        return reportCreated;
-    }
+  async FindReportsByMarket(marketId: string) {
+    const $reports: Observable<Report[]> =
+      this.reportsService.FindReportsByMarket({ marketId });
+    const reports = await $reports.toPromise();
+    return reports;
+  }
 }
