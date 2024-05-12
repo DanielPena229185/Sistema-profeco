@@ -3,8 +3,22 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "assets": ["**/*.proto"],
+    "assets": [
+      "**/*.proto"
+    ],
     "watchAssets": true,
-    "deleteOutDir": false
+    "deleteOutDir": false,
+    "webpack": true
+  },
+  "projects": {
+    "libs": {
+      "type": "library",
+      "root": "libs/libs",
+      "entryFile": "index",
+      "sourceRoot": "libs/libs/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/libs/tsconfig.lib.json"
+      }
+    }
   }
 }

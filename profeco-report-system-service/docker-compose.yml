@@ -1,0 +1,31 @@
+
+services:
+
+  reports:
+    image: mongo
+    container_name: reports
+    ports:
+      - "27017:27017"
+    networks:
+      - reports_internal_network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+
+  reports-microservice:
+
+    image: edgaremirborbonjimenez/profeco-report-system-service:latest
+    ports:
+      - "50052:50052"
+    networks:
+      - reports_internal_network
+      - profeco
+    depends_on:
+      reports:
+        condition: service_healthy
+
+networks:
+  reports_internal_network:
+    driver: bridge
+  profeco:
+    driver: bridge
+    external: true

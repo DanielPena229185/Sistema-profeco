@@ -4,17 +4,17 @@ import { AppService } from './app.service';
 import { MarketController } from './market/market.controller';
 import { MarketService } from './market/market.service';
 import { ClientsModule } from '@nestjs/microservices';
-import { ClientModules } from './microservices/microservices';
 import { DealController } from './deal/deal.controller';
 import { DealService } from './deal/deal.service';
-import { ReviewController } from './review/review.controller';
-import { ReviewService } from './review/review.service';
-import { PreferenceService } from './preference/preference.service';
-import { PreferenceController } from './preference/preference.controller';
+import { ReportsController } from './reports/reports.controller';
+import { ReportsService } from './reports/reports.service';
+import { ProductsController } from './products/products.controller';
+import { ProductsService } from './products/products.service';
+import { ClientModules } from './microservices/microservices';
 
 @Module({
   imports: [ClientsModule.register(ClientModules)],
-  controllers: [AppController, MarketController, DealController, ReviewController, PreferenceController],
-  providers: [AppService, MarketService, DealService, ReviewService, PreferenceService],
+  controllers: [AppController, MarketController, ReportsController, ProductsController,DealController],
+  providers: [AppService, MarketService, ReportsService, ProductsService,DealService],
 })
 export class AppModule {}
