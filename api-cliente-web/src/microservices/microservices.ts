@@ -25,7 +25,7 @@ export const ClientModules: ClientsModuleOptions = [
         transport: Transport.GRPC,
         options: {
           package: 'report',
-          protoPath: join(`src/microservices/protos/report.proto`),
+          protoPath: join(`proto/report.proto`),
           url: 'localhost:50052',
         },
       },
@@ -34,7 +34,7 @@ export const ClientModules: ClientsModuleOptions = [
         transport: Transport.GRPC,
         options: {
           package: 'proto',
-          protoPath: join(`src/microservices/protos/product.proto`),
+          protoPath: join(`proto/product.proto`),
           url: 'localhost:50051',
         },
       },

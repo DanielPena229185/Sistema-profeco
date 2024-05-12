@@ -17,7 +17,7 @@ services:
 
   mongodb:
     image: mongo
-    container_name: mongodb
+    container_name: product-mongodb
     ports:
       - "127.0.0.1:27017:27017"
     networks:
