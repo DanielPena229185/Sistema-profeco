@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r545+fpDKVNgd51OzMjQ3Ri4pMDRa468an8k9VNw2+DQrb1DrLo3hieyCL4Zlgq1MA+/ol3YSV4twTwlkF9iuw==",
+  "dgSpecHash": "ErlwlW99fnCeD82N7HQfmtCHV2Tbsv6H0/buXaBp4I8c+neYLDnJCqGLMaxj+WXfBhQDtqGoNC/BYEre/21tHQ==",
   "success": true,
-  "projectFilePath": "e:\\Sistema-profeco\\DealService\\DealService.csproj",
+  "projectFilePath": "E:\\Sistema-profeco\\DealService\\DealService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dapgp\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Dapgp\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

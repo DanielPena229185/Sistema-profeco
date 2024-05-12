@@ -57,4 +57,10 @@ public class DealDAO : IDealDAO
             observer.Update(deal);
         }
     }
+
+    public List<Deal> GetDealsByMarket(string marketId, int page, int count)
+    {
+        var query = DealsCollection.AsQueryable().Where(x => x.Market.Id == marketId);
+        return query.Skip(page * count).Take(count).ToList();
+    }
 }

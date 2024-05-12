@@ -1,7 +1,7 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
-import { GetAllMarketsRequest, GetAllMarketsResponse, GetMarketByIdRequest, GetMarketByIdResponse, MarketEntity } from 'src/microservices/market.interface';
+import { GetAllMarketsRequest, GetAllMarketsResponse, GetMarketByIdRequest, GetMarketByIdResponse, MarketEntity } from './market.types';
 
 @Injectable()
 export class MarketService implements OnModuleInit {

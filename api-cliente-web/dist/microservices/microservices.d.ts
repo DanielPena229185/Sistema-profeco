@@ -1,2 +1,2 @@
 import { ClientsModuleOptions } from '@nestjs/microservices';
-export declare const microservices: ClientsModuleOptions;
+export declare const ClientModules: ClientsModuleOptions;
