@@ -2,9 +2,9 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { MarketService } from './market.service';
 import { GetMarketsQueryDTO } from './decorators/get-markets.dto';
 import { GetMarketsDTO } from './input-dto/get-markets-query.dto';
-import { GetAllMarketsRequest, GetMarketByIdRequest } from 'src/microservices/market.interface';
 import { GetMarketByIdQueryDTO } from './decorators/get-market-by-id';
 import { GetMarketByIdDTO } from './input-dto/get-market-by-id-query.dto';
+import { GetAllMarketsRequest, GetMarketByIdRequest } from './market.types';
 
 @Controller('market')
 export class MarketController {

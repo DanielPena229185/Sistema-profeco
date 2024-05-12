@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Sistema-profeco\\MarketMicroservice\\Market.csproj": {}
+    "e:\\Sistema-profeco\\MarketMicroservice\\Market.csproj": {}
   },
   "projects": {
-    "E:\\Sistema-profeco\\MarketMicroservice\\Market.csproj": {
+    "e:\\Sistema-profeco\\MarketMicroservice\\Market.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
+        "projectUniqueName": "e:\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
         "projectName": "Market",
-        "projectPath": "E:\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
+        "projectPath": "e:\\Sistema-profeco\\MarketMicroservice\\Market.csproj",
         "packagesPath": "C:\\Users\\Dapgp\\.nuget\\packages\\",
-        "outputPath": "E:\\Sistema-profeco\\MarketMicroservice\\obj\\",
+        "outputPath": "e:\\Sistema-profeco\\MarketMicroservice\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dapgp\\AppData\\Roaming\\NuGet\\NuGet.Config"

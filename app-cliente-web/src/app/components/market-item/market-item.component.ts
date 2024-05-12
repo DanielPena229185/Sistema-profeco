@@ -3,6 +3,7 @@ import { ActionOption, MarketDTO, MarketOption } from './market-item.types';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MarketReportFormComponent } from '../market-report-form/market-report-form.component';
+import { MarketReviewComponent } from '../market-review/market-review.component';
 
 @Component({
   selector: 'app-market-item',
@@ -12,19 +13,20 @@ import { MarketReportFormComponent } from '../market-report-form/market-report-f
   styleUrl: './market-item.component.css',
 })
 export class MarketItemComponent {
-
   @Input() market: MarketDTO;
 
   marketOptions: MarketOption[] = [
     {
       actionOption: ActionOption.REPORT,
       title: 'Reportar',
-      color: 'red',
     },
     {
       actionOption: ActionOption.ADDWISHLIST,
       title: 'Agregar a la lista de deseos',
-      color: 'blue',
+    },
+    {
+      actionOption: ActionOption.ADDREVIEW,
+      title: 'Calificar',
     },
   ];
 
@@ -44,6 +46,15 @@ export class MarketItemComponent {
       case ActionOption.ADDWISHLIST:
         console.log('Agregar a la lista de deseos');
         break;
+      case ActionOption.ADDREVIEW:
+        this.openReviewMarket(this.market.id);
+        break;
     }
+  }
+
+  openReviewMarket(marketId: string) {
+    this.dialog.open(MarketReviewComponent, {
+      data: marketId,
+    });
   }
 }

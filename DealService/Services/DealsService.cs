@@ -53,4 +53,22 @@ public class DealsService : Deals.DealsBase
         };
         return Task.FromResult(dealsEntities);
     }
+
+    public override Task<GetDealsByMarketResponse> GetDealsByMarket(GetDealsByMarketRequest request, ServerCallContext context)
+    {
+        string marketId = request.MarketId;
+        int page = request.Page;
+        int count = request.Count;
+        List<Deal> deals = DealDAO.GetDealsByMarket(marketId, page, count);
+        List<DealEntity> dealEntities = [];
+        foreach (Deal deal in deals)
+        {
+            dealEntities.Add(ParseProtoEntity.ParseDeal(deal));
+        }
+        GetDealsByMarketResponse dealsEntities = new()
+        {
+            Deals = { dealEntities }
+        };
+        return Task.FromResult(dealsEntities);
+    }
 }
