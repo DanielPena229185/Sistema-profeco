@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+option csharp_namespace = "DealService";
+
+package deal;
+
+service Deals {
+    rpc GetDealById(GetDealByIdRequest) returns (GetDealByIdResponse) {}
+    rpc GetDeals(GetDealsRequest) returns (GetDealsResponse) {}
+    rpc CreateDeal(DealEntity) returns (DealEntity) {}
+}
+
+//Requests
+
+message GetDealByIdRequest {
+    string id = 1;
+}
+
+message GetDealsRequest {
+    int32 page = 1;
+    int32 count = 2;
+}
+
+//Responses
+message GetDealByIdResponse {
+    DealEntity deal = 1;
+}
+
+message GetDealsResponse {
+    repeated DealEntity deals = 1;
+}
+
+message CreateDealResponse {
+    DealEntity deal = 1;
+}
+
+//Entities
+
+message ProductEntity {
+    string id = 1;
+    string name = 2;
+}
+
+message MarketEntity {
+    string id = 1;
+    string name = 2;
+}
+
+message DealEntity {
+    string id = 1;
+    string description = 2;
+    double price = 3;
+    string date = 4;
+    MarketEntity market = 5;
+    ProductEntity product = 6;
+} 

@@ -4,11 +4,13 @@ import { AppService } from './app.service';
 import { MarketController } from './market/market.controller';
 import { MarketService } from './market/market.service';
 import { ClientsModule } from '@nestjs/microservices';
-import { microservices } from './microservices/microservices';
+import { ClientModules } from './microservices/microservices';
+import { DealController } from './deal/deal.controller';
+import { DealService } from './deal/deal.service';
 
 @Module({
-  imports: [ClientsModule.register(microservices)],
-  controllers: [AppController, MarketController],
-  providers: [AppService, MarketService],
+  imports: [ClientsModule.register(ClientModules)],
+  controllers: [AppController, MarketController, DealController],
+  providers: [AppService, MarketService, DealService],
 })
 export class AppModule {}
