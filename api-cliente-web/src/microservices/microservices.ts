@@ -19,5 +19,23 @@ export const ClientModules: ClientsModuleOptions = [
             protoPath: join(`proto/deal.proto`),
             url: 'localhost:5070',
         },
+    },
+    {
+        name: 'REVIEW_SERVICE',
+        transport: Transport.GRPC,
+        options: {
+            package: 'proto',
+            protoPath: join(`proto/reviews.proto`),
+            url: 'localhost:5030',
+        },
+    },
+    {
+        name: 'PREFERENCE_SERVICE',
+        transport: Transport.GRPC,
+        options: {
+            package: 'proto',
+            protoPath: join(`proto/preferences.proto`),
+            url: 'localhost:5010',
+        },
     }
 ];
