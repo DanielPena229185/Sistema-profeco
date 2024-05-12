@@ -55,6 +55,10 @@ namespace DealService {
     static readonly grpc::Marshaller<global::DealService.GetDealsResponse> __Marshaller_deal_GetDealsResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::DealService.GetDealsResponse.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::DealService.DealEntity> __Marshaller_deal_DealEntity = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::DealService.DealEntity.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::DealService.GetDealsByMarketRequest> __Marshaller_deal_GetDealsByMarketRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::DealService.GetDealsByMarketRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::DealService.GetDealsByMarketResponse> __Marshaller_deal_GetDealsByMarketResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::DealService.GetDealsByMarketResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::DealService.GetDealByIdRequest, global::DealService.GetDealByIdResponse> __Method_GetDealById = new grpc::Method<global::DealService.GetDealByIdRequest, global::DealService.GetDealByIdResponse>(
@@ -79,6 +83,14 @@ namespace DealService {
         "CreateDeal",
         __Marshaller_deal_DealEntity,
         __Marshaller_deal_DealEntity);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::DealService.GetDealsByMarketRequest, global::DealService.GetDealsByMarketResponse> __Method_GetDealsByMarket = new grpc::Method<global::DealService.GetDealsByMarketRequest, global::DealService.GetDealsByMarketResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetDealsByMarket",
+        __Marshaller_deal_GetDealsByMarketRequest,
+        __Marshaller_deal_GetDealsByMarketResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -108,6 +120,12 @@ namespace DealService {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::DealService.GetDealsByMarketResponse> GetDealsByMarket(global::DealService.GetDealsByMarketRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
@@ -118,7 +136,8 @@ namespace DealService {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_GetDealById, serviceImpl.GetDealById)
           .AddMethod(__Method_GetDeals, serviceImpl.GetDeals)
-          .AddMethod(__Method_CreateDeal, serviceImpl.CreateDeal).Build();
+          .AddMethod(__Method_CreateDeal, serviceImpl.CreateDeal)
+          .AddMethod(__Method_GetDealsByMarket, serviceImpl.GetDealsByMarket).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -131,6 +150,7 @@ namespace DealService {
       serviceBinder.AddMethod(__Method_GetDealById, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::DealService.GetDealByIdRequest, global::DealService.GetDealByIdResponse>(serviceImpl.GetDealById));
       serviceBinder.AddMethod(__Method_GetDeals, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::DealService.GetDealsRequest, global::DealService.GetDealsResponse>(serviceImpl.GetDeals));
       serviceBinder.AddMethod(__Method_CreateDeal, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::DealService.DealEntity, global::DealService.DealEntity>(serviceImpl.CreateDeal));
+      serviceBinder.AddMethod(__Method_GetDealsByMarket, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::DealService.GetDealsByMarketRequest, global::DealService.GetDealsByMarketResponse>(serviceImpl.GetDealsByMarket));
     }
 
   }

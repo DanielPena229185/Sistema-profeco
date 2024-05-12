@@ -8,10 +8,10 @@ service Deals {
     rpc GetDealById(GetDealByIdRequest) returns (GetDealByIdResponse) {}
     rpc GetDeals(GetDealsRequest) returns (GetDealsResponse) {}
     rpc CreateDeal(DealEntity) returns (DealEntity) {}
+    rpc GetDealsByMarket(GetDealsByMarketRequest) returns (GetDealsByMarketResponse) {}
 }
 
 //Requests
-
 message GetDealByIdRequest {
     string id = 1;
 }
@@ -19,6 +19,12 @@ message GetDealByIdRequest {
 message GetDealsRequest {
     int32 page = 1;
     int32 count = 2;
+}
+
+message GetDealsByMarketRequest {
+    string marketId = 1;
+    int32 page = 2;
+    int32 count = 3;
 }
 
 //Responses
@@ -32,6 +38,10 @@ message GetDealsResponse {
 
 message CreateDealResponse {
     DealEntity deal = 1;
+}
+
+message GetDealsByMarketResponse {
+    repeated DealEntity deals = 1;
 }
 
 //Entities
