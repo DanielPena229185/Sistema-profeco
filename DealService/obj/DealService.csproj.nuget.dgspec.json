@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Sistema-profeco\\DealService\\DealService.csproj": {}
+    "E:\\Sistema-profeco\\DealService\\DealService.csproj": {}
   },
   "projects": {
-    "e:\\Sistema-profeco\\DealService\\DealService.csproj": {
+    "E:\\Sistema-profeco\\DealService\\DealService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Sistema-profeco\\DealService\\DealService.csproj",
+        "projectUniqueName": "E:\\Sistema-profeco\\DealService\\DealService.csproj",
         "projectName": "DealService",
-        "projectPath": "e:\\Sistema-profeco\\DealService\\DealService.csproj",
+        "projectPath": "E:\\Sistema-profeco\\DealService\\DealService.csproj",
         "packagesPath": "C:\\Users\\Dapgp\\.nuget\\packages\\",
-        "outputPath": "e:\\Sistema-profeco\\DealService\\obj\\",
+        "outputPath": "E:\\Sistema-profeco\\DealService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dapgp\\AppData\\Roaming\\NuGet\\NuGet.Config"
