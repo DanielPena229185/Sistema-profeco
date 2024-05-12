@@ -24,7 +24,6 @@ public class DatabaseConnection
             databaseConnection = new DatabaseConnection();
         }
         count++;
-        Console.WriteLine($"DatabaseConnection count: {count}");
         return databaseConnection;
     }   
 }
