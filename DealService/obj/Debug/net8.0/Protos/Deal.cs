@@ -26,29 +26,35 @@ namespace DealService {
           string.Concat(
             "ChFQcm90b3MvZGVhbC5wcm90bxIEZGVhbCIgChJHZXREZWFsQnlJZFJlcXVl",
             "c3QSCgoCaWQYASABKAkiLgoPR2V0RGVhbHNSZXF1ZXN0EgwKBHBhZ2UYASAB",
-            "KAUSDQoFY291bnQYAiABKAUiNQoTR2V0RGVhbEJ5SWRSZXNwb25zZRIeCgRk",
-            "ZWFsGAEgASgLMhAuZGVhbC5EZWFsRW50aXR5IjMKEEdldERlYWxzUmVzcG9u",
-            "c2USHwoFZGVhbHMYASADKAsyEC5kZWFsLkRlYWxFbnRpdHkiNAoSQ3JlYXRl",
-            "RGVhbFJlc3BvbnNlEh4KBGRlYWwYASABKAsyEC5kZWFsLkRlYWxFbnRpdHki",
+            "KAUSDQoFY291bnQYAiABKAUiSAoXR2V0RGVhbHNCeU1hcmtldFJlcXVlc3QS",
+            "EAoIbWFya2V0SWQYASABKAkSDAoEcGFnZRgCIAEoBRINCgVjb3VudBgDIAEo",
+            "BSI1ChNHZXREZWFsQnlJZFJlc3BvbnNlEh4KBGRlYWwYASABKAsyEC5kZWFs",
+            "LkRlYWxFbnRpdHkiMwoQR2V0RGVhbHNSZXNwb25zZRIfCgVkZWFscxgBIAMo",
+            "CzIQLmRlYWwuRGVhbEVudGl0eSI0ChJDcmVhdGVEZWFsUmVzcG9uc2USHgoE",
+            "ZGVhbBgBIAEoCzIQLmRlYWwuRGVhbEVudGl0eSI7ChhHZXREZWFsc0J5TWFy",
+            "a2V0UmVzcG9uc2USHwoFZGVhbHMYASADKAsyEC5kZWFsLkRlYWxFbnRpdHki",
             "KQoNUHJvZHVjdEVudGl0eRIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJIigK",
             "DE1hcmtldEVudGl0eRIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJIpQBCgpE",
             "ZWFsRW50aXR5EgoKAmlkGAEgASgJEhMKC2Rlc2NyaXB0aW9uGAIgASgJEg0K",
             "BXByaWNlGAMgASgBEgwKBGRhdGUYBCABKAkSIgoGbWFya2V0GAUgASgLMhIu",
             "ZGVhbC5NYXJrZXRFbnRpdHkSJAoHcHJvZHVjdBgGIAEoCzITLmRlYWwuUHJv",
-            "ZHVjdEVudGl0eTK+AQoFRGVhbHMSRAoLR2V0RGVhbEJ5SWQSGC5kZWFsLkdl",
+            "ZHVjdEVudGl0eTKTAgoFRGVhbHMSRAoLR2V0RGVhbEJ5SWQSGC5kZWFsLkdl",
             "dERlYWxCeUlkUmVxdWVzdBoZLmRlYWwuR2V0RGVhbEJ5SWRSZXNwb25zZSIA",
             "EjsKCEdldERlYWxzEhUuZGVhbC5HZXREZWFsc1JlcXVlc3QaFi5kZWFsLkdl",
             "dERlYWxzUmVzcG9uc2UiABIyCgpDcmVhdGVEZWFsEhAuZGVhbC5EZWFsRW50",
-            "aXR5GhAuZGVhbC5EZWFsRW50aXR5IgBCDqoCC0RlYWxTZXJ2aWNlYgZwcm90",
-            "bzM="));
+            "aXR5GhAuZGVhbC5EZWFsRW50aXR5IgASUwoQR2V0RGVhbHNCeU1hcmtldBId",
+            "LmRlYWwuR2V0RGVhbHNCeU1hcmtldFJlcXVlc3QaHi5kZWFsLkdldERlYWxz",
+            "QnlNYXJrZXRSZXNwb25zZSIAQg6qAgtEZWFsU2VydmljZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::DealService.GetDealByIdRequest), global::DealService.GetDealByIdRequest.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::DealService.GetDealsRequest), global::DealService.GetDealsRequest.Parser, new[]{ "Page", "Count" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::DealService.GetDealsByMarketRequest), global::DealService.GetDealsByMarketRequest.Parser, new[]{ "MarketId", "Page", "Count" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::DealService.GetDealByIdResponse), global::DealService.GetDealByIdResponse.Parser, new[]{ "Deal" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::DealService.GetDealsResponse), global::DealService.GetDealsResponse.Parser, new[]{ "Deals" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::DealService.CreateDealResponse), global::DealService.CreateDealResponse.Parser, new[]{ "Deal" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::DealService.GetDealsByMarketResponse), global::DealService.GetDealsByMarketResponse.Parser, new[]{ "Deals" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::DealService.ProductEntity), global::DealService.ProductEntity.Parser, new[]{ "Id", "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::DealService.MarketEntity), global::DealService.MarketEntity.Parser, new[]{ "Id", "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::DealService.DealEntity), global::DealService.DealEntity.Parser, new[]{ "Id", "Description", "Price", "Date", "Market", "Product" }, null, null, null, null)
@@ -58,6 +64,9 @@ namespace DealService {
 
   }
   #region Messages
+  /// <summary>
+  ///Requests
+  /// </summary>
   public sealed partial class GetDealByIdRequest : pb::IMessage<GetDealByIdRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -473,6 +482,269 @@ namespace DealService {
 
   }
 
+  public sealed partial class GetDealsByMarketRequest : pb::IMessage<GetDealsByMarketRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetDealsByMarketRequest> _parser = new pb::MessageParser<GetDealsByMarketRequest>(() => new GetDealsByMarketRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetDealsByMarketRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::DealService.DealReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetDealsByMarketRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetDealsByMarketRequest(GetDealsByMarketRequest other) : this() {
+      marketId_ = other.marketId_;
+      page_ = other.page_;
+      count_ = other.count_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetDealsByMarketRequest Clone() {
+      return new GetDealsByMarketRequest(this);
+    }
+
+    /// <summary>Field number for the "marketId" field.</summary>
+    public const int MarketIdFieldNumber = 1;
+    private string marketId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string MarketId {
+      get { return marketId_; }
+      set {
+        marketId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "page" field.</summary>
+    public const int PageFieldNumber = 2;
+    private int page_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Page {
+      get { return page_; }
+      set {
+        page_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "count" field.</summary>
+    public const int CountFieldNumber = 3;
+    private int count_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Count {
+      get { return count_; }
+      set {
+        count_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetDealsByMarketRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetDealsByMarketRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (MarketId != other.MarketId) return false;
+      if (Page != other.Page) return false;
+      if (Count != other.Count) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (MarketId.Length != 0) hash ^= MarketId.GetHashCode();
+      if (Page != 0) hash ^= Page.GetHashCode();
+      if (Count != 0) hash ^= Count.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (MarketId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(MarketId);
+      }
+      if (Page != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Page);
+      }
+      if (Count != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Count);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (MarketId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(MarketId);
+      }
+      if (Page != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Page);
+      }
+      if (Count != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Count);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (MarketId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MarketId);
+      }
+      if (Page != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Page);
+      }
+      if (Count != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Count);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetDealsByMarketRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.MarketId.Length != 0) {
+        MarketId = other.MarketId;
+      }
+      if (other.Page != 0) {
+        Page = other.Page;
+      }
+      if (other.Count != 0) {
+        Count = other.Count;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            MarketId = input.ReadString();
+            break;
+          }
+          case 16: {
+            Page = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Count = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            MarketId = input.ReadString();
+            break;
+          }
+          case 16: {
+            Page = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Count = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   /// <summary>
   ///Responses
   /// </summary>
@@ -490,7 +762,7 @@ namespace DealService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::DealService.DealReflection.Descriptor.MessageTypes[2]; }
+      get { return global::DealService.DealReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -688,7 +960,7 @@ namespace DealService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::DealService.DealReflection.Descriptor.MessageTypes[3]; }
+      get { return global::DealService.DealReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -866,7 +1138,7 @@ namespace DealService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::DealService.DealReflection.Descriptor.MessageTypes[4]; }
+      get { return global::DealService.DealReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1050,6 +1322,184 @@ namespace DealService {
 
   }
 
+  public sealed partial class GetDealsByMarketResponse : pb::IMessage<GetDealsByMarketResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetDealsByMarketResponse> _parser = new pb::MessageParser<GetDealsByMarketResponse>(() => new GetDealsByMarketResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetDealsByMarketResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::DealService.DealReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetDealsByMarketResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetDealsByMarketResponse(GetDealsByMarketResponse other) : this() {
+      deals_ = other.deals_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetDealsByMarketResponse Clone() {
+      return new GetDealsByMarketResponse(this);
+    }
+
+    /// <summary>Field number for the "deals" field.</summary>
+    public const int DealsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::DealService.DealEntity> _repeated_deals_codec
+        = pb::FieldCodec.ForMessage(10, global::DealService.DealEntity.Parser);
+    private readonly pbc::RepeatedField<global::DealService.DealEntity> deals_ = new pbc::RepeatedField<global::DealService.DealEntity>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::DealService.DealEntity> Deals {
+      get { return deals_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetDealsByMarketResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetDealsByMarketResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!deals_.Equals(other.deals_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= deals_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      deals_.WriteTo(output, _repeated_deals_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      deals_.WriteTo(ref output, _repeated_deals_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += deals_.CalculateSize(_repeated_deals_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetDealsByMarketResponse other) {
+      if (other == null) {
+        return;
+      }
+      deals_.Add(other.deals_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            deals_.AddEntriesFrom(input, _repeated_deals_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            deals_.AddEntriesFrom(ref input, _repeated_deals_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   public sealed partial class ProductEntity : pb::IMessage<ProductEntity>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1064,7 +1514,7 @@ namespace DealService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::DealService.DealReflection.Descriptor.MessageTypes[5]; }
+      get { return global::DealService.DealReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1290,7 +1740,7 @@ namespace DealService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::DealService.DealReflection.Descriptor.MessageTypes[6]; }
+      get { return global::DealService.DealReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1516,7 +1966,7 @@ namespace DealService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::DealService.DealReflection.Descriptor.MessageTypes[7]; }
+      get { return global::DealService.DealReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
