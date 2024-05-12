@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stomp/stompjs": "^7.0.0",
+    "@types/ws": "^8.5.10",
     "material-icons": "^1.13.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.3",
-    "react-router-dom": "^6.22.3"
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.22.3",
+    "ws": "^8.17.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
