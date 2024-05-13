@@ -11,10 +11,12 @@ import { ReportsService } from './reports/reports.service';
 import { ProductsController } from './products/products.controller';
 import { ProductsService } from './products/products.service';
 import { ClientModules } from './microservices/microservices';
+import { CustomerService } from './customer/customer.service';
+import { CustomerController } from './customer/customer.controller';
 
 @Module({
   imports: [ClientsModule.register(ClientModules)],
-  controllers: [AppController, MarketController, ReportsController, ProductsController,DealController],
-  providers: [AppService, MarketService, ReportsService, ProductsService,DealService],
+  controllers: [AppController, MarketController, ReportsController, ProductsController,DealController, CustomerController],
+  providers: [AppService, MarketService, ReportsService, ProductsService,DealService, CustomerService],
 })
 export class AppModule {}
