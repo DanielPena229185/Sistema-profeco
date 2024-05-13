@@ -56,4 +56,13 @@ export const ClientModules: ClientsModuleOptions = [
       url: 'localhost:50051',
     },
   },
+  {
+    name: 'CUSTOMER_SERVICE',
+    transport: Transport.GRPC,
+    options: {
+      package: 'proto',
+      protoPath: join(`proto/customer.proto`),
+      url: 'localhost:50050',
+    },
+  }
 ];

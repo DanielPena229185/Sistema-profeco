@@ -33,14 +33,14 @@ export class PreferenceController {
   }
 
   @Get('visited-products')
-  getVisitedProducts(
+  async getVisitedProducts(
     @Query() preferencesDefaultRequest: PreferencesDefaultRequest,
   ): Promise<Product[]> {
     return this.preferenceService.getVisitedProducts(preferencesDefaultRequest);
   }
 
   @Get('favorite-markets')
-  getFavoriteMarketsList(
+  async getFavoriteMarketsList(
     @Query() preferencesDefaultRequest: PreferencesDefaultRequest,
   ): Promise<Market[]> {
     return this.preferenceService.getFavoriteMarketsList(
@@ -49,7 +49,7 @@ export class PreferenceController {
   }
 
   @Get('shopping-cart')
-  getShoppingCart(
+  async getShoppingCart(
     @Query() preferencesDefaultRequest: PreferencesDefaultRequest,
   ): Promise<Product[]> {
     return this.preferenceService.getShoppingCart(preferencesDefaultRequest);

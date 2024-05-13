@@ -7,12 +7,12 @@ export class DealController {
   constructor(private readonly dealService: DealService) {}
 
   @Get()
-  getDeals(@Query() params: GetDealsRequest): Promise<Deal[]> {
+  async getDeals(@Query() params: GetDealsRequest): Promise<Deal[]> {
     return this.dealService.getDeals(params);
   }
 
   @Get(':id')
-  getDealById(@Param() getDeal: GetDealByIdRequest): Promise<Deal> {
+  async getDealById(@Param() getDeal: GetDealByIdRequest): Promise<Deal> {
     return this.dealService.getDealById(getDeal);
   }
 }

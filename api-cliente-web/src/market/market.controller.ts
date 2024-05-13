@@ -12,7 +12,7 @@ export class MarketController {
   constructor(private readonly marketService: MarketService) {}
 
   @Get()
-  getMarkets(@GetMarketsQueryDTO() query: GetMarketsDTO){
+  async getMarkets(@GetMarketsQueryDTO() query: GetMarketsDTO){
     const getAllMarketsRequest : GetAllMarketsRequest = {
       query: {
         paginationParams: {
@@ -30,7 +30,7 @@ export class MarketController {
   }
 
   @Get(':id')
-  getMarketById(@GetMarketByIdQueryDTO() query: GetMarketByIdDTO, @Param('id') id: string){
+  async getMarketById(@GetMarketByIdQueryDTO() query: GetMarketByIdDTO, @Param('id') id: string){
     const getMarketByIdRequest: GetMarketByIdRequest = {
       query: {
         marketId: id,

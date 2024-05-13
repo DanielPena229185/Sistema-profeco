@@ -11,12 +11,12 @@ export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
   @Post()
-  createReview(@Body() review: CreateReviewRequest): Promise<Review> {
+  async createReview(@Body() review: CreateReviewRequest): Promise<Review> {
     return this.reviewService.createReview(review);
   }
 
   @Get()
-  getReviews(@Query() query: GetMarketReviewsRequest): Promise<Review[]> {
+  async getReviews(@Query() query: GetMarketReviewsRequest): Promise<Review[]> {
     return this.reviewService.getReviews(query);
   }
 }
