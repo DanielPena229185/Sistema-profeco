@@ -8,10 +8,14 @@ import { ReportsService } from './reports/reports.service';
 import { ClientModules } from './microservices/microservices';
 import { MarketController } from './market/market.controller';
 import { MarketService } from './market/market.service';
+import { DealService } from './deal/deal.service';
+import { DealController } from './deal/deal.controller';
+import { CustomerService } from './customer/customer.service';
+import { CustomerController } from './customer/customer.controller';
 
 @Module({
   imports: [ClientModules],
-  controllers: [AppController, ProductsController, ReportsController, MarketController],
-  providers: [AppService, ProductsService, ReportsService, MarketService],
+  controllers: [AppController, MarketController, ReportsController, ProductsController,DealController, CustomerController],
+  providers: [AppService, MarketService, ReportsService, ProductsService,DealService, CustomerService],
 })
 export class AppModule {}
