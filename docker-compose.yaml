@@ -21,12 +21,18 @@ services:
   
   api-cliente-web:
     image: silverflin/profeco-api-cliente-web:latest
+    networks:
+      - cliente_web_internal_network
 
   api-cliente-movil:
     image: silverflin/profeco-api-cliente-movil:latest
+    networks:
+      - cliente_movil_internal_network
 
   api-tienda:
     image: silverflin/profeco-api-tienda:latest
+    networks:
+      - tienda_internal_network
 
   # --- Microservices --- 
 
@@ -90,3 +96,10 @@ networks:
     driver: bridge
   preferences_internal_network:
     driver: bridge
+  cliente_web_internal_network:
+    driver: bridge
+  cliente_movil_internal_network:
+    driver: bridge
+  tienda_internal_network:
+    driver: bridge
+
