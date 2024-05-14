@@ -1,1 +1,1 @@
-export const CONNECTION = 'mongodb://localhost:27017/reports';
+export const CONNECTION = 'mongodb://reports:27017/reports';

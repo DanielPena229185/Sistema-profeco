@@ -12,27 +12,29 @@ services:
       timeout: 3s
       retries: 30
 
-  product-mongodb:
+  deals-mongodb:
     image: mongo
     networks:
-        - products_internal_network
+      - deals_internal_network
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
 
 
-  products-microservice:
-    image: silverflin/product-catalog-microservice:latest
+  deals-microservice:
+    image: silverflin/deals-microservice:latest
     networks:
-      - products_internal_network
+      - deals_internal_network
       - profeco
+    ports:
+      - "8080:8080"
     depends_on:
       rabbitmq:
         condition: service_healthy
-      product-mongodb:
+      mongodb:
         condition: service_healthy
 
 networks:
-  products_internal_network:
+  deals_internal_network:
     driver: bridge
   profeco:
     driver: bridge

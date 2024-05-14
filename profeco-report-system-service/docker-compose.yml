@@ -1,11 +1,17 @@
-
 services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: rabbitmq
+    networks:
+      - profeco
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 1s
+      timeout: 3s
+      retries: 30
 
   reports:
     image: mongo
-    container_name: reports
-    ports:
-      - "27017:27017"
     networks:
       - reports_internal_network
     healthcheck:
@@ -13,9 +19,7 @@ services:
 
   reports-microservice:
 
-    image: edgaremirborbonjimenez/profeco-report-system-service:latest
-    ports:
-      - "50052:50052"
+    image: silverflin/reports-microservice:latest
     networks:
       - reports_internal_network
       - profeco
@@ -28,4 +32,3 @@ networks:
     driver: bridge
   profeco:
     driver: bridge
-    external: true

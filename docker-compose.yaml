@@ -11,22 +11,31 @@ services:
       timeout: 3s
       retries: 30
 
-  
-
   # Frontend 
   # TODO
   
-
   # Backend services
   
   api-cliente-web:
     image: silverflin/profeco-api-cliente-web:latest
+    ports:
+      - "3050:3001"
+    networks:
+      - profeco
 
   api-cliente-movil:
     image: silverflin/profeco-api-cliente-movil:latest
+    ports:
+      - "3051:4000"
+    networks:
+      - profeco
 
   api-tienda:
     image: silverflin/profeco-api-tienda:latest
+    ports:
+      - "3052:3000"
+    networks:
+      - profeco
 
   # --- Microservices --- 
 
@@ -81,6 +90,68 @@ services:
       customer-preferences-mongodb:
         condition: service_healthy
 
+  # Deals microservice 5070
+  deals-mongodb:
+    image: mongo
+    networks:
+      - deals_internal_network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+
+  deals-microservice:
+    image: silverflin/deals-microservice:latest
+    networks:
+      - deals_internal_network
+      - profeco
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      deals-mongodb:
+        condition: service_healthy
+
+  # Market Microservice 
+  market-mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: market_microservices
+    networks:
+      - deals_internal_network
+    volumes:
+      - market-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pexample_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  market-microservice:
+    image: silverflin/market-microservice:latest
+    networks:
+      - deals_internal_network
+      - profeco
+    depends_on:
+      market-mysql:
+        condition: service_healthy
+
+  # Report System 50052
+  reports:
+     image: mongo
+     networks:
+       - reports_internal_network
+     healthcheck:
+       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet  
+  
+  reports-microservice:
+     image: silverflin/reports-microservice:latest
+     networks:
+       - reports_internal_network
+       - profeco
+     depends_on:
+      reports:
+        condition: service_healthy
+
 networks:
   products_internal_network:
     driver: bridge
@@ -90,3 +161,10 @@ networks:
     driver: bridge
   preferences_internal_network:
     driver: bridge
+  reports_internal_network:
+    driver: bridge
+  deals_internal_network:
+    driver: bridge
+
+volumes:
+  market-mysql-data:

@@ -4,7 +4,7 @@ namespace DealService;
 
 public class DatabaseConnection
 {
-    private const string ConnectionString = "mongodb://localhost:27017";
+    private const string ConnectionString = "mongodb://deals-mongodb:27017";
     private const string DatabaseName = "DealService";
     private static DatabaseConnection databaseConnection;
 
