@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MarketController } from './market/market.controller';
 import { MarketService } from './market/market.service';
 import { ClientModules } from './microservices/microservices';
@@ -11,18 +9,18 @@ import { ReportsService } from './reports/reports.service';
 import { DealService } from './deal/deal.service';
 import { DealController } from './deal/deal.controller';
 import { ReviewsService } from './reviews/reviews.service';
+import { ReviewsController } from './reviews/reviews.controller';
 
 @Module({
   imports: [ClientModules],
   controllers: [
-    AppController,
     MarketController,
     ReportsController,
     ProductsController,
     DealController,
+    ReviewsController,
   ],
   providers: [
-    AppService,
     MarketService,
     ReportsService,
     ProductsService,
