@@ -15,4 +15,10 @@ export class DealService {
     const deal = await $deal.toPromise();
     return deal;
   }
+
+  async getDealsByMarket(data: any): Promise<any> {
+    const $deals = this.dealsService.GetDealsByMarket(data);
+    const deals = await $deals.toPromise();
+    return deals;
+  }
 }
