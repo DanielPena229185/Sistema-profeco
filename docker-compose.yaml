@@ -109,6 +109,32 @@ services:
       deals-mongodb:
         condition: service_healthy
 
+  # Market Microservice 
+  market-mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: market_microservices
+    networks:
+      - deals_internal_network
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pexample_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  market-microservice:
+    image: silverflin/market-microservice:latest
+    networks:
+      - deals_internal_network
+      - profeco
+    depends_on:
+      market-mysql:
+        condition: service_healthy
+
   # Report System 50052
   reports:
      image: mongo
