@@ -22,11 +22,12 @@
                     </div>
                     <div class="card-content">
                         <div class="row">
-                            <form [formGroup]="personalInfoForm" class="personal-info" *ngIf="onboardingPage===1">
+                            <form [formGroup]="personalInfoForm" class="personal-info">
                                 <div class="row">
                                     <div class="col input-form">
                                         <label class="text-body-secondary profeco-family" for="name">Nombres</label>
-                                        <input formControlName="name"  class="my-input profeco-family" name="name" type="text">
+                                        <input formControlName="name" class="my-input profeco-family" name="name"
+                                            type="text">
                                         <div class="input-errors" *ngIf="name.invalid && (name.dirty || name.touched)">
                                             <div *ngIf="name.errors?.['required']">El nombre está vacío</div>
                                         </div>
@@ -36,7 +37,8 @@
                                     <div class="col input-form">
                                         <label class="text-body-secondary profeco-family"
                                             for="lastname">Apellidos</label>
-                                        <input formControlName="lastName" class="my-input profeco-family" name="lastname" type="text">
+                                        <input formControlName="lastName" class="my-input profeco-family"
+                                            name="lastname" type="text">
                                         <div class="input-errors"
                                             *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
                                             <div *ngIf="lastName.errors?.['required']">El apellido está vacío</div>
@@ -46,7 +48,8 @@
                                 <div class="row">
                                     <div class="col input-form">
                                         <label class="text-body-secondary profeco-family" for="curp">CURP</label>
-                                        <input formControlName="curp" class="my-input profeco-family" name="curp" type="text" maxlength="18">
+                                        <input formControlName="curp" class="my-input profeco-family" name="curp"
+                                            type="text" maxlength="18">
                                         <div class="input-errors" *ngIf="curp.invalid && (curp.dirty || curp.touched)">
                                             <div *ngIf="curp.errors?.['required']">La CURP está vacía</div>
                                             <div *ngIf="curp.errors?.['minlength'] || curp.errors?.['maxlength']">La
@@ -57,71 +60,13 @@
                                     </div>
                                 </div>
                             </form>
-                            <form [formGroup]="profileInfoForm" class="personal-info" *ngIf="onboardingPage===2">
-                                <div class="row">
-                                    <div class="col input-form">
-                                        <label class="text-body-secondary profeco-family" for="email">Correo</label>
-                                        <input formControlName="email" class="my-input profeco-family" name="email" type="email">
-                                        <div class="input-errors"
-                                            *ngIf="email.invalid && (email.dirty || email.touched)">
-                                            <div *ngIf="email.errors?.['required']">El correo está vacío</div>
-                                            <div *ngIf="email.errors?.['email']">El correo es incorrecto</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col input-form">
-                                        <label class="text-body-secondary profeco-family"
-                                            for="password">Contraseña</label>
-                                        <input formControlName="password" class="my-input profeco-family" name="password" type="password">
-                                        <div class="input-errors"
-                                            *ngIf="password.invalid && (password.dirty || password.touched)">
-                                            <div *ngIf="password.errors?.['required']">La contraseña está vacía</div>
-                                            <div *ngIf="password.errors?.['minlength']">La contraseña debe tener al
-                                                menos 6 caractéres</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col input-form">
-                                        <label class="text-body-secondary profeco-family"
-                                            for="confirm-password">Confirmar Contraseña</label>
-                                        <input formControlName="confirmPassword" class="my-input profeco-family" name="confirm-password" type="password">
-                                        <div class="input-errors"
-                                            *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
-                                            <div *ngIf="confirmPassword.errors?.['mismatch']">Las contraseñas deben
-                                                coincidir</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                         <div class="row">
                             <div class="login-section">
                                 <div class="row">
-                                    <div *ngIf="onboardingPage>1" class="col input-form">
-                                        <button class="btn btn-primary profeco-family button-register" type="button"
-                                            (click)="previousPage()">Volver</button>
-                                    </div>
-                                    <div *ngIf="onboardingPage===2" class="col input-form">
+                                    <div class="col input-form">
                                         <button class="btn btn-primary profeco-family button-login" type="button"
                                             (click)="confirm()">Confirmar</button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div *ngIf="onboardingPage===1" class="col input-form">
-                                        <button class="btn btn-primary profeco-family button-login" type="button"
-                                            (click)="nextPage()">Siguiente</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="register-section">
-                                <div class="row">
-                                    <div class="col input-form">
-                                        <div class="btn profeco-family" (click)="goToLogin()">Iniciar Sesión</div>
                                     </div>
                                 </div>
                             </div>
