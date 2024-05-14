@@ -6,10 +6,10 @@ import { BusinessRuleException } from 'libs/exceptions/src';
 export class ReviewsService {
   private reviewsService;
 
-  constructor(@Inject('PRODUCTS_SERVICE') private client: ClientGrpc) {}
+  constructor(@Inject('REVIEWS_SERVICE') private client: ClientGrpc) {}
 
   onModuleInit() {
-    this.reviewsService = this.client.getService('Products');
+    this.reviewsService = this.client.getService('Reviews');
   }
 
   async getMarketReviews(data: string) {
