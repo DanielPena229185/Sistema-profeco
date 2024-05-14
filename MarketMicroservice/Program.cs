@@ -1,8 +1,12 @@
+using System.Net;
 using Market.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddGrpc();
 
 // Add services to the container.
 builder.Services.AddGrpc();
