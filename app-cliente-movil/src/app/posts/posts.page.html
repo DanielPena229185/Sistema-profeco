@@ -1,3 +1,54 @@
 <app-header></app-header>
 <ion-content [fullscreen]="true">
+  <ion-refresher mode="md" slot="fixed" [pullFactor]="0.5" [pullMin]="50" [pullMax]="50"
+    (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content mode="md"></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <div class="lista-productos" *ngFor="let deal of deals">
+        <ion-col>
+          <ion-card button class="carta-producto">
+            <img alt="Silhouette of mountains" src="{{deal.product.img}}" />
+            <ion-card-header>
+                <ion-card-title>{{deal.product.name}}</ion-card-title>
+                <ion-card-content>
+                    <ion-list lines="none">
+                        <ion-item class="bold">
+                            Nuevo Precio
+                        </ion-item>
+                        <ion-item class="new">
+                            ${{deal.newPrice}}
+                            <ion-avatar slot="end">
+                                <img alt="Silhouette of a person's head" src="{{deal.market.img}}" />
+                            </ion-avatar>
+                        </ion-item>
+                        <ion-item class="old">
+                            ${{deal.oldPrice}}
+                        </ion-item>
+                    </ion-list>
+                </ion-card-content>
+                <!--<ion-card-title>
+                    Nuevo Precio
+                    <div class="new">
+                    ${{deal.newPrice}}
+                        <ion-avatar slot="end">
+                            <img alt="Silhouette of a person's head" src="{{deal.market.img}}" />
+                        </ion-avatar>
+                    </div>
+                </ion-card-title>
+                <ion-card-title >
+                    <div class="old">
+                    ${{deal.oldPrice}}
+                    </div>
+                </ion-card-title>-->
+            </ion-card-header>
+            <ion-card-content>
+                {{deal.description}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </div>
+    </ion-row>
+  </ion-grid>
 </ion-content>
