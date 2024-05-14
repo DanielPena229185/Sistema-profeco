@@ -119,7 +119,7 @@ services:
     networks:
       - deals_internal_network
     volumes:
-      - ./initdb:/docker-entrypoint-initdb.d
+      - market-mysql-data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pexample_password"]
       interval: 10s
@@ -165,3 +165,6 @@ networks:
     driver: bridge
   deals_internal_network:
     driver: bridge
+
+volumes:
+  market-mysql-data:
