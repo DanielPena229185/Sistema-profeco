@@ -8,7 +8,7 @@ export const ClientModules = ClientsModule.register([
         options: {
             package: 'market',
             protoPath: join(`proto/market.proto`),
-            url: 'localhost:5240',
+            url: 'market-microservice:5240',
             // url: 'market-microservice:5240',
             // Todavia no hay imagen de docker para el microservicio de market
         },
@@ -19,7 +19,7 @@ export const ClientModules = ClientsModule.register([
         options: {
             package: 'deal',
             protoPath: join(`proto/deal.proto`),
-            url: 'localhost:5070',
+            url: 'deals-microservice:5070',
             // url: 'deals-microservice:5070',
             // Todavia no hay imagen de docker para el microservicio de deal
         },
