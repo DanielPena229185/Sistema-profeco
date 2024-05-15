@@ -6,7 +6,7 @@ public class DatabaseManager
 {
     private static DatabaseManager _instance;
     private static MySqlConnection myConnection;
-    private static string _connectionString  = "server=127.0.0.1;uid=root;pwd=1234;database=market_microservices";
+    private static string _connectionString  = "server=market-mysql;uid=root;pwd=1234;database=market_microservices";
     private DatabaseManager()
     {
         

@@ -1,49 +1,40 @@
 import { Routes } from '@angular/router';
-import { ProductsComponent } from './products/products.component';
-import { HomeComponent } from './home/home.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
-import { PostsComponent } from './posts/posts.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { MarketsComponent } from './markets/markets.component';
-import { LoginComponent } from './login/login.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
+import { authGuard } from './share/services/auth.guard.service';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'inicio',
         pathMatch: 'full'
     },
     {
-        path: 'login',
-        component: LoginComponent
-    },
-    {
         path: 'onboarding',
-        component: OnboardingComponent
+        loadComponent: () => import('./onboarding/onboarding.component').then(m => m.OnboardingComponent)
     },
     {
         path: 'inicio',
-        component: HomeComponent
+        loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
     },
     {
         path: 'productos',
-        component: ProductsComponent
+        loadComponent: () => import('./products/products.component').then(m => m.ProductsComponent)
     },
     {
         path: 'tiendas',
-        component: MarketsComponent
+        loadComponent: () => import('./markets/markets.component').then(m => m.MarketsComponent)
     },
     {
         path: 'lista-de-deseos',
-        component: WishlistComponent
+        loadComponent: () => import('./wishlist/wishlist.component').then(m => m.WishlistComponent),
+        canActivate: [authGuard],
     },
     {
         path: 'publicaciones',
-        component: PostsComponent
+        loadComponent: () => import('./posts/posts.component').then(m => m.PostsComponent)
     },
     {
         path: '**',
-        component: NotFoundComponent
+        loadComponent: () => import('./not-found/not-found.component').then(m => m.NotFoundComponent)
     },
 ];

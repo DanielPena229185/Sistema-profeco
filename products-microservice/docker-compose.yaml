@@ -12,9 +12,8 @@ services:
       timeout: 3s
       retries: 30
 
-  mongodb:
+  product-mongodb:
     image: mongo
-    container_name: mongodb
     networks:
         - products_internal_network
     healthcheck:
@@ -29,7 +28,7 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
-      mongodb:
+      product-mongodb:
         condition: service_healthy
 
 networks:

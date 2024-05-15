@@ -11,7 +11,7 @@ public class RabbitController
     private static IModel _channel;
     private RabbitController()
     {
-        _factory = new ConnectionFactory { HostName = "localhost" };
+        _factory = new ConnectionFactory { HostName = "rabbitmq" };
         _connection = _factory.CreateConnection();
     }
 
