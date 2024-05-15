@@ -1,9 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavBarOption } from './nav-bar-types';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { environment } from '../../enviroment/enviroment';
-import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,7 +10,6 @@ import { AuthService } from '@auth0/auth0-angular';
   imports: [CommonModule],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css',
-  providers: [AuthService],
 })
 export class NavBarComponent {
   options: NavBarOption[] = [
@@ -42,11 +40,7 @@ export class NavBarComponent {
     },
   ];
 
-  constructor(
-    private readonly router: Router,
-    public readonly auth: AuthService,
-    @Inject(DOCUMENT) private readonly document: Document
-  ) {}
+  constructor(private readonly router: Router) {}
 
   isActive(route: string): boolean {
     return this.router.url === route;
@@ -54,13 +48,5 @@ export class NavBarComponent {
 
   goHome(): void {
     this.router.navigate(['/inicio']);
-  }
-
-  loginWithRedirect(): void {
-    this.auth.loginWithRedirect();
-  }
-
-  logout() {
-    this.auth.logout({logoutParams: {returnTo: this.document.location.origin}});
   }
 }

@@ -15,12 +15,6 @@
                         <img src={{option.icon}} alt={{option.text}}>
                         {{option.text}}</a>
                 </li>
-                <li *ngIf="(auth.isAuthenticated$ | async) === false" class="nav-item nav-link btn-login" (click)="loginWithRedirect()">
-                    Iniciar Sesión
-                </li>
-                <li *ngIf="(auth.isAuthenticated$ | async) === true" class="nav-item nav-link btn-logout" (click)="logout()">
-                    Cerrar Sesión
-                </li>
             </ul>
         </div>
     </div>

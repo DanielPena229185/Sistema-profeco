@@ -16,12 +16,11 @@ header {
     user-select: none;
 }
 
-.header-container-start-title,
-.header-container-start-img {
+.header-container-start-title, .header-container-start-img{
     margin: 0px 5px;
 }
 
-.header-container-start-title>h2 {
+.header-container-start-title > h2 {
     font-family: serif;
     font-weight: lighter;
     text-transform: uppercase;
@@ -61,34 +60,4 @@ header {
     width: 20px;
     height: 20px;
     margin: 0px 5px;
-}
-
-.btn-login {
-    cursor: pointer;
-    margin: 0px 10px;
-    background: var(--color-profeco-primary);
-    color: white;
-    font-weight: bold;
-    font-size: large;
-    transition: color 0.3s ease, transform 0.3s ease;
-    user-select: none;
-}
-
-.btn-login:hover {
-    transform: translateY(-8px);
-}
-
-.btn-logout {
-    cursor: pointer;
-    user-select: none;
-    margin: 0px 10px;
-    background: var(--color-profeco-brown);
-    color: white;
-    font-weight: bold;
-    font-size: large;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.btn-logout:hover {
-    transform: translateY(-8px);
 }

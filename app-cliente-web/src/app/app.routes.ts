@@ -1,40 +1,49 @@
 import { Routes } from '@angular/router';
+import { ProductsComponent } from './products/products.component';
+import { HomeComponent } from './home/home.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { PostsComponent } from './posts/posts.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MarketsComponent } from './markets/markets.component';
+import { LoginComponent } from './login/login.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
-import { authGuard } from './share/services/auth.guard.service';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'inicio',
+        redirectTo: 'login',
         pathMatch: 'full'
     },
     {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
         path: 'onboarding',
-        loadComponent: () => import('./onboarding/onboarding.component').then(m => m.OnboardingComponent)
+        component: OnboardingComponent
     },
     {
         path: 'inicio',
-        loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
+        component: HomeComponent
     },
     {
         path: 'productos',
-        loadComponent: () => import('./products/products.component').then(m => m.ProductsComponent)
+        component: ProductsComponent
     },
     {
         path: 'tiendas',
-        loadComponent: () => import('./markets/markets.component').then(m => m.MarketsComponent)
+        component: MarketsComponent
     },
     {
         path: 'lista-de-deseos',
-        loadComponent: () => import('./wishlist/wishlist.component').then(m => m.WishlistComponent),
-        canActivate: [authGuard],
+        component: WishlistComponent
     },
     {
         path: 'publicaciones',
-        loadComponent: () => import('./posts/posts.component').then(m => m.PostsComponent)
+        component: PostsComponent
     },
     {
         path: '**',
-        loadComponent: () => import('./not-found/not-found.component').then(m => m.NotFoundComponent)
+        component: NotFoundComponent
     },
 ];

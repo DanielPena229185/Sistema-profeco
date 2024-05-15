@@ -8,7 +8,7 @@ export const ClientModules: ClientsModuleOptions = [
     options: {
       package: 'market',
       protoPath: join(`proto/market.proto`),
-      url: 'market-microservice:5240',
+      url: 'localhost:5240',
     },
   },
   {
@@ -17,7 +17,7 @@ export const ClientModules: ClientsModuleOptions = [
     options: {
       package: 'deal',
       protoPath: join(`proto/deal.proto`),
-      url: 'deals-microservice:5070',
+      url: 'localhost:5070',
     },
   },
   {
@@ -26,7 +26,7 @@ export const ClientModules: ClientsModuleOptions = [
     options: {
       package: 'proto',
       protoPath: join(`proto/reviews.proto`),
-      url: 'reviews-microservice:5030',
+      url: 'localhost:5030',
     },
   },
   {
@@ -35,7 +35,7 @@ export const ClientModules: ClientsModuleOptions = [
     options: {
       package: 'proto',
       protoPath: join(`proto/preferences.proto`),
-      url: 'customer-preferences-microservice:5010',
+      url: 'localhost:5010',
     },
   },
   {
@@ -44,7 +44,7 @@ export const ClientModules: ClientsModuleOptions = [
     options: {
       package: 'report',
       protoPath: join(`proto/report.proto`),
-      url: 'reports-microservice:50052',
+      url: 'localhost:50052',
     },
   },
   {
@@ -53,7 +53,7 @@ export const ClientModules: ClientsModuleOptions = [
     options: {
       package: 'proto',
       protoPath: join(`proto/product.proto`),
-      url: 'products-microservice:50051',
+      url: 'localhost:50051',
     },
   },
   {
@@ -64,5 +64,5 @@ export const ClientModules: ClientsModuleOptions = [
       protoPath: join(`proto/customer.proto`),
       url: 'localhost:50050',
     },
-  },
+  }
 ];
