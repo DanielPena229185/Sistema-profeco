@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './posts.component.html',
-  styleUrl: './posts.component.css',
+  styleUrl: './posts.component.css'
 })
 export class PostsComponent {
 

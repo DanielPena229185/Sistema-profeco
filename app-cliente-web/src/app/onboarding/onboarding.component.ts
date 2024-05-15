@@ -1,17 +1,8 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { PersonalInfoForm, ProfileInfoForm } from './onboarding.types';
 import { Router } from '@angular/router';
-import { authGuard } from '../share/services/auth.guard.service';
 
 @Component({
   selector: 'app-onboarding',
@@ -21,19 +12,21 @@ import { authGuard } from '../share/services/auth.guard.service';
   styleUrl: './onboarding.component.css',
 })
 export class OnboardingComponent {
+  onboardingPage: number = 1;
   personalInfoForm: FormGroup;
+  profileInfoForm: FormGroup;
   personalInfoSaved: PersonalInfoForm;
   profileInfoSaved: ProfileInfoForm;
 
-  constructor(
-    private readonly router: Router,
-  ) {}
+  constructor(private readonly router: Router) {}
 
   ngOnInit() {
     this.buildPersonalInfoForm();
+    this.buildProfileInfoForm();
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+  }
 
   buildPersonalInfoForm() {
     this.personalInfoForm = new FormGroup({
@@ -80,7 +73,58 @@ export class OnboardingComponent {
     const lastName = this.lastName.value;
     const curp = this.curp.value;
     this.personalInfoSaved = { name, lastName, curp };
+    console.log('Personal Info Saved:', this.personalInfoSaved);
     return true;
+  }
+
+  createProfileInfoFromForm(): boolean {
+    if (this.profileInfoForm.invalid) {
+      this.profileInfoForm.markAllAsTouched();
+      return false;
+    }
+    const email = this.email.value;
+    const password = this.password.value;
+    const confirmPassword = this.confirmPassword.value;
+    if (password !== confirmPassword) {
+      this.confirmPassword.setErrors({ mismatch: true });
+      return false;
+    }
+    this.profileInfoSaved = { email, password, confirmPassword };
+    return true;
+  }
+
+  buildProfileInfoForm() {
+    this.profileInfoForm = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      confirmPassword: new FormControl(null, [Validators.required]),
+    });
+  }
+
+  get email() {
+    return this.profileInfoForm.get('email');
+  }
+
+  get password() {
+    return this.profileInfoForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.profileInfoForm.get('confirmPassword');
+  }
+
+  nextPage() {
+    if (this.onboardingPage === 1 && !this.createPersonalInfoFromForm()) {
+      return;
+    }
+    this.onboardingPage++;
+  }
+
+  previousPage() {
+    this.onboardingPage--;
   }
 
   goToLogin() {
@@ -88,8 +132,8 @@ export class OnboardingComponent {
   }
 
   confirm() {
-    if (this.createPersonalInfoFromForm() && authGuard) {
-      this.router.navigateByUrl('/inicio');
+    if (this.createProfileInfoFromForm()) {
+      console.log('Profile Info Saved:', this.profileInfoSaved);
     }
     //Send data to the server
     //this.profileInfoSaved

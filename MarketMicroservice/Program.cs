@@ -1,18 +1,10 @@
-using System.Net;
 using Market.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.Listen(IPAddress.Any, 5240, listenOptions =>
-    {
-        listenOptions.Protocols = HttpProtocols.Http2;
-    });
-});
+
+// Add services to the container.
 builder.Services.AddGrpc();
 
 var app = builder.Build();
