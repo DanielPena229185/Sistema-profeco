@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProductsDTO } from './products-preference.types';
+import { ProductDTO, ProductsDTO } from './products-preference.types';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -13,7 +13,7 @@ export class ProductsPreferenceService {
     private readonly http: HttpClient,
   ) { }
 
-  getProductsPrefered(): Observable<ProductsDTO> {
-    return this.http.get<ProductsDTO>(`${environment.apiURL}/products/names`);
+  getProductsPrefered(user_id:string): Observable<ProductDTO[]> {
+    return this.http.get<ProductDTO[]>(`${environment.apiURL}/preference/shopping-cart`,{params:{user_id}});
   }
 }
