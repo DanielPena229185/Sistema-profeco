@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { PostsService } from './posts.service';
 import { DealDTO } from './posts.types';
-import { addIcons } from 'ionicons';
-import { pricetagsOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-posts',
@@ -26,9 +24,7 @@ export class PostsPage implements OnInit {
   deals:DealDTO[]=[];
   constructor(
     private readonly postService:PostsService,
-  ) {
-    //addIcons({ pricetagsOutline});
-  }
+  ) {}
 
   ngOnInit() {
     this.initDeals();

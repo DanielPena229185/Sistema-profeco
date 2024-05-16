@@ -71,7 +71,7 @@ export class ProductsPreferenceComponent  implements OnInit {
   }
 
   private getProductsPrefered() {
-    this.productsPreferenceService.getProductsPrefered("1").subscribe({
+    this.productsPreferenceService.getProductsPrefered("USER_ID").subscribe({
       next: (response: ProductDTO[]) => {
         Array.prototype.push.apply(this.productos, response);
       },
