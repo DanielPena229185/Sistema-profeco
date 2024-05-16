@@ -5,6 +5,7 @@ import { addIcons } from 'ionicons';
 import { notificationsOutline} from 'ionicons/icons';
 import { NotificationsListComponent } from '../notifications-list/notifications-list.component';
 import { DealDTO } from './header.types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ import { DealDTO } from './header.types';
 export class HeaderComponent implements OnInit {
   private dealsList:DealDTO[] =[];
   constructor(
-    private readonly modalController: ModalController,
+    private readonly router: Router, 
   ) {
     addIcons({notificationsOutline});
   }
@@ -24,12 +25,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   async goToNotifications(){
-    const modal = await this.modalController.create({
-      component:NotificationsListComponent,
-      componentProps:{
-        dealsList:this.dealsList
-      }
-    });
-    modal.present();
+    this.router.navigate(["/posts"]);
   }
 }

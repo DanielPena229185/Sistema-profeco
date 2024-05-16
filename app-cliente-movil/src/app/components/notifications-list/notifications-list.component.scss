@@ -9,6 +9,17 @@ ion-title {
     font-weight: lighter;
   }
 
-  ion-icon{
+  .x{
     color: white;
   }
+
+  .mail{
+    color: black;
+  }
+  .new{
+    font-weight: bold;
+  }
+.old{
+    font-weight: bold;
+    text-decoration: line-through;
+}
