@@ -1,12 +1,10 @@
 import { Body, Controller, Get, Inject, OnModuleInit, Param } from '@nestjs/common';
-import { ClientGrpc } from '@nestjs/microservices';
 import {
   CompareProductList,
   Product,
   ProductList,
   ProductListRequest,
 } from './products.types';
-import { GetPricesByProductId } from './input/getPricesByProduct.dto';
 import { ProductsService } from './products.service';
 import { ProductByIdRequest } from './products.types';
 import { ProductCompareDTO } from './output/get-compare-product-list-by-id.dto';
