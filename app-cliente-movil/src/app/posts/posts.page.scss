@@ -1,13 +1,12 @@
 .new{
-    color:green;
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
     display: flex;  
 }
 .old{
-    color:red;
     font-weight: bold;
     text-decoration: line-through;
+    //font-size: 20px;
 }
 ion-card-title{
     font-weight: bold;
@@ -19,4 +18,13 @@ ion-card-subtitle{
 .bold{
     font-weight: bold;
     font-size: 20px;
+}
+.icon{
+    margin-bottom: 20px;
+    width: 80px;
+    height: 80px;
+}
+
+ion-card-content{
+    padding: 0px;
 }

@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { PostsService } from './posts.service';
 import { DealDTO } from './posts.types';
+import { addIcons } from 'ionicons';
+import { pricetagsOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-posts',
@@ -24,7 +26,9 @@ export class PostsPage implements OnInit {
   deals:DealDTO[]=[];
   constructor(
     private readonly postService:PostsService,
-  ) {}
+  ) {
+    //addIcons({ pricetagsOutline});
+  }
 
   ngOnInit() {
     this.initDeals();
@@ -43,7 +47,7 @@ export class PostsPage implements OnInit {
       {
         id:'1',
         date:'Martes 21 2020',
-        description: '*descripcion*',
+        description: 'Descuento de arroz de 20 pesos a solo 20 pesos y solamente asi ser por el resto del dia',
         market:{
           id: '1',
           name:'market_name',
@@ -53,14 +57,14 @@ export class PostsPage implements OnInit {
         newPrice: 20,
         product:{
           id:'1',
-          name:'product_name',
+          name:'Arroz',
           img:'https://www.costco.com.mx/medias/sys_master/products/hbc/h81/114806758735902.jpg'
         }
       },
       {
         id:'1',
         date:'Martes 21 2020',
-        description: '*descripcion*',
+        description: 'Arroz blanco de grano largo.',
         market:{
           id: '1',
           name:'market_name',
