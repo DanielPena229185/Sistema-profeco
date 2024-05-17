@@ -13,10 +13,14 @@ import { Client } from '@stomp/stompjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
-  imports: [IonicModule],
+  imports: [
+    IonicModule,
+    CommonModule,
+  ],
 })
 export class HeaderComponent implements OnInit {
   private client:Client;
+  cantNotifications:number = 0;
   constructor(
     private readonly router: Router, 
   ) {
@@ -24,19 +28,25 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.cantNotifications=0;
     this.client = new Client({
       brokerURL: 'ws://localhost:15674/ws',
       onConnect:()=>{
-        this.client.subscribe('/topic/reports-queue',(message)=>{
+        //En la ruta el primero es especifica el tipo de conexion si a un exchange,topic o queue
+        //despues ya dependiendo de lo que pongas pon el nombre del tipo escpecificado
+        //y el ultimo parametro es para el key-route
+        this.client.subscribe('/exchange/notifier/',(message)=>{
           console.log(`Recieved ${message.body}`)
+          this.cantNotifications++;
         });
-        this.client.publish({destination:'/topic/reports-queue',body:JSON.stringify('Message')});
+        //this.client.publish({destination:'/exchange/notifier',body:JSON.stringify('Message')});
       }
     });
     this.client.activate();
   }
 
   async goToNotifications(){
+    this.cantNotifications=0;
     this.router.navigate(["/posts"]);
   }
 }

@@ -11,7 +11,8 @@ export class RabbitService {
 
     @RabbitSubscribe({
         exchange: 'notifier',
-        routingKey: 'reports-route',
+        //routingKey: 'reports-route',
+        routingKey: '',
         queue: 'reports-queue',
     })
     async reportsHandler(report:RecievedReportDTO){
