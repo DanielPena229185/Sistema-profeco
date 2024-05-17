@@ -106,6 +106,8 @@ services:
 
   deals-microservice:
     image: silverflin/deals-microservice:latest
+    ports:
+      - "5070:5070"
     networks:
       - deals_internal_network
       - profeco
