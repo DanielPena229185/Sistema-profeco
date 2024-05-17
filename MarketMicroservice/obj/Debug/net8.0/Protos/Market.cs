@@ -25,31 +25,41 @@ namespace Market {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChNQcm90b3MvbWFya2V0LnByb3RvEgZtYXJrZXQiLwoQUGFnaW5hdGlvblBh",
-            "cmFtcxIMCgRwYWdlGAEgASgFEg0KBWNvdW50GAIgASgFIkEKFEdldEFsbE1h",
-            "cmtldHNSZXF1ZXN0EikKBXF1ZXJ5GAEgASgLMhoubWFya2V0LkdldEFsbE1h",
-            "cmtldHNRdWVyeSKjAQoSR2V0QWxsTWFya2V0c1F1ZXJ5EjIKEHBhZ2luYXRp",
-            "b25QYXJhbXMYASABKAsyGC5tYXJrZXQuUGFnaW5hdGlvblBhcmFtcxIOCgZm",
-            "aWVsZHMYAiABKAkSEQoJcmVsYXRpb25zGAMgASgJEhIKCm1hcmtldE5hbWUY",
-            "BCABKAkSDwoHYWRkcmVzcxgFIAEoCRIRCglleGNsdXNpdmUYBiABKAgiPgoV",
-            "R2V0QWxsTWFya2V0c1Jlc3BvbnNlEiUKB21hcmtldHMYASADKAsyFC5tYXJr",
-            "ZXQuTWFya2V0RW50aXR5IkEKFEdldE1hcmtldEJ5SWRSZXF1ZXN0EikKBXF1",
-            "ZXJ5GAEgASgLMhoubWFya2V0LkdldE1hcmtldEJ5SWRRdWVyeSI9ChVHZXRN",
-            "YXJrZXRCeUlkUmVzcG9uc2USJAoGbWFya2V0GAEgASgLMhQubWFya2V0Lk1h",
-            "cmtldEVudGl0eSJJChJHZXRNYXJrZXRCeUlkUXVlcnkSEAoIbWFya2V0SWQY",
-            "ASABKAkSDgoGZmllbGRzGAIgASgJEhEKCXJlbGF0aW9ucxgDIAEoCSI5Cg1D",
-            "b21wYW55RW50aXR5EgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkSDgoGdXJs",
-            "SW1nGAMgASgJIpcBCgxNYXJrZXRFbnRpdHkSCgoCaWQYASABKAkSDAoEbmFt",
-            "ZRgCIAEoCRIOCgZ1cmxJbWcYAyABKAkSDwoHYWRkcmVzcxgEIAEoCRImCgdj",
-            "b21wYW55GAUgASgLMhUubWFya2V0LkNvbXBhbnlFbnRpdHkSEQoJY3JlYXRl",
-            "ZEF0GAYgASgJEhEKCXVwZGF0ZWRBdBgHIAEoCTKkAQoGTWFya2V0EkwKDUdl",
-            "dEFsbE1hcmtldHMSHC5tYXJrZXQuR2V0QWxsTWFya2V0c1JlcXVlc3QaHS5t",
-            "YXJrZXQuR2V0QWxsTWFya2V0c1Jlc3BvbnNlEkwKDUdldE1hcmtldEJ5SWQS",
-            "HC5tYXJrZXQuR2V0TWFya2V0QnlJZFJlcXVlc3QaHS5tYXJrZXQuR2V0TWFy",
-            "a2V0QnlJZFJlc3BvbnNlQgmqAgZNYXJrZXRiBnByb3RvMw=="));
+            "cmFtcxIMCgRwYWdlGAEgASgFEg0KBWNvdW50GAIgASgFIkUKFkdldE1hcmtl",
+            "dHNCeUlkc1JlcXVlc3QSKwoFcXVlcnkYASABKAsyHC5tYXJrZXQuR2V0TWFy",
+            "a2V0c0J5SWRzUXVlcnkiQAoXR2V0TWFya2V0c0J5SWRzUmVzcG9uc2USJQoH",
+            "bWFya2V0cxgBIAMoCzIULm1hcmtldC5NYXJrZXRFbnRpdHkiRgoUR2V0TWFy",
+            "a2V0c0J5SWRzUXVlcnkSCwoDaWRzGAEgASgJEg4KBmZpZWxkcxgCIAEoCRIR",
+            "CglyZWxhdGlvbnMYAyABKAkiQQoUR2V0QWxsTWFya2V0c1JlcXVlc3QSKQoF",
+            "cXVlcnkYASABKAsyGi5tYXJrZXQuR2V0QWxsTWFya2V0c1F1ZXJ5IqMBChJH",
+            "ZXRBbGxNYXJrZXRzUXVlcnkSMgoQcGFnaW5hdGlvblBhcmFtcxgBIAEoCzIY",
+            "Lm1hcmtldC5QYWdpbmF0aW9uUGFyYW1zEg4KBmZpZWxkcxgCIAEoCRIRCgly",
+            "ZWxhdGlvbnMYAyABKAkSEgoKbWFya2V0TmFtZRgEIAEoCRIPCgdhZGRyZXNz",
+            "GAUgASgJEhEKCWV4Y2x1c2l2ZRgGIAEoCCI+ChVHZXRBbGxNYXJrZXRzUmVz",
+            "cG9uc2USJQoHbWFya2V0cxgBIAMoCzIULm1hcmtldC5NYXJrZXRFbnRpdHki",
+            "QQoUR2V0TWFya2V0QnlJZFJlcXVlc3QSKQoFcXVlcnkYASABKAsyGi5tYXJr",
+            "ZXQuR2V0TWFya2V0QnlJZFF1ZXJ5Ij0KFUdldE1hcmtldEJ5SWRSZXNwb25z",
+            "ZRIkCgZtYXJrZXQYASABKAsyFC5tYXJrZXQuTWFya2V0RW50aXR5IkkKEkdl",
+            "dE1hcmtldEJ5SWRRdWVyeRIQCghtYXJrZXRJZBgBIAEoCRIOCgZmaWVsZHMY",
+            "AiABKAkSEQoJcmVsYXRpb25zGAMgASgJIjkKDUNvbXBhbnlFbnRpdHkSCgoC",
+            "aWQYASABKAkSDAoEbmFtZRgCIAEoCRIOCgZ1cmxJbWcYAyABKAkilwEKDE1h",
+            "cmtldEVudGl0eRIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEg4KBnVybElt",
+            "ZxgDIAEoCRIPCgdhZGRyZXNzGAQgASgJEiYKB2NvbXBhbnkYBSABKAsyFS5t",
+            "YXJrZXQuQ29tcGFueUVudGl0eRIRCgljcmVhdGVkQXQYBiABKAkSEQoJdXBk",
+            "YXRlZEF0GAcgASgJMvgBCgZNYXJrZXQSTAoNR2V0QWxsTWFya2V0cxIcLm1h",
+            "cmtldC5HZXRBbGxNYXJrZXRzUmVxdWVzdBodLm1hcmtldC5HZXRBbGxNYXJr",
+            "ZXRzUmVzcG9uc2USTAoNR2V0TWFya2V0QnlJZBIcLm1hcmtldC5HZXRNYXJr",
+            "ZXRCeUlkUmVxdWVzdBodLm1hcmtldC5HZXRNYXJrZXRCeUlkUmVzcG9uc2US",
+            "UgoPR2V0TWFya2V0c0J5SWRzEh4ubWFya2V0LkdldE1hcmtldHNCeUlkc1Jl",
+            "cXVlc3QaHy5tYXJrZXQuR2V0TWFya2V0c0J5SWRzUmVzcG9uc2VCCaoCBk1h",
+            "cmtldGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Market.PaginationParams), global::Market.PaginationParams.Parser, new[]{ "Page", "Count" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Market.GetMarketsByIdsRequest), global::Market.GetMarketsByIdsRequest.Parser, new[]{ "Query" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Market.GetMarketsByIdsResponse), global::Market.GetMarketsByIdsResponse.Parser, new[]{ "Markets" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Market.GetMarketsByIdsQuery), global::Market.GetMarketsByIdsQuery.Parser, new[]{ "Ids", "Fields", "Relations" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Market.GetAllMarketsRequest), global::Market.GetAllMarketsRequest.Parser, new[]{ "Query" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Market.GetAllMarketsQuery), global::Market.GetAllMarketsQuery.Parser, new[]{ "PaginationParams", "Fields", "Relations", "MarketName", "Address", "Exclusive" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Market.GetAllMarketsResponse), global::Market.GetAllMarketsResponse.Parser, new[]{ "Markets" }, null, null, null, null),
@@ -294,6 +304,654 @@ namespace Market {
   }
 
   /// <summary>
+  /// GetMarketsByIds()
+  /// </summary>
+  public sealed partial class GetMarketsByIdsRequest : pb::IMessage<GetMarketsByIdsRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetMarketsByIdsRequest> _parser = new pb::MessageParser<GetMarketsByIdsRequest>(() => new GetMarketsByIdsRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetMarketsByIdsRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetMarketsByIdsRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetMarketsByIdsRequest(GetMarketsByIdsRequest other) : this() {
+      query_ = other.query_ != null ? other.query_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetMarketsByIdsRequest Clone() {
+      return new GetMarketsByIdsRequest(this);
+    }
+
+    /// <summary>Field number for the "query" field.</summary>
+    public const int QueryFieldNumber = 1;
+    private global::Market.GetMarketsByIdsQuery query_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Market.GetMarketsByIdsQuery Query {
+      get { return query_; }
+      set {
+        query_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetMarketsByIdsRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetMarketsByIdsRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Query, other.Query)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (query_ != null) hash ^= Query.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (query_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Query);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (query_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Query);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (query_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Query);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetMarketsByIdsRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.query_ != null) {
+        if (query_ == null) {
+          Query = new global::Market.GetMarketsByIdsQuery();
+        }
+        Query.MergeFrom(other.Query);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (query_ == null) {
+              Query = new global::Market.GetMarketsByIdsQuery();
+            }
+            input.ReadMessage(Query);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (query_ == null) {
+              Query = new global::Market.GetMarketsByIdsQuery();
+            }
+            input.ReadMessage(Query);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///Response to get markets by ids
+  /// </summary>
+  public sealed partial class GetMarketsByIdsResponse : pb::IMessage<GetMarketsByIdsResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetMarketsByIdsResponse> _parser = new pb::MessageParser<GetMarketsByIdsResponse>(() => new GetMarketsByIdsResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetMarketsByIdsResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetMarketsByIdsResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetMarketsByIdsResponse(GetMarketsByIdsResponse other) : this() {
+      markets_ = other.markets_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetMarketsByIdsResponse Clone() {
+      return new GetMarketsByIdsResponse(this);
+    }
+
+    /// <summary>Field number for the "markets" field.</summary>
+    public const int MarketsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Market.MarketEntity> _repeated_markets_codec
+        = pb::FieldCodec.ForMessage(10, global::Market.MarketEntity.Parser);
+    private readonly pbc::RepeatedField<global::Market.MarketEntity> markets_ = new pbc::RepeatedField<global::Market.MarketEntity>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Market.MarketEntity> Markets {
+      get { return markets_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetMarketsByIdsResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetMarketsByIdsResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!markets_.Equals(other.markets_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= markets_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      markets_.WriteTo(output, _repeated_markets_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      markets_.WriteTo(ref output, _repeated_markets_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += markets_.CalculateSize(_repeated_markets_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetMarketsByIdsResponse other) {
+      if (other == null) {
+        return;
+      }
+      markets_.Add(other.markets_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            markets_.AddEntriesFrom(input, _repeated_markets_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            markets_.AddEntriesFrom(ref input, _repeated_markets_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///Query to get markets by ids
+  /// </summary>
+  public sealed partial class GetMarketsByIdsQuery : pb::IMessage<GetMarketsByIdsQuery>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetMarketsByIdsQuery> _parser = new pb::MessageParser<GetMarketsByIdsQuery>(() => new GetMarketsByIdsQuery());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetMarketsByIdsQuery> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetMarketsByIdsQuery() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetMarketsByIdsQuery(GetMarketsByIdsQuery other) : this() {
+      ids_ = other.ids_;
+      fields_ = other.fields_;
+      relations_ = other.relations_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetMarketsByIdsQuery Clone() {
+      return new GetMarketsByIdsQuery(this);
+    }
+
+    /// <summary>Field number for the "ids" field.</summary>
+    public const int IdsFieldNumber = 1;
+    private string ids_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Ids {
+      get { return ids_; }
+      set {
+        ids_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "fields" field.</summary>
+    public const int FieldsFieldNumber = 2;
+    private string fields_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Fields {
+      get { return fields_; }
+      set {
+        fields_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "relations" field.</summary>
+    public const int RelationsFieldNumber = 3;
+    private string relations_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Relations {
+      get { return relations_; }
+      set {
+        relations_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetMarketsByIdsQuery);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetMarketsByIdsQuery other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Ids != other.Ids) return false;
+      if (Fields != other.Fields) return false;
+      if (Relations != other.Relations) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Ids.Length != 0) hash ^= Ids.GetHashCode();
+      if (Fields.Length != 0) hash ^= Fields.GetHashCode();
+      if (Relations.Length != 0) hash ^= Relations.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Ids.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Ids);
+      }
+      if (Fields.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Fields);
+      }
+      if (Relations.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Relations);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Ids.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Ids);
+      }
+      if (Fields.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Fields);
+      }
+      if (Relations.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Relations);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Ids.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Ids);
+      }
+      if (Fields.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Fields);
+      }
+      if (Relations.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Relations);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetMarketsByIdsQuery other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Ids.Length != 0) {
+        Ids = other.Ids;
+      }
+      if (other.Fields.Length != 0) {
+        Fields = other.Fields;
+      }
+      if (other.Relations.Length != 0) {
+        Relations = other.Relations;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Ids = input.ReadString();
+            break;
+          }
+          case 18: {
+            Fields = input.ReadString();
+            break;
+          }
+          case 26: {
+            Relations = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Ids = input.ReadString();
+            break;
+          }
+          case 18: {
+            Fields = input.ReadString();
+            break;
+          }
+          case 26: {
+            Relations = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
   /// GetAllMarkets()
   /// </summary>
   public sealed partial class GetAllMarketsRequest : pb::IMessage<GetAllMarketsRequest>
@@ -310,7 +968,7 @@ namespace Market {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Market.MarketReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -511,7 +1169,7 @@ namespace Market {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Market.MarketReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -897,7 +1555,7 @@ namespace Market {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Market.MarketReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1078,7 +1736,7 @@ namespace Market {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Market.MarketReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1279,7 +1937,7 @@ namespace Market {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Market.MarketReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1477,7 +2135,7 @@ namespace Market {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Market.MarketReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1743,7 +2401,7 @@ namespace Market {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Market.MarketReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2006,7 +2664,7 @@ namespace Market {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Market.MarketReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Market.MarketReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

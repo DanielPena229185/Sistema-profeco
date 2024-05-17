@@ -9,12 +9,31 @@ service Market {
 	rpc GetAllMarkets(GetAllMarketsRequest) returns (GetAllMarketsResponse);
 	//GetMarketById
 	rpc GetMarketById(GetMarketByIdRequest) returns (GetMarketByIdResponse);
+	//GetMarketsByIds
+	rpc GetMarketsByIds(GetMarketsByIdsRequest) returns (GetMarketsByIdsResponse);
 }
 
 //PaginationParams
 message PaginationParams {
 	int32 page = 1;
 	int32 count = 2;
+}
+
+// GetMarketsByIds()
+message GetMarketsByIdsRequest {
+	GetMarketsByIdsQuery query = 1;
+}
+
+//Response to get markets by ids
+message GetMarketsByIdsResponse {
+	repeated MarketEntity markets = 1;
+}
+
+//Query to get markets by ids
+message GetMarketsByIdsQuery {
+	string ids = 1;
+	string fields = 2;
+	string relations = 3;
 }
 
 // GetAllMarkets()

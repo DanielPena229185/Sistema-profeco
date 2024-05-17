@@ -4,6 +4,20 @@ namespace Market;
 
 public class ParamsQueryToDTO
 {
+    public static GetMarketsByIdsQueryDTO GetMarketsByIdsQuery(GetMarketsByIdsQuery query)
+    {
+        string[] fieldsAvailables = ["id", "name", "urlImage", "company_id", "address", "created_at", "updated_at"];
+        string fieldsQuery = query.Fields;
+        if (fieldsQuery == null || fieldsQuery.Length == 0)
+        {
+            Console.Error.WriteLine("Fields query is required");
+        }
+        string[] relationsAvailables = ["company"];
+        string relationsQuery = query.Relations;
+        string[] fields = ParseQueries.GetFields(fieldsQuery, fieldsAvailables);
+        string relations = ParseQueries.GetRelations(relationsQuery, relationsAvailables);
+        return new(query.Ids, fields, relations);
+    }
 
     public static GetAllMarketsQueryDTO GetAllMarketsQuery(GetAllMarketsQuery query)
     {

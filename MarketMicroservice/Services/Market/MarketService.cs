@@ -8,6 +8,18 @@ namespace Market.Services
 {
     public class MarketService : Market.MarketBase
     {
+
+        public override Task<GetMarketsByIdsResponse> GetMarketsByIds(GetMarketsByIdsRequest request, ServerCallContext context)
+        {
+            MarketDAO marketDAO = new();
+            GetMarketsByIdsQueryDTO query = ParamsQueryToDTO.GetMarketsByIdsQuery(request.Query);
+            List<MarketEntity> markets = marketDAO.GetMarketsByIds(query);
+            return Task.FromResult(new GetMarketsByIdsResponse
+            {
+                Markets = { markets }
+            });
+        }
+        
         public override Task<GetAllMarketsResponse> GetAllMarkets(GetAllMarketsRequest request, ServerCallContext context)
         {
             MarketDAO marketDAO = new();

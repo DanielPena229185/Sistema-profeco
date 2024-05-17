@@ -10,6 +10,32 @@ public class MarketDAO
     {
     }
 
+    public List<MarketEntity> GetMarketsByIds(GetMarketsByIdsQueryDTO queryDTO)
+    {
+        List<MarketEntity> markets = [];
+        string query = CreateQueryGetMarketsByIds(queryDTO);
+        MySqlCommand myCommand = new MySqlCommand();
+        var connection = DatabaseManager.getInstance();
+        try
+        {
+            myCommand.Connection = connection;
+            myCommand.CommandText = query;
+            string[] ids = StringToArray(queryDTO.Ids);
+            for (int i = 0; i < ids.Length; i++)
+            {
+                myCommand.Parameters.AddWithValue($"@market.id{ids[i]}", ids[i]);
+            }
+            
+            MySqlDataReader myReader = myCommand.ExecuteReader();
+            markets = MapToMarkets(myReader, queryDTO.Fields, queryDTO.Relations);
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return markets;
+    }
+
     public List<MarketEntity> GetAllMarkets(GetAllMarketsQueryDTO queryDTO)
     {
         List<MarketEntity> markets = [];
@@ -45,6 +71,7 @@ public class MarketDAO
     {
         MarketEntity market = new();
         string query = CreateQueryGetMarketById(queryDTO);
+        Console.WriteLine(query);
         MySqlCommand myCommand = new MySqlCommand();
         var connection = DatabaseManager.getInstance();
         try
@@ -71,6 +98,31 @@ public class MarketDAO
         where.Equal("market.id");
         queryBuilder.Where(where);
         Boolean hasCompany = ArrayToString(query.Fields).Contains("company_id") && query.Relations.Contains("company");
+        if (hasCompany)
+        {
+            queryBuilder.InnerJoin("company", "market.company_id = company.id");
+            queryBuilder.Select(QueryBuilder.SetAlias(new string[] { "id", "name", "urlImage" }, "company"));
+        }
+        return queryBuilder.Build();
+    }
+
+    public string CreateQueryGetMarketsByIds(GetMarketsByIdsQueryDTO queryDTO)
+    {
+        string[] ids = this.StringToArray(queryDTO.Ids);
+        IQueryBuilder queryBuilder = new QueryBuilder();
+        string[] fieldsWithAlias = QueryBuilder.SetAlias(queryDTO.Fields, "market");//market_field
+        queryBuilder.Select(fieldsWithAlias).From("market");
+        IWhereReference where = new WhereReference();
+        for (int i = 0; i < ids.Length; i++)
+        {
+            if (i > 0)
+            {
+                where.Or();
+            }
+            where.Equal("market.id", ids[i]);
+        }
+        queryBuilder.Where(where);
+        Boolean hasCompany = ArrayToString(queryDTO.Fields).Contains("company_id") && queryDTO.Relations.Contains("company");
         if (hasCompany)
         {
             queryBuilder.InnerJoin("company", "market.company_id = company.id");
@@ -133,6 +185,10 @@ public class MarketDAO
     {
         MarketEntity market = new();
         string fieldsString = ArrayToString(queryFields);
+        if (fieldsString.Contains("*"))
+        {
+            fieldsString = "id,name,urlImage,address,created_at,updated_at";
+        }
         if (fieldsString.Contains("id"))
         {
             market.Id = myReader.GetString("market_id");
@@ -196,5 +252,10 @@ public class MarketDAO
             }
         }
         return result;
+    }
+
+    private string[] StringToArray(string str)
+    {
+        return str.Split(",");
     }
 }

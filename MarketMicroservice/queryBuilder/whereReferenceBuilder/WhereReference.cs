@@ -6,11 +6,12 @@ public class WhereReference : IWhereReference
 {
     private string where = "";
 
-    public IWhereReference Equal(string field)
+    public IWhereReference Equal(string field, string identifier="")
     {
-        where += $"{field} = @{field} ";
+        where += $"{field} = @{field+identifier} ";
         return this;
     }
+
     public IWhereReference Like(string field)
     {
         where += $"{field} LIKE @{field} ";
@@ -21,6 +22,7 @@ public class WhereReference : IWhereReference
         where += "AND ";
         return this;
     }
+
     public IWhereReference Or()
     {
         where += "OR ";

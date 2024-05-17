@@ -53,6 +53,10 @@ namespace Market {
     static readonly grpc::Marshaller<global::Market.GetMarketByIdRequest> __Marshaller_market_GetMarketByIdRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Market.GetMarketByIdRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Market.GetMarketByIdResponse> __Marshaller_market_GetMarketByIdResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Market.GetMarketByIdResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Market.GetMarketsByIdsRequest> __Marshaller_market_GetMarketsByIdsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Market.GetMarketsByIdsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Market.GetMarketsByIdsResponse> __Marshaller_market_GetMarketsByIdsResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Market.GetMarketsByIdsResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Market.GetAllMarketsRequest, global::Market.GetAllMarketsResponse> __Method_GetAllMarkets = new grpc::Method<global::Market.GetAllMarketsRequest, global::Market.GetAllMarketsResponse>(
@@ -69,6 +73,14 @@ namespace Market {
         "GetMarketById",
         __Marshaller_market_GetMarketByIdRequest,
         __Marshaller_market_GetMarketByIdResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Market.GetMarketsByIdsRequest, global::Market.GetMarketsByIdsResponse> __Method_GetMarketsByIds = new grpc::Method<global::Market.GetMarketsByIdsRequest, global::Market.GetMarketsByIdsResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetMarketsByIds",
+        __Marshaller_market_GetMarketsByIdsRequest,
+        __Marshaller_market_GetMarketsByIdsResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -104,6 +116,18 @@ namespace Market {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
+      /// <summary>
+      ///GetMarketsByIds
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Market.GetMarketsByIdsResponse> GetMarketsByIds(global::Market.GetMarketsByIdsRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
@@ -113,7 +137,8 @@ namespace Market {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_GetAllMarkets, serviceImpl.GetAllMarkets)
-          .AddMethod(__Method_GetMarketById, serviceImpl.GetMarketById).Build();
+          .AddMethod(__Method_GetMarketById, serviceImpl.GetMarketById)
+          .AddMethod(__Method_GetMarketsByIds, serviceImpl.GetMarketsByIds).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -125,6 +150,7 @@ namespace Market {
     {
       serviceBinder.AddMethod(__Method_GetAllMarkets, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Market.GetAllMarketsRequest, global::Market.GetAllMarketsResponse>(serviceImpl.GetAllMarkets));
       serviceBinder.AddMethod(__Method_GetMarketById, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Market.GetMarketByIdRequest, global::Market.GetMarketByIdResponse>(serviceImpl.GetMarketById));
+      serviceBinder.AddMethod(__Method_GetMarketsByIds, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Market.GetMarketsByIdsRequest, global::Market.GetMarketsByIdsResponse>(serviceImpl.GetMarketsByIds));
     }
 
   }
