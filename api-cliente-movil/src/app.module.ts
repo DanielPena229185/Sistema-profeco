@@ -12,10 +12,14 @@ import { DealService } from './deal/deal.service';
 import { DealController } from './deal/deal.controller';
 import { CustomerService } from './customer/customer.service';
 import { CustomerController } from './customer/customer.controller';
+import { PreferenceController } from './preference/preference.controller';
+import { ReviewController } from './review/review.controller';
+import { PreferenceService } from './preference/preference.service';
+import { ReviewService } from './review/review.service';
 
 @Module({
   imports: [ClientModules],
-  controllers: [AppController, MarketController, ReportsController, ProductsController,DealController, CustomerController],
-  providers: [AppService, MarketService, ReportsService, ProductsService,DealService, CustomerService],
+  controllers: [AppController, MarketController, ReportsController, ProductsController, DealController, CustomerController, PreferenceController, ReviewController],
+  providers: [AppService, MarketService, ReportsService, ProductsService, DealService, CustomerService, PreferenceService, ReviewService],
 })
-export class AppModule {}
+export class AppModule { }

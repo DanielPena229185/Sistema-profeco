@@ -1,0 +1,25 @@
+ion-toolbar{
+    --background: var(--ion-color-profeco-green); 
+}
+
+ion-title {
+    font-family: serif;
+    color: white;
+    font-size: x-large;
+    font-weight: lighter;
+  }
+
+  .x{
+    color: white;
+  }
+
+  .mail{
+    color: black;
+  }
+  .new{
+    font-weight: bold;
+  }
+.old{
+    font-weight: bold;
+    text-decoration: line-through;
+}

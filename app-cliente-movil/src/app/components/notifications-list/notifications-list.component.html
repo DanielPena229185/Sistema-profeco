@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+<p>
+  Notificaciones
+</p>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="closeModal()">
+        <ion-icon class="x" size="large" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+      <ion-card *ngFor="let deal of dealsList">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon class="mail" name="mail-open-outline"></ion-icon>
+
+            Nuevo Descuento!!!
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{deal.description}}<br>
+          <ion-chip class="new" color="success">${{deal.newPrice}}</ion-chip>
+          <ion-chip class="old" color="danger">${{deal.oldPrice}}</ion-chip>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

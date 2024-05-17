@@ -13,7 +13,7 @@ export class MarketPreferenceService {
     private readonly http: HttpClient,
   ) { }
 
-  getMarketsPreference():Observable<MarketDTO[]>{
-    return this.http.get<MarketDTO[]>(`${environment.apiURL}/market`);
+  getMarketsPreference(user_id:string):Observable<MarketDTO[]>{
+    return this.http.get<MarketDTO[]>(`${environment.apiURL}/preference/favorite-markets`,{params:{user_id}});
   }
 }

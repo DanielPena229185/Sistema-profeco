@@ -1,45 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import {  IonContent} from '@ionic/angular/standalone';
-import { IonicModule} from '@ionic/angular';
-import { HeaderComponent } from '../components/header/header.component';
+import { Component, Input, OnInit } from '@angular/core';
+import { DealDTO } from './notifications.types';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { closeOutline, mailOpenOutline } from 'ionicons/icons';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { PostsService } from './posts.service';
-import { DealDTO } from './posts.types';
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.page.html',
-  styleUrls: ['./posts.page.scss'],
+  selector: 'app-notifications-list',
+  templateUrl: './notifications-list.component.html',
+  styleUrls: ['./notifications-list.component.scss'],
   standalone: true,
-  imports: [
+  imports:[
+    IonicModule,
     CommonModule,
-     HeaderComponent,
-    HttpClientModule,
-    IonicModule
-  ],
-  providers: [PostsService]
+  ]
+  
 })
-export class PostsPage implements OnInit {
-  deals:DealDTO[]=[];
+export class NotificationsListComponent  implements OnInit {
+  @Input() dealsList:DealDTO[];
   constructor(
-    private readonly postService:PostsService,
-  ) {}
+    private readonly modalController: ModalController,
+  ) {
+    addIcons({closeOutline,mailOpenOutline});
+  }
 
   ngOnInit() {
     this.initDeals();
-    this.getDeals();
   }
-  
-  handleRefresh(event) {
-    setTimeout(() => {
-      this.getDeals();
-      event.target.complete();
-    }, 2000);
+
+  async closeModal() {
+    await this.modalController.dismiss();
   }
 
   private initDeals(){
-    this.deals=[
+    this.dealsList=[
       {
         id:'1',
         date:'Martes 21 2020',
@@ -75,14 +69,5 @@ export class PostsPage implements OnInit {
         }
       },
     ]
-  }
-
-  private getDeals(){
-    this.postService.getDeals().subscribe({
-      next: (response:DealDTO[])=>{
-        Array.prototype.push.apply(this.deals,response)
-      },
-      error:()=>{},
-    });
   }
 }

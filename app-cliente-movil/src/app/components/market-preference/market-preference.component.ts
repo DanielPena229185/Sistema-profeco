@@ -47,7 +47,7 @@ export class MarketPreferenceComponent  implements OnInit {
   }
 
   getMarketsPrefered() {
-    this.marketPreferenceService.getMarketsPreference().subscribe({
+    this.marketPreferenceService.getMarketsPreference('USER_ID').subscribe({
       next: (response: MarketDTO[]) => {
         Array.prototype.push.apply(this.markets, response);
       }
