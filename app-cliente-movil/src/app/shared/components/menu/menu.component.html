@@ -11,6 +11,12 @@
           <ion-icon [name]="item.icon" slot="start" color="light"></ion-icon>
           {{item.name}}
         </ion-item>
+        <ion-item *ngIf="(auth.isAuthenticated$ | async) === false" class="nav-item nav-link btn-login" (click)="loginWithRedirect()">
+          Iniciar Sesión
+      </ion-item>
+      <ion-item *ngIf="(auth.isAuthenticated$ | async) === true" class="nav-item nav-link btn-logout" (click)="logout()">
+          Cerrar Sesión
+      </ion-item>
       </ion-menu-toggle>
     </ion-list>
   </ion-content>

@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Option } from './menu.types';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { IonMenu, IonList, IonContent, IonItem, IonMenuToggle, IonIcon, IonFooter, IonToolbar, IonHeader, IonTitle } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { copy, heartCircle, home, pricetags, storefront } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-menu',
@@ -21,7 +22,9 @@ export class MenuComponent  implements OnInit {
   options: Option[] = [];
 
   constructor(
-    private readonly router: Router
+    private readonly router: Router,
+    public readonly auth: AuthService,
+    @Inject(DOCUMENT) private readonly document: Document
   ) { 
     addIcons({ pricetags, copy, storefront, heartCircle });
   }
@@ -43,4 +46,11 @@ export class MenuComponent  implements OnInit {
     this.router.navigate([option.url]);
   }
 
+  loginWithRedirect(): void {
+    this.auth.loginWithRedirect();
+  }
+
+  logout() {
+    this.auth.logout({logoutParams: {returnTo: this.document.location.origin}});
+  }
 }
