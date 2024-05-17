@@ -7,6 +7,8 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { provideAuth0 } from '@auth0/auth0-angular';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './app/shared/services/auth.interceptor.service';
 
 if (environment.production) {
   enableProdMode();
@@ -25,5 +27,10 @@ bootstrapApplication(AppComponent, {
       },
       cacheLocation: 'localstorage',
     }),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    }
   ],
 });

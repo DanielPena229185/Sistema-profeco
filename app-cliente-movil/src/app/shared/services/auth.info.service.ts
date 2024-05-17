@@ -19,4 +19,8 @@ export class AuthInfoService {
   getUserInfo(): Observable<User | null> {
     return this.authService.user$;
   }
+
+  getUserToken(): Observable<string | null> {
+    return this.authService.getAccessTokenSilently();
+  }
 }
