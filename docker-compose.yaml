@@ -148,6 +148,8 @@ services:
      networks:
        - reports_internal_network
        - profeco
+     ports:
+       - "50052"
      depends_on:
       reports:
         condition: service_healthy
