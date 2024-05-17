@@ -145,7 +145,7 @@ services:
   market-microservice:
     # image: silverflin/market-microservice:latest
     build:
-      context: ./MarketMicroservice/market-microservice
+      context: ./MarketMicroservice/dockerfile
     networks:
       - deals_internal_network
       - profeco
