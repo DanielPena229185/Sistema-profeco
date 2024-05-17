@@ -88,6 +88,7 @@ export class ProductsService implements OnModuleInit {
     const marketsIds: string = product.prices
       .map((price) => price.id)
       .join(',');
+    console.log('marketsIds', marketsIds);
     const getMarketByIdRequest: GetMarketsByIdsQuery = {
       ids: marketsIds,
       fields: 'id,name,urlImg',
