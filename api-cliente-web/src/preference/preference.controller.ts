@@ -10,7 +10,6 @@ import {
 
 @Controller('preference')
 export class PreferenceController {
-    
   constructor(private readonly preferenceService: PreferenceService) {}
 
   @Post('visited-product')

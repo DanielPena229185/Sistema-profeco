@@ -1,6 +1,5 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { on } from 'events';
 import {
   Deal,
   GetDealByIdRequest,

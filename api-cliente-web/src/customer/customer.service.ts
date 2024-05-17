@@ -19,8 +19,11 @@ export class CustomerService implements OnModuleInit {
     return $response.toPromise();
   }
 
-  async getCustomerById(customerByIdRequest: CustomerByIdRequest): Promise<Customer> {
-    const $response: Observable<Customer> = this.customerService.GetCustomerById(customerByIdRequest);
+  async getCustomerById(
+    customerByIdRequest: CustomerByIdRequest,
+  ): Promise<Customer> {
+    const $response: Observable<Customer> =
+      this.customerService.GetCustomerById(customerByIdRequest);
     return $response.toPromise();
   }
 }

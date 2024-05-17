@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ReportsService implements OnModuleInit {
-    private reportsService;
-    constructor(@Inject('REPORTS_SERVICE') private client:ClientGrpc){}
+  private reportsService;
+  constructor(@Inject('REPORTS_SERVICE') private client: ClientGrpc) {}
 
-    onModuleInit() {
-        this.reportsService = this.client.getService('ReportService');
-    }
+  onModuleInit() {
+    this.reportsService = this.client.getService('ReportService');
+  }
 
-    async createReport(data:CreateReportDto){
-        const $report:Observable<Report> = this.reportsService.CreateReport(data);
-        const reportCreated = await $report.toPromise();
-        return reportCreated;
-    }
+  async createReport(data: CreateReportDto) {
+    const $report: Observable<Report> = this.reportsService.CreateReport(data);
+    const reportCreated = await $report.toPromise();
+    return reportCreated;
+  }
 }
