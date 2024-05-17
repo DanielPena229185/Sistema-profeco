@@ -8,36 +8,38 @@ import { GetAllMarketsRequest, GetMarketByIdRequest } from './market.types';
 
 @Controller('market')
 export class MarketController {
-
   constructor(private readonly marketService: MarketService) {}
 
   @Get()
-  async getMarkets(@GetMarketsQueryDTO() query: GetMarketsDTO){
-    const getAllMarketsRequest : GetAllMarketsRequest = {
+  async getMarkets(@GetMarketsQueryDTO() query: GetMarketsDTO) {
+    const getAllMarketsRequest: GetAllMarketsRequest = {
       query: {
         paginationParams: {
           page: query.page,
-          count: query.count
+          count: query.count,
         },
         fields: query.fields.join(','),
         relations: query.relations.join(','),
         marketName: query.name,
         address: query.address,
-        exclusive: query.isExclusive
-      }
+        exclusive: query.isExclusive,
+      },
     };
     return this.marketService.getAllMarkets(getAllMarketsRequest);
   }
 
   @Get(':id')
-  async getMarketById(@GetMarketByIdQueryDTO() query: GetMarketByIdDTO, @Param('id') id: string){
+  async getMarketById(
+    @GetMarketByIdQueryDTO() query: GetMarketByIdDTO,
+    @Param('id') id: string,
+  ) {
     const getMarketByIdRequest: GetMarketByIdRequest = {
       query: {
         marketId: id,
         fields: query.fields.join(','),
-        relations: query.relations.join(',')
-      }
-    }
+        relations: query.relations.join(','),
+      },
+    };
     return this.marketService.getMarketById(getMarketByIdRequest);
   }
 }

@@ -154,10 +154,10 @@ func initializeProducts() []*pb.CompareProductList {
 	markets := make([]Market, 0)
 
 	markets = append(markets,
-		Market{id: "123", MarketName: "walmart"},
-		Market{id: "124", MarketName: "costco"},
-		Market{id: "125", MarketName: "cafe"},
-		Market{id: "126", MarketName: "soriana"},
+		Market{id: "1", MarketName: "walmart"},
+		Market{id: "2", MarketName: "walmart"},
+		Market{id: "3", MarketName: "bodega aurrera"},
+		Market{id: "4", MarketName: "bodega aurrera"},
 	)
 
 	collection.DeleteMany(context.Background(), bson.M{})
