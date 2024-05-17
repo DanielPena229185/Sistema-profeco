@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/shared/services/notification.service';
-import { ProductDTO, PriceDTO, ProductInfoDTO } from './product-prices';
+import { MarketDTO, ProductInfoDTO } from './product-prices';
 import { LoadingController, ModalController } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -60,11 +60,10 @@ import { HeaderModalComponent } from '../header-modal/header-modal.component';
 export class ProductPricesComponent implements OnInit {
   title: string = 'Precios'
   productId: string;
-  product: ProductDTO;
-  prices: PriceDTO[];
+  product: ProductInfoDTO;
+  markets: MarketDTO[];
 
   constructor(
-    private readonly modalCtrl: ModalController,
     private readonly productPricesService: ProductPricesService,
     private readonly loadingCtrl: LoadingController,
     private readonly notificationService: NotificationService
@@ -90,8 +89,8 @@ export class ProductPricesComponent implements OnInit {
         .getPrices(productId)
         .subscribe({
           next: (productInfo: ProductInfoDTO) => {
-            this.product = productInfo.product;
-            this.prices = productInfo.prices;
+            this.product = productInfo;
+            this.markets = productInfo.markets;
             loading.dismiss();
           },
           error: (error) => {

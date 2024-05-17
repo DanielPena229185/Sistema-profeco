@@ -2,7 +2,7 @@
 <ion-content>
   <div class="content-info" *ngIf="product">
     <ion-card class="carta-producto">
-      <img alt="Silhouette of mountains" src="{{product.imageUrl}}" />
+      <img alt="Silhouette of mountains" src="{{product.urlImg}}" />
       <ion-card-header>
         <ion-card-title>{{product.name}}</ion-card-title>
       </ion-card-header>
@@ -12,12 +12,12 @@
     </ion-card>
     <ion-card>
       <ion-list>
-        <ion-item *ngFor="let price of prices">
-          <ion-thumbnail slot="start" *ngIf="price.imageUrl">
-            <img alt="Silhouette of mountains" src={{price.imageUrl}} />
+        <ion-item *ngFor="let market of markets">
+          <ion-thumbnail slot="start" *ngIf="market.urlImg">
+            <img alt="Silhouette of mountains" src={{market.urlImg}} />
           </ion-thumbnail>
-          <ion-label>{{price.marketName}}</ion-label>
-          <ion-chip color="success">{{price.price| moneyFormatter}}</ion-chip>
+          <ion-label>{{market.name}}</ion-label>
+          <ion-chip color="success">{{market.price| moneyFormatter}}</ion-chip>
         </ion-item>
       </ion-list>
     </ion-card>

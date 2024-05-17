@@ -1,17 +1,13 @@
 export interface ProductInfoDTO {
-  product: ProductDTO;
-  prices: PriceDTO[];
+  name: string;
+  urlImg: string;
+  details: string;
+  markets: MarketDTO[];
 }
 
-export interface ProductDTO {
+export interface MarketDTO{
   id: string;
   name: string;
-  imageUrl: string;
-  details: string;
-}
-
-export interface PriceDTO {
-  marketName: string;
   price: number;
-  imageUrl?: string;
+  urlImg: string;
 }
