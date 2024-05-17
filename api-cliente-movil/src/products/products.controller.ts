@@ -19,6 +19,7 @@ constructor(
   @Get('names')
   async getProducts():Promise<ProductList>{
     const products:ProductList = await this.productsService.getProducts();
+    console.log('Hello World');
     return products;
   }
 

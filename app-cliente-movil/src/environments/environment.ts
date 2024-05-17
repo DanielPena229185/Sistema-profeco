@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://localhost:4000',
+  apiURL: 'https://lzl78tq8-3051.usw3.devtunnels.ms',
   assets: 'assets'
 };
 
