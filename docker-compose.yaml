@@ -143,7 +143,9 @@ services:
       retries: 3
 
   market-microservice:
-    image: silverflin/market-microservice:latest
+    # image: silverflin/market-microservice:latest
+    build:
+      context: ./market-microservice
     networks:
       - deals_internal_network
       - profeco

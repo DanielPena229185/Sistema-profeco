@@ -17,6 +17,8 @@ import {
 import {
   GetMarketByIdRequest,
   GetMarketByIdResponse,
+  GetMarketsByIdsQuery,
+  GetMarketsByIdsResponse,
   MarketEntity,
 } from 'src/market/market.types';
 
@@ -83,40 +85,34 @@ export class ProductsService implements OnModuleInit {
     const $responseProduct: Observable<CompareProductList> =
       this.productsService.GetCompareProductListById(data);
     const product: CompareProductList = await $responseProduct.toPromise();
-
-    const marketPromises: Promise<MarketDTO>[] = product.prices.map(
-      async (market) => {
-        const getMarketByIdRequest: GetMarketByIdRequest = {
-          query: {
-            marketId: market.id,
-            fields: 'id,name,urlImage',
-            relations: '',
-          },
+    const marketsIds: string = product.prices
+      .map((price) => price.id)
+      .join(',');
+    const getMarketByIdRequest: GetMarketsByIdsQuery = {
+      ids: marketsIds,
+      fields: 'id,name,urlImg',
+      relations: '',
+    };
+    const $responseMarkets: Observable<GetMarketsByIdsResponse> =
+      await this.marketService.GetMarketsByIds(getMarketByIdRequest);
+    const markets: GetMarketsByIdsResponse = await $responseMarkets.toPromise();
+    const compareMarkets: MarketDTO[] = markets.markets.map(
+      (market: MarketEntity) => {
+        const marketDTO: MarketDTO = {
+          id: market.id,
+          name: market.name,
+          urlImg: market.urlImg,
+          price: product.prices.find((price) => price.id === market.id).price,
         };
-
-        const $responseMarket: Observable<GetMarketByIdResponse> =
-        await this.marketService.GetMarketById(getMarketByIdRequest);
-        const marketSelected: GetMarketByIdResponse =
-          await $responseMarket.toPromise();
-        const marketEntity: MarketEntity = marketSelected.market;
-
-        return {
-          id: marketEntity.id,
-          name: marketEntity.name,
-          price: market.price,
-          urlImg: marketEntity.urlImg,
-        } as MarketDTO;
+        return marketDTO;
       },
     );
-
-    const markets: MarketDTO[] = await Promise.all(marketPromises);
-    const productEntity: ProductDTO = product.product;
     const compareProduct: ProductCompareDTO = {
-      id: productEntity.id,
-      name: productEntity.name,
-      urlImg: productEntity.imageUrl,
-      details: productEntity.details,
-      markets: markets,
+      id: product.product.id,
+      name: product.product.name,
+      details: product.product.details,
+      urlImg: product.product.imageUrl,
+      markets: compareMarkets,
     };
     return compareProduct;
   }
