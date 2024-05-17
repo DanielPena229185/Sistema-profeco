@@ -7,7 +7,7 @@ public class ParamsQueryToDTO
     public static GetMarketsByIdsQueryDTO GetMarketsByIdsQuery(GetMarketsByIdsQuery query)
     {
         string[] fieldsAvailables = ["id", "name", "urlImage", "company_id", "address", "created_at", "updated_at"];
-        string fieldsQuery = "id,name,urlImage,company_id,address,created_at,updated_at";
+        string fieldsQuery = query.Fields;
         if (fieldsQuery == null || fieldsQuery.Length == 0)
         {
             Console.Error.WriteLine("Fields query is required");

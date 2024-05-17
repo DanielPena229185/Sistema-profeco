@@ -18,6 +18,7 @@ import {
   GetMarketByIdRequest,
   GetMarketByIdResponse,
   GetMarketsByIdsQuery,
+  GetMarketsByIdsRequest,
   GetMarketsByIdsResponse,
   MarketEntity,
 } from 'src/market/market.types';
@@ -89,10 +90,12 @@ export class ProductsService implements OnModuleInit {
       .map((price) => price.id)
       .join(',');
     console.log('marketsIds', marketsIds);
-    const getMarketByIdRequest: GetMarketsByIdsQuery = {
-      ids: marketsIds,
-      fields: 'id,name,urlImg',
-      relations: '',
+    const getMarketByIdRequest: GetMarketsByIdsRequest = {
+      query: {
+        ids: marketsIds,
+        fields: 'id,name,urlImg',
+        relations: '',
+      },
     };
     const $responseMarkets: Observable<GetMarketsByIdsResponse> =
       await this.marketService.GetMarketsByIds(getMarketByIdRequest);
