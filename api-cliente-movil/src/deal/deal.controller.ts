@@ -1,13 +1,14 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { DealService } from './deal.service';
 import { Deal, GetDealByIdRequest, GetDealsRequest } from './deal.types';
+import { DealDTO } from './output/getDeals.dto';
 
 @Controller('deal')
 export class DealController {
   constructor(private readonly dealService: DealService) {}
 
   @Get()
-  async getDeals(@Query() params: GetDealsRequest): Promise<Deal[]> {
+  async getDeals(@Query() params: GetDealsRequest): Promise<DealDTO[]> {
     return this.dealService.getDeals(params);
   }
 
