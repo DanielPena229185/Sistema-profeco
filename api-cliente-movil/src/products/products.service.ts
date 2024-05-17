@@ -111,6 +111,7 @@ export class ProductsService implements OnModuleInit {
 
     const markets: MarketDTO[] = await Promise.all(marketPromises);
     const productEntity: ProductDTO = product.product;
+    console.log('ProductEntity', productEntity);
     const compareProduct: ProductCompareDTO = {
       id: productEntity.id,
       name: productEntity.name,
