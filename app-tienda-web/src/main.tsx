@@ -10,6 +10,7 @@ import Deals from './components/Deals/Deals';
 import Product from './components/Products/Product/Product';
 import Comments from './components/Comments/Comments';
 import { Toaster } from 'react-hot-toast';
+import Sanctions from './components/Sanctions/Sanctions';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: 'comentarios',
         element: <Comments />,
+      },
+      {
+        path: 'multas',
+        element: <Sanctions />,
       },
     ],
   },
