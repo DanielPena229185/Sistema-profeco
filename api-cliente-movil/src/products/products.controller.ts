@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Inject, OnModuleInit, Param } from '@nestjs/common';
 import {
   CompareProductList,
-  Product,
+  ProductDTO,
   ProductList,
   ProductListRequest,
 } from './products.types';
@@ -33,8 +33,8 @@ constructor(
   @Get(':productId')
   async getProductById(
     @Param() data:ProductByIdRequest
-  ):Promise<Product>{
-    const product:Product = await this.productsService.getProductById(data);
+  ):Promise<ProductDTO>{
+    const product:ProductDTO = await this.productsService.getProductById(data);
     return product;
   }
 
