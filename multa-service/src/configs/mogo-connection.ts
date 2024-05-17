@@ -1,1 +1,1 @@
-export const CONNECTION = 'mongodb://localhost:27017/multas-service-db';
+export const CONNECTION = 'mongodb://multas-db:27017/multas-service-db';

@@ -146,6 +146,24 @@ services:
      depends_on:
       reports:
         condition: service_healthy
+  # Multas
+  multas-db:
+     image: mongo
+     networks:
+       - multas_internal_network
+     healthcheck:
+       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet  
+
+  multas-microservice:
+    image: silverflin/multas-microservice:latest
+    networks:
+      - multas_internal_network
+      - profeco
+    depends_on:
+      multas-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
 
 networks:
   products_internal_network:
@@ -156,3 +174,13 @@ networks:
     driver: bridge
   preferences_internal_network:
     driver: bridge
+
+  reports_internal_network:
+    driver: bridge
+  deals_internal_network:
+    driver: bridge
+  multas_internal_network:
+    driver: bridge
+
+volumes:
+  market-mysql-data:

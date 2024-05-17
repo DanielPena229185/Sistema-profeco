@@ -164,6 +164,8 @@ func initializeProducts() []*pb.CompareProductList {
 	products := []*pb.CompareProductList{
 		{
 			Product: &pb.Product{
+				// ID with object id format
+				Id:       "60f3b3b3b3b3b3b3b3b3b3b3",
 				Name:     "Dougnuts",
 				ImageUrl: "https://images.unsplash.com/photo-1597586255676-6b33b6268e33?q=80&w=2052&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fH",
 				Details:  "Delicious donuts freshly baked every morning",
@@ -178,6 +180,7 @@ func initializeProducts() []*pb.CompareProductList {
 		},
 		{
 			Product: &pb.Product{
+				Id:       "60f3b3b3b3b3b3b3b3b3b3a",
 				Name:     "Bagels",
 				ImageUrl: "https://images.unsplash.com/photo-1664038082440-ee0a677af315?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M",
 			},
@@ -196,6 +199,7 @@ func initializeProducts() []*pb.CompareProductList {
 		},
 		{
 			Product: &pb.Product{
+				Id:       "60f3b3b3b3b3b3b3b3b3b3c",
 				Name:     "Croissants",
 				ImageUrl: "https://images.unsplash.com/photo-1623334044303-241021148842?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=",
 			},
@@ -249,14 +253,12 @@ func initializeProducts() []*pb.CompareProductList {
 		if err != nil {
 			log.Fatal(err)
 		}
-		id, ok := result["_id"].(primitive.ObjectID)
-		if !ok {
-			log.Fatal("Failed to convert _id to ObjectID")
-		}
+		// id, ok := result["_id"].(primitive.ObjectID)
+		//if !ok {
+		//	log.Fatal("Failed to convert _id to ObjectID")
+		//	}
 
-		product.Product.Id = id.Hex()
-
-		log.Println(id.Hex())
+		//log.Println(id.Hex())
 		products = append(products, &product)
 	}
 	if err := cursor.Err(); err != nil {
