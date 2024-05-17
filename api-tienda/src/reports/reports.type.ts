@@ -5,6 +5,16 @@ export interface CreateReportDto {
   product: Product;
 }
 
+export interface GetReportsByMarketDto {
+  id: string;
+  page: number;
+  limit: number;
+}
+
+export interface ReportList {
+  reports: Array<Report>;
+}
+
 export interface Report {
   id: string;
   reason: string;
