@@ -1,31 +1,38 @@
-export interface ProductName{
-    product_name:string;
-}
-export interface ProductListRequest {
-    product_name:string;
-}
-export interface Product {
-    id:string;
-    name:string;
-    market:string;
-    current_price:string;
+//entities
+export interface ProductDTO{
+    id: string;
+    name: string;
+    image_url: string;
+    details: string;
 }
 
-interface MarketPrice{
-    market_name:string;
-    price:number;
-    id:string;
+export interface MarketPriceDTO{
+    market_name: string;
+    price: number;
+    id: string;
+}
+//requests
+export interface ProductByIdRequest{
+    product_id: string;
+}
+
+export interface ProductListRequest{
+    product_name: string;
+}
+
+export interface UpdateProductPriceRequest{ 
+    market_id: string;
+    product: ProductDTO;
+    new_price: number;
+}
+
+export interface Empty{}
+
+export interface ProductList{
+    products: ProductDTO[];
 }
 
 export interface CompareProductList{
-    product:Product;
-    prices:Array<MarketPrice>;
-}
-
-export interface ProductList{
-    product:Array<Product>;
-}
-
-export interface ProductByIdRequest{
-    product_id:string;
+    product: ProductDTO;
+    prices: MarketPriceDTO[];
 }

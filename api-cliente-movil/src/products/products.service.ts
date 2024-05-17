@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { BusinessRuleException } from 'default/exceptions';
 import {
   CompareProductList,
-  Product,
+  ProductDTO,
   ProductByIdRequest,
   ProductList,
   ProductListRequest,
@@ -14,7 +14,11 @@ import {
   MarketDTO,
   ProductCompareDTO,
 } from './output/get-compare-product-list-by-id.dto';
-import { GetMarketByIdRequest, GetMarketByIdResponse, MarketEntity } from 'src/market/market.types';
+import {
+  GetMarketByIdRequest,
+  GetMarketByIdResponse,
+  MarketEntity,
+} from 'src/market/market.types';
 
 @Injectable()
 export class ProductsService implements OnModuleInit {
@@ -50,13 +54,13 @@ export class ProductsService implements OnModuleInit {
     return products;
   }
 
-  async getProductById(data: ProductByIdRequest): Promise<Product> {
+  async getProductById(data: ProductByIdRequest): Promise<ProductDTO> {
     if (!data) {
       throw new BusinessRuleException('Product id empty');
     }
-    const $product: Observable<Product> =
+    const $product: Observable<ProductDTO> =
       this.productsService.GetProductById(data);
-    const product: Product = await $product.toPromise();
+    const product: ProductDTO = await $product.toPromise();
     return product;
   }
 
@@ -75,39 +79,44 @@ export class ProductsService implements OnModuleInit {
     if (!data) {
       throw new BusinessRuleException('Product id is empty');
     }
-  
-    const $responseProduct: Observable<CompareProductList> = this.productsService.GetCompareProductListById(data);
+
+    const $responseProduct: Observable<CompareProductList> =
+      this.productsService.GetCompareProductListById(data);
     const product: CompareProductList = await $responseProduct.toPromise();
-  
-    const marketPromises: Promise<MarketDTO>[] = product.prices.map(async (market) => {
-      const getMarketByIdRequest: GetMarketByIdRequest = {
-        query: {
-          marketId: market.id,
-          fields: 'id,name,urlImage',
-          relations: ''
-        }
-      };
-  
-      const $responseMarket: Observable<GetMarketByIdResponse> = this.marketService.GetMarketById(getMarketByIdRequest);
-      const marketSelected: GetMarketByIdResponse = await $responseMarket.toPromise();
-      const marketEntity: MarketEntity = marketSelected.market;
-  
-      return {
-        id: marketEntity.id,
-        name: marketEntity.name,
-        price: market.price,
-        urlImg: marketEntity.urlImg
-      } as MarketDTO;
-    });
-  
+
+    const marketPromises: Promise<MarketDTO>[] = product.prices.map(
+      async (market) => {
+        const getMarketByIdRequest: GetMarketByIdRequest = {
+          query: {
+            marketId: market.id,
+            fields: 'id,name,urlImage',
+            relations: '',
+          },
+        };
+
+        const $responseMarket: Observable<GetMarketByIdResponse> =
+          this.marketService.GetMarketById(getMarketByIdRequest);
+        const marketSelected: GetMarketByIdResponse =
+          await $responseMarket.toPromise();
+        const marketEntity: MarketEntity = marketSelected.market;
+
+        return {
+          id: marketEntity.id,
+          name: marketEntity.name,
+          price: market.price,
+          urlImg: marketEntity.urlImg,
+        } as MarketDTO;
+      },
+    );
+
     const markets: MarketDTO[] = await Promise.all(marketPromises);
-  
-    const productEntity: Product = product.product;
-  
-    return {
+    const productEntity: ProductDTO = product.product;
+    const compareProduct: ProductCompareDTO = {
       id: productEntity.id,
       name: productEntity.name,
-      markets: markets
-    } as ProductCompareDTO;
+      urlImg: productEntity.image_url,
+      markets: markets,
+    };
+    return compareProduct;
   }
 }
