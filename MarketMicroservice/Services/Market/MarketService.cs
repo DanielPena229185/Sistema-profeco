@@ -12,6 +12,7 @@ namespace Market.Services
         public override Task<GetMarketsByIdsResponse> GetMarketsByIds(GetMarketsByIdsRequest request, ServerCallContext context)
         {
             MarketDAO marketDAO = new();
+            Console.WriteLine(request.Query.Fields);
             GetMarketsByIdsQueryDTO query = ParamsQueryToDTO.GetMarketsByIdsQuery(request.Query);
             List<MarketEntity> markets = marketDAO.GetMarketsByIds(query);
             return Task.FromResult(new GetMarketsByIdsResponse
