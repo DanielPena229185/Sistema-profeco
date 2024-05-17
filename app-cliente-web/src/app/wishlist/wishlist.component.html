@@ -21,5 +21,6 @@
             </div>
         </div>
     </div>
-    
+    <app-shopping-cart-list *ngIf="selectedOption === 'shoppingCart'"></app-shopping-cart-list>
+    <app-favorite-stores-list *ngIf="selectedOption === 'favoriteStores'"></app-favorite-stores-list>
 </div>
