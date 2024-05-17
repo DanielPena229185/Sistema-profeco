@@ -51,7 +51,7 @@ export class PreferenceService implements OnModuleInit {
     preferencesDefaultRequest: PreferencesDefaultRequest,
   ): Promise<Product[]> {
     const response: Observable<VisitedProductsList> =
-      this.preferenceService.GetVisitedProducts(preferencesDefaultRequest);
+      this.preferenceService.GetVisitedProductList(preferencesDefaultRequest);
     const visitedProductsList = await response.toPromise();
     return visitedProductsList.products;
   }

@@ -70,6 +70,7 @@ services:
     image: silverflin/reviews-microservice:latest
     networks:
       - reviews_internal_network
+      - profeco
     depends_on:
       reviews-mongodb:
         condition: service_healthy
@@ -86,6 +87,7 @@ services:
     image: silverflin/customer-preferences-microservice:latest
     networks:
       - preferences_internal_network
+      - profeco
     depends_on:
       customer-preferences-mongodb:
         condition: service_healthy
