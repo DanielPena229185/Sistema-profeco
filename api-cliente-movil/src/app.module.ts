@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductsController } from './products/products.controller';
@@ -12,10 +12,18 @@ import { DealService } from './deal/deal.service';
 import { DealController } from './deal/deal.controller';
 import { CustomerService } from './customer/customer.service';
 import { CustomerController } from './customer/customer.controller';
+import { AuthMiddleware } from './common/middleware/auth.middleware';
 
 @Module({
-  imports: [ClientModules],
-  controllers: [AppController, MarketController, ReportsController, ProductsController,DealController, CustomerController],
-  providers: [AppService, MarketService, ReportsService, ProductsService,DealService, CustomerService],
+    imports: [ClientModules],
+    controllers: [AppController, MarketController, ReportsController, ProductsController, DealController, CustomerController],
+    providers: [AppService, MarketService, ReportsService, ProductsService, DealService, CustomerService],
 })
-export class AppModule {}
+
+export class AppModule implements NestModule {
+    configure(consumer: MiddlewareConsumer) {
+        consumer
+            .apply(AuthMiddleware)
+            .forRoutes({ path: '*', method: RequestMethod.ALL });
+    }
+}
