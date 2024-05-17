@@ -93,7 +93,7 @@ export class ProductsService implements OnModuleInit {
     const getMarketByIdRequest: GetMarketsByIdsRequest = {
       query: {
         ids: marketsIds,
-        fields: 'id,name,urlImg',
+        fields: 'id,name,urlImage',
         relations: '',
       },
     };
