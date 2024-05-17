@@ -13,18 +13,22 @@ services:
 
   # Frontend 
   # TODO
-  
+
   # Backend services
-  
+
   api-cliente-web:
-    image: silverflin/profeco-api-cliente-web:latest
+    # image: silverflin/profeco-api-cliente-web:latest
+    build:
+      context: ./api-cliente-web
     ports:
       - "3050:3001"
     networks:
       - profeco
 
   api-cliente-movil:
-    image: silverflin/profeco-api-cliente-movil:latest
+    # image: silverflin/profeco-api-cliente-movil:latest
+    build:
+      context: ./api-cliente-movil
     ports:
       - "3051:4000"
     networks:
@@ -43,7 +47,7 @@ services:
   product-mongodb:
     image: mongo
     networks:
-        - products_internal_network
+      - products_internal_network
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
 
@@ -62,7 +66,7 @@ services:
   reviews-mongodb:
     image: mongo
     networks:
-        - reviews_internal_network
+      - reviews_internal_network
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
 
@@ -79,7 +83,7 @@ services:
   customer-preferences-mongodb:
     image: mongo
     networks:
-        - preferences_internal_network
+      - preferences_internal_network
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
 
@@ -123,7 +127,17 @@ services:
     volumes:
       - market-mysql-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pexample_password"]
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-pexample_password"
+        ]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -139,18 +153,18 @@ services:
 
   # Report System 50052
   reports:
-     image: mongo
-     networks:
-       - reports_internal_network
-     healthcheck:
-       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet  
-  
+    image: mongo
+    networks:
+      - reports_internal_network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+
   reports-microservice:
-     image: silverflin/reports-microservice:latest
-     networks:
-       - reports_internal_network
-       - profeco
-     depends_on:
+    image: silverflin/reports-microservice:latest
+    networks:
+      - reports_internal_network
+      - profeco
+    depends_on:
       reports:
         condition: service_healthy
 
