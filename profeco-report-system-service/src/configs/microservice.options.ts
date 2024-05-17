@@ -5,6 +5,6 @@ export const GrpcReport:MicroserviceOptions ={
   options: {
     protoPath: join(`./proto/report.proto`),
     package: 'report',
-    url: 'localhost:50052',
+    url: '0.0.0.0:50052',
   }
 }

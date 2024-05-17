@@ -5,6 +5,19 @@ export type Product = {
   urlImg: string;
 };
 
+export interface Sanction {
+  id?: string;
+  idMarket: string;
+  reports: Report[];
+}
+export interface Report {
+  id: number;
+  reason: string;
+  status: string;
+  dateAttended: Date;
+  user: string;
+  product: Product;
+}
 export type Deal = {
   title: string;
   price: number;

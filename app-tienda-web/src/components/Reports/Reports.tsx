@@ -1,14 +1,5 @@
-import { Product } from '../../types';
 import Title from '../styleComponents/Title/Title';
-
-interface Report {
-  id: number;
-  reason: string;
-  status: string;
-  dateAttended: Date;
-  user: string;
-  product: Product;
-}
+import { Report } from '../../types';
 
 const reports: Report[] = [
   {
@@ -69,9 +60,6 @@ export default function Reports() {
                 <span>
                   <strong>Atendido:</strong>{' '}
                   {report.dateAttended.toDateString()}
-                </span>
-                <span>
-                  <strong>Usuario:</strong> {report.user}
                 </span>
               </div>
             </div>
