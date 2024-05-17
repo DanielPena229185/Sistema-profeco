@@ -8,7 +8,7 @@
     <ion-row>
       <div class="lista-productos" *ngFor="let producto of productos">
         <ion-col>
-          <ion-card button class="carta-producto" (click)="abrirCompararProducto(producto.name)">
+          <ion-card button class="carta-producto" (click)="abrirCompararProducto(producto.id)">
             <img alt="Silhouette of mountains" src="{{producto.imageUrl}}" />
             <ion-card-header>
               <ion-card-title>{{producto.name}}</ion-card-title>

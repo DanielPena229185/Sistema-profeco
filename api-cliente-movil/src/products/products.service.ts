@@ -95,7 +95,7 @@ export class ProductsService implements OnModuleInit {
         };
 
         const $responseMarket: Observable<GetMarketByIdResponse> =
-          this.marketService.GetMarketById(getMarketByIdRequest);
+        await this.marketService.GetMarketById(getMarketByIdRequest);
         const marketSelected: GetMarketByIdResponse =
           await $responseMarket.toPromise();
         const marketEntity: MarketEntity = marketSelected.market;

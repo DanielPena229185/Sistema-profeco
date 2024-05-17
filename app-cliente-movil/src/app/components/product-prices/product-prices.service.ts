@@ -14,6 +14,6 @@ export class ProductPricesService {
   ) { }
 
   getPrices(productId: string) : Observable<ProductInfoDTO>{
-    return this.http.get<ProductInfoDTO>(`${environment.apiURL}/products/prices/${productId}`);
+    return this.http.get<ProductInfoDTO>(`${environment.apiURL}/products/compare/${productId}`);
   }
 }

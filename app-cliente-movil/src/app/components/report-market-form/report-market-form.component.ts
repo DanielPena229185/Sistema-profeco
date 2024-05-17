@@ -25,7 +25,7 @@ import {
 import { MarketDTO, MarketOptionDTO, ProductOptionDTO, SearchParamsMarketDTO, SearchParamsMarketOptionDTO } from './report-market-form.types';
 import { ReportMarketFormService } from './report-market-form.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductDTO } from '../product-prices/product-prices';
+import { ProductDTO } from 'src/app/products/products.types';
 
 @Component({
   selector: 'app-report-market-form',
