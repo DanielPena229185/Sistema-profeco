@@ -1,5 +1,3 @@
-import { BadRequestException } from '@nestjs/common';
-
 export function parseQueryFields(
   paramFields: string,
   queryFieldsValid: string[],
@@ -8,7 +6,7 @@ export function parseQueryFields(
     return [];
   }
   const fields: string[] = paramFields.split(',').map((field) => field.trim());
-  let fieldsResult: string[] = [];
+  const fieldsResult: string[] = [];
   fields.forEach((field) => {
     if (queryFieldsValid.includes(field)) {
       fieldsResult.push(field);

@@ -22,7 +22,7 @@ const avaliableFields: string[] = [
 const avaliableRelations = ['company'];
 
 export const GetMarketsQueryDTO = createParamDecorator(
-  (data, ctx: ExecutionContext) => {    
+  (data, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
     const page: number = parsePage(request.query['page'] as string);
     const count: number = parseCount(request.query['count'] as string);
@@ -32,10 +32,21 @@ export const GetMarketsQueryDTO = createParamDecorator(
     }
     const queryFields: string[] = parseQueryFields(fields, avaliableFields);
     const relations: string = request.query['relations'] as string;
-    const queryRelations: string[] = parseQueryRelations(relations, avaliableRelations);
+    const queryRelations: string[] = parseQueryRelations(
+      relations,
+      avaliableRelations,
+    );
     const isExlusive: boolean = request.query['exclusive'] === 'true';
     const name: string = request.query['name'] as string;
     const address: string = request.query['address'] as string;
-    return new GetMarketsDTO(page, count, queryFields, queryRelations, isExlusive, name, address);
+    return new GetMarketsDTO(
+      page,
+      count,
+      queryFields,
+      queryRelations,
+      isExlusive,
+      name,
+      address,
+    );
   },
 );
