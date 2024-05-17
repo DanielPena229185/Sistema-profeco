@@ -2,7 +2,7 @@
 export interface ProductDTO{
     id: string;
     name: string;
-    image_url: string;
+    imageUrl: string;
     details: string;
 }
 

@@ -115,7 +115,7 @@ export class ProductsService implements OnModuleInit {
     const compareProduct: ProductCompareDTO = {
       id: productEntity.id,
       name: productEntity.name,
-      urlImg: productEntity.image_url,
+      urlImg: productEntity.imageUrl,
       markets: markets,
     };
     return compareProduct;
