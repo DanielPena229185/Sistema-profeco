@@ -1,38 +1,36 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { ProductDTO } from './product-prices.types';
+import { PriceDTO, ProductDTO, ProductInfoDTO } from './product-prices.types';
 import { PriceItemComponent } from '../price-item/price-item.component';
+import {ProductPricesService} from './product-prices.service'
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-prices',
   standalone: true,
-  imports: [CommonModule, PriceItemComponent],
+  imports: [CommonModule, PriceItemComponent,HttpClientModule],
   templateUrl: './product-prices.component.html',
   styleUrl: './product-prices.component.css',
+  providers:[ProductPricesService]
 })
-export class ProductPricesComponent {
+export class ProductPricesComponent implements OnInit {
   showLoading: boolean = true;
-  items: { itemNumber: number, price: number, nombreTienda: string }[] = [
-    { itemNumber: 1, price: 75, nombreTienda: 'Tienda A' },
-    { itemNumber: 2, price: 90, nombreTienda: 'Tienda B' },
-    { itemNumber: 3, price: 105, nombreTienda: 'Tienda C' },
-    { itemNumber: 4, price: 110, nombreTienda: 'Tienda D' },
-    { itemNumber: 5, price: 115, nombreTienda: 'Tienda E' },
-    { itemNumber: 6, price: 115, nombreTienda: 'Tienda F' },
-    { itemNumber: 7, price: 115, nombreTienda: 'Tienda G' },
-    { itemNumber: 8, price: 115, nombreTienda: 'Tienda H' },
-    { itemNumber: 9, price: 115, nombreTienda: 'Tienda I' },
-  ];
+  product: ProductDTO;
+  items: PriceDTO[];
   constructor(
     public dialogRef: MatDialogRef<ProductPricesComponent>,
-    @Inject(MAT_DIALOG_DATA) public product: ProductDTO
+    @Inject(MAT_DIALOG_DATA) public productInfo: ProductDTO,
+    private readonly productPricesService:ProductPricesService
   ) {
     this.showLoading = false;
+  }
+  ngOnInit(): void {
+      this.getProductById(this.productInfo.name);
   }
 
   close() {
@@ -43,5 +41,18 @@ export class ProductPricesComponent {
 
   shouldAddClass(): boolean {
     return this.items.length > 4;
+  }
+
+  getProductById(productId: string) {
+      this.productPricesService
+        .getPrices(productId)
+        .subscribe({
+          next: (productInfo: ProductInfoDTO) => {
+            this.product = productInfo.product;
+            this.items = productInfo.prices;
+          },
+          error: (error) => {
+          },
+    });
   }
 }

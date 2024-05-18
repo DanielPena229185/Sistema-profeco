@@ -3,20 +3,25 @@ import { ProductDTO } from './products.types';
 import { CommonModule } from '@angular/common';
 import { ProductPricesComponent } from '../components/product-prices/product-prices.component';
 import { MatDialog } from '@angular/material/dialog';
+import {ProductsService} from './products.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, ProductPricesComponent],
+  imports: [CommonModule, ProductPricesComponent,HttpClientModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
+  providers:[ProductsService]
 })
 export class ProductsComponent implements OnInit {
   columns = 0;
   products: ProductDTO[] = [];
   showLoading: boolean = true;
 
-  constructor(private readonly dialog: MatDialog) {}
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly productService:ProductsService) {}
 
   ngOnInit() {
     this.initProducts();
@@ -35,7 +40,12 @@ export class ProductsComponent implements OnInit {
   }
 
   private initProducts() {
-    this.products = [
+     this.productService.getProducts().subscribe({
+      next:(res:ProductDTO[])=>{
+        this.products= res;
+      }
+     });
+    /*this.products = [
       {
         id: '001',
         name: 'Arroz',
@@ -71,6 +81,6 @@ export class ProductsComponent implements OnInit {
           'https://tienda.maqs.com.mx/wp-content/uploads/2021/12/411.jpg',
         details: 'Pan blanco de caja, paquete de 500 gramos.',
       }
-    ];
+    ];*/
   }
 }

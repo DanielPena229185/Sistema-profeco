@@ -25,49 +25,22 @@
             <app-rating-star class="rating-comment" [maxValue]="5"
                 (valueChange)="ratingChange($event)"></app-rating-star>
             <div class="comment-area">
-                <textarea class="comment-textarea form-control" name="comment" type="text"
+                <textarea [(ngModel)]="newComment" class="comment-textarea form-control" name="comment" type="text"
                     placeholder="Añade un comentario"></textarea>
                 <div class="submit-comment">
-                    <button class="btn">
+                    <button (click)="postReview()" class="btn">
                         Calificar
                     </button>
                 </div>
             </div>
         </div>
         <div class="comments">
-            <div class="comment">
+            <div class="comment" *ngFor="let review of reviews">
                 <div class="rate">
-                    <app-rating-star [maxValue]="5" [readonly]="true" [value]="5"></app-rating-star>
+                    <app-rating-star [maxValue]="5" [readonly]="true" [value]="review.rating"></app-rating-star>
                 </div>
                 <div class="comment-content">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam saepe sequi quisquam error porro
-                        optio explicabo ducimus ipsum voluptatum est perferendis dolore earum, velit labore nihil
-                        adipisci?
-                        Unde, maiores error.</p>
+                    <p>{{review.content}}</p>
                 </div>
             </div>
-            <div class="comment">
-                <div class="rate">
-                    <app-rating-star [maxValue]="5" [readonly]="true" [value]="3"></app-rating-star>
-                </div>
-                <div class="comment-content">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam saepe sequi quisquam error porro
-                        optio explicabo ducimus ipsum voluptatum est perferendis dolore earum, velit labore nihil
-                        adipisci?
-                        Unde, maiores error.</p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="rate">
-                    <app-rating-star [maxValue]="5" [readonly]="true" [value]="1"></app-rating-star>
-                </div>
-                <div class="comment-content">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam saepe sequi quisquam error porro
-                        optio explicabo ducimus ipsum voluptatum est perferendis dolore earum, velit labore nihil
-                        adipisci?
-                        Unde, maiores error.</p>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

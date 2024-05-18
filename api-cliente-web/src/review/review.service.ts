@@ -16,7 +16,7 @@ export class ReviewService implements OnModuleInit {
   constructor(@Inject('REVIEW_SERVICE') private client: ClientGrpc) {}
 
   onModuleInit() {
-    this.reviewService.client.getService('Reviews');
+    this.reviewService = this.client.getService('Reviews');
   }
 
   async createReview(review: CreateReviewRequest): Promise<Review> {

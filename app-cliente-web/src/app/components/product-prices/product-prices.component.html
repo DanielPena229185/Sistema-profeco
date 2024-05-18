@@ -1,12 +1,12 @@
 <div class="modal">
     <div class="modal-info">
-        <div class="modal-loading" *ngIf="showLoading">
+        <div class="modal-loading" *ngIf="!product">
             <div class="spinner-border my-spinner" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
             <p>Cargando Precios...</p>
         </div>
-        <div class="product-prices" *ngIf="!showLoading">
+        <div class="product-prices" *ngIf="product">
             <div class="product-info">
                 <header class="header-product-info">
                     <div class="header-product-info-name">
@@ -30,7 +30,7 @@
             </header>
             <div class="price-list" [ngClass]="{'scroll-prices-list': shouldAddClass()}">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item item-price" *ngFor="let item of items">{{ item.nombreTienda
+                    <li class="list-group-item item-price" *ngFor="let item of items">{{ item.marketName
                         }}<app-price-item [price]="item.price"></app-price-item></li>
                 </ul>
             </div>

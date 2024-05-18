@@ -2,9 +2,9 @@ import { Controller, Get, Param, Query } from '@nestjs/common';
 import { DealService } from './deal.service';
 import { GetDealByIdRequest, GetDealsRequest } from './deal.types';
 import { Deal, DealsDAO } from 'src/utils/persistencia/deal.dao';
+import { GetDealsDTO } from './output/get-deals.dto';
 import { Market, MarketDAO } from 'src/utils/persistencia/merket.dao';
 import { Product, ProductDAO } from 'src/utils/persistencia/products.dao';
-import { GetDealsDTO } from 'src/utils/persistencia/deal/output/get-deals.dto';
 
 @Controller('deal')
 export class DealController {

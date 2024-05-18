@@ -20,13 +20,20 @@ import { CustomerService } from './customer/customer.service';
 import { CustomerController } from './customer/customer.controller';
 import { AuthMiddleware } from './common/middleware/auth.middleware';
 import { ConfigModule } from '@nestjs/config';
+import { DATA } from './utils/persistencia/entidad.dao';
+import { ReviewController } from './review/review.controller';
+import { ReviewService } from './review/review.service';
+import { DataModule } from './data/data.module';
+import { MarketDAO } from './utils/persistencia/merket.dao';
+import { DealsDAO } from './utils/persistencia/deal.dao';
+import { ProductDAO } from './utils/persistencia/products.dao';
 
 ConfigModule.forRoot({
   isGlobal: true,
 });
 
 @Module({
-  imports: [ClientsModule.register(ClientModules)],
+  imports: [ClientsModule.register(ClientModules), DataModule],
   controllers: [
     AppController,
     MarketController,
@@ -34,6 +41,7 @@ ConfigModule.forRoot({
     ProductsController,
     DealController,
     CustomerController,
+    ReviewController
   ],
   providers: [
     AppService,
@@ -42,6 +50,11 @@ ConfigModule.forRoot({
     ProductsService,
     DealService,
     CustomerService,
+    ReviewService,
+    DATA,
+    MarketDAO,
+    DealsDAO,
+    ProductDAO
   ],
 })
 export class AppModule implements NestModule {

@@ -5,18 +5,25 @@ import {
   GetMarketReviewsRequest,
   Review,
 } from './review.types';
+import { DATA, ReviewDTO } from 'src/utils/persistencia/entidad.dao';
+
 
 @Controller('review')
 export class ReviewController {
-  constructor(private readonly reviewService: ReviewService) {}
+  constructor(
+    private readonly reviewService: ReviewService,
+    private data:DATA
+    ) {}
 
   @Post()
-  async createReview(@Body() review: CreateReviewRequest): Promise<Review> {
-    return this.reviewService.createReview(review);
+  async createReview(@Body() review: ReviewDTO): Promise<ReviewDTO> {
+    //return this.reviewService.createReview(review);
+    return await this.data.createReview(review);
   }
 
   @Get()
-  async getReviews(@Query() query: GetMarketReviewsRequest): Promise<Review[]> {
-    return this.reviewService.getReviews(query);
+  async getReviews(@Query() query: GetMarketReviewsRequest): Promise<ReviewDTO[]> {
+    //return this.reviewService.getReviews(query);
+    return await this.data.getReviewsByMarketId(query.market_id);
   }
 }
