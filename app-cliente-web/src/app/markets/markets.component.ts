@@ -45,6 +45,7 @@ export class MarketsComponent {
   }
 
   getMarkets() {
+    debugger;
     this.marketsService.getMarkets(this.searchParams).subscribe({
       next: (markets: MarketDTO[]) => {
         Array.prototype.push.apply(this.markets, markets);
