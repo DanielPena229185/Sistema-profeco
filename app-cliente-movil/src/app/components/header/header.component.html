@@ -10,4 +10,6 @@
       <img src="/assets/imagenes/gobierno.png" alt="mexico">
     </div>
   </div>
+  <ion-chip (click)="goToNotifications()" *ngIf="cantNotifications>0" color="danger" slot="end">{{cantNotifications}}</ion-chip>
+  <ion-icon (click)="goToNotifications()" slot="end" size="large" name="notifications-outline"></ion-icon>
 </ion-toolbar>
