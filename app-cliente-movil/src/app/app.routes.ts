@@ -1,18 +1,11 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './shared/services/auth.guard.service';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'products',
     pathMatch: 'full',
-  },
-  {
-    path: 'login',
-    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
-  },
-  {
-    path: 'onboarding',
-    loadComponent: () => import('./onboarding/onboarding.page').then( m => m.OnboardingPage)
   },
   {
     path: 'products',
@@ -30,7 +23,8 @@ export const routes: Routes = [
   },
   {
     path: 'wishlist',
-    loadComponent: () => import('./wishlist/wishlist.page').then( m => m.WishlistPage)
+    loadComponent: () => import('./wishlist/wishlist.page').then( m => m.WishlistPage),
+    canActivate: [authGuard]
   },
   {
     path: 'markets',

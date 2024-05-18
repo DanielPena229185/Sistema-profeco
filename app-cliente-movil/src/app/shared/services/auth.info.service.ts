@@ -3,9 +3,9 @@ import { AuthService, User } from '@auth0/auth0-angular';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class AuthInformationService {
+export class AuthInfoService {
 
   constructor(private authService: AuthService,
   ) {}
