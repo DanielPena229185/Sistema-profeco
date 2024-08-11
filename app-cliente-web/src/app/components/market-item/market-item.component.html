@@ -1,0 +1,17 @@
+<div class="card effect-market-item">
+    <div class="dropdown my-dropdown">
+        <button class="my-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            •••
+        </button>
+        <ul class="dropdown-menu">
+            <li [className]="'my-dropdown-item'"
+                *ngFor="let marketOption of marketOptions" (click)="onAction(marketOption.actionOption)">
+                {{marketOption.title}}</li>
+        </ul>
+    </div>
+    <img src={{market.urlImg}} alt={{market.name}}>
+    <div class="card-body">
+        <h5 class="card-title">{{market.name}}</h5>
+        <p class="card-text">{{market.address}}</p>
+    </div>
+</div>

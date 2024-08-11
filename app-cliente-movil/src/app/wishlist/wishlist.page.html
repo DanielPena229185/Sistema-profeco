@@ -1,0 +1,17 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+    <ion-segment color="light" [(ngModel)]="option">
+        <ion-segment-button value="productos">
+            <ion-label>Productos</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="tiendas">
+            <ion-label>Tienda</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+    <ion-content>
+        <div [ngSwitch]="option">
+            <app-products-preference *ngSwitchCase="'productos'"></app-products-preference>
+            <app-market-preference *ngSwitchCase="'tiendas'"></app-market-preference>
+        </div>
+    </ion-content>
+</ion-content>

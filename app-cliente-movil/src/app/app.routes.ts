@@ -1,28 +1,33 @@
 import { Routes } from '@angular/router';
-import { MainPage } from './main/main.page';
+import { authGuard } from './shared/services/auth.guard.service';
 
 export const routes: Routes = [
- {
-    path: '',
-    redirectTo: 'main/inicio',
-    pathMatch: 'full'
-  },
-  // {
-  //   path: 'tab',
-  //   loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
-  // },
   {
-    path: 'main',
-    component: MainPage,
-    children: [
-      {
-        path: 'inicio',
-        loadComponent: () => import("src/app/inicio/inicio.page").then((p) => p.InicioPage),
-      },
-      {
-        path: 'comparar',
-        loadComponent: () => import("src/app/comparar/comparar.page").then((p) => p.CompararPage),
-      }
-    ]
-  }
+    path: '',
+    redirectTo: 'products',
+    pathMatch: 'full',
+  },
+  {
+    path: 'products',
+    loadComponent: () =>
+      import('src/app/products/products.page').then((m) => m.ProductsPage),
+  },
+  {
+    path: 'posts',
+    loadComponent: () => import('./posts/posts.page').then((m) => m.PostsPage),
+  },
+  {
+    path: 'markets',
+    loadComponent: () =>
+      import('./markets/markets.page').then((m) => m.MarketsPage), 
+  },
+  {
+    path: 'wishlist',
+    loadComponent: () => import('./wishlist/wishlist.page').then( m => m.WishlistPage),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'markets',
+    loadComponent: () => import('./markets/markets.page').then( m => m.MarketsPage)
+  },
 ];

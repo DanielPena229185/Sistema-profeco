@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Protobuf Include="Protos\market.proto" GrpcServices="Server" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
+    <PackageReference Include="MySql.Data" Version="8.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="class\" />
+  </ItemGroup>
+</Project>

@@ -1,10 +1,24 @@
 ion-tab-bar,
 ion-tab-button {
-  --background: var(--ion-color-profeco-secondary);
+  --background: var(--ion-color-profeco-green);
 }
 
 ion-tab-button {
-  --color: white;
-  --color-selected: var(--ion-color-profeco-primary);
-  --ripple-color: var(--ion-color-profeco-primary);
+  --color: var(--ion-color-item-unselected);
+  --color-selected: white;
+  --ripple-color: white;
+}
+
+ion-tab-button {
+  transition: border-color 0.3s, transform 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+ion-tab-button > ion-label {
+  font-size: medium;
+  font-weight: bolder;
+}
+
+ion-tab-button.tab-selected {
+  border-bottom-color: white;
 }

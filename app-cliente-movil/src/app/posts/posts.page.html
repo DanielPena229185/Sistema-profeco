@@ -1,0 +1,33 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+    <ion-refresher mode="md" slot="fixed" [pullFactor]="0.5" [pullMin]="50" [pullMax]="50"
+    (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content mode="md"></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <div class="lista-productos" *ngFor="let deal of deals">
+        <ion-col>
+          <ion-card button class="carta-producto">
+            <img alt="Silhouette of mountains" src="{{deal.product.img}}" />
+            <ion-card-header>
+                <ion-card-title>{{deal.product.name}}</ion-card-title>
+                <ion-card-subtitle>{{deal.description}}</ion-card-subtitle>
+                <ion-card-content>
+                    <ion-list lines="none">
+                        <ion-item>
+                          <ion-chip class="old" color="danger">${{deal.oldPrice}}</ion-chip>
+                            <ion-chip class="new" color="success">${{deal.newPrice}}</ion-chip>
+                            <ion-avatar class="icon" slot="end">
+                                <img alt="Silhouette of a person's head" src="{{deal.market.img}}" />
+                            </ion-avatar>
+                        </ion-item>
+                    </ion-list>
+                </ion-card-content>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

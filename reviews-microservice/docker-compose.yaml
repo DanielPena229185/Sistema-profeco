@@ -1,0 +1,26 @@
+services:
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "127.0.0.1:27017:27017"
+    networks:
+        - reviews_internal_network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+
+
+  products-microservice:
+    image: silverflin/reviews-microservice:latest
+    ports:
+      - "0.0.0.0:50060:50060"
+    networks:
+      - reviews_internal_network
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+networks:
+  reviews_internal_network:
+    driver: bridge

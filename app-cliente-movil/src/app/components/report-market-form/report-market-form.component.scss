@@ -1,0 +1,61 @@
+.header > div{
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.header-title > p {
+  font-family: serif;
+  color: white;
+  font-size: x-large;
+  font-weight: lighter;
+}
+.header-title {
+  padding-left: 5%;
+}
+.header-title, .header-img {
+  padding: 0 1%;
+}
+
+.header-img > img {
+  height: 35px;
+  width: 35px;
+}
+
+.header {
+    --background: var(--ion-color-profeco-green); 
+}  
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-button{
+  padding: 0px 10px;
+}
+
+ion-select {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 5px 5px;
+}
+
+.my-text-area {
+  border-bottom: 1px solid #ccc;
+}
+
+.errors-forms {
+  color: red;
+  padding: 10px 0px;
+}
+
+.button-create-report > ion-button {
+  --background: var(--ion-color-profeco-primary);
+  --background-activated: rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+}
+
+.market-info-details> img{
+  width: 100%;
+}

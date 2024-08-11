@@ -1,0 +1,25 @@
+<app-header-modal title='{{title}}'></app-header-modal>
+<ion-content>
+  <div class="content-info" *ngIf="product">
+    <ion-card class="carta-producto">
+      <img alt="Silhouette of mountains" src="{{product.imageUrl}}" />
+      <ion-card-header>
+        <ion-card-title>{{product.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{product.details}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-list>
+        <ion-item *ngFor="let price of prices">
+          <ion-thumbnail slot="start" *ngIf="price.imageUrl">
+            <img alt="Silhouette of mountains" src={{price.imageUrl}} />
+          </ion-thumbnail>
+          <ion-label>{{price.marketName}}</ion-label>
+          <ion-chip color="success">{{price.price| moneyFormatter}}</ion-chip>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,28 @@
+<app-header></app-header>
+<ion-content>
+    <ion-card *ngFor="let market of markets">
+        <img [src]="market.urlImg" [alt]="market.name">
+        <ion-card-header>
+            <ion-card-title class="header-title">
+                <div>{{market.name}}</div>
+                <ion-button mode="ios" id="popover-button-{{market.id}}" class="button-options" shape="round">
+                    •••
+                </ion-button>
+                <ion-popover trigger="popover-button-{{market.id}}" [dismissOnSelect]="true">
+                    <ng-template>
+                        <ion-content>
+                            <ion-list>
+                                <ion-item button (click)="openReportMarket(market.id)">Reportar</ion-item>
+                                <ion-item button>Lista de deseos</ion-item>
+                                <ion-item button (click)="openReviewMarket(market.id)">Calificar</ion-item>
+                            </ion-list>
+                        </ion-content>
+                    </ng-template>
+                </ion-popover>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            {{market.address}}
+        </ion-card-content>
+    </ion-card>
+</ion-content>

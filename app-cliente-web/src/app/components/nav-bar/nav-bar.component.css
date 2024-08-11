@@ -1,0 +1,94 @@
+header {
+    background: var(--color-profeco-green);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.header-container-start {
+    display: flex;
+    align-items: center;
+    padding: 20px 0px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.header-container-start-title,
+.header-container-start-img {
+    margin: 0px 5px;
+}
+
+.header-container-start-title>h2 {
+    font-family: serif;
+    font-weight: lighter;
+    text-transform: uppercase;
+    color: white;
+}
+
+.header-container-end {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    font-size: large;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item>.nav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-profeco-brown);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item:hover {
+    color: white;
+    transform: translateY(-8px);
+}
+
+.nav-item>.nav-link.active {
+    background: var(--color-profeco-primary);
+    font-weight: bold;
+    color: white;
+}
+
+.nav-item>.nav-link>img {
+    width: 20px;
+    height: 20px;
+    margin: 0px 5px;
+}
+
+.btn-login {
+    cursor: pointer;
+    margin: 0px 10px;
+    background: var(--color-profeco-primary);
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    transition: color 0.3s ease, transform 0.3s ease;
+    user-select: none;
+}
+
+.btn-login:hover {
+    transform: translateY(-8px);
+}
+
+.btn-logout {
+    cursor: pointer;
+    user-select: none;
+    margin: 0px 10px;
+    background: var(--color-profeco-brown);
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-logout:hover {
+    transform: translateY(-8px);
+}

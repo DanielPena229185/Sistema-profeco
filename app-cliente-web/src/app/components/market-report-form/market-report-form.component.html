@@ -1,0 +1,80 @@
+<div class="modal">
+    <div class="modal-info">
+        <div class="modal-header">
+            <div class="modal-header-start">
+                <h2>Reportar tienda</h2>
+            </div>
+            <div class="modal-header-end">
+                <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+            </div>
+        </div>
+        <form class="form-report-market" [formGroup]="reportForm">
+            <div class="form-container">
+                <div class="row">
+                    <div class="col">
+                        <select class="form-select" aria-label="Default select example" formControlName="selectMarket"
+                            (change)="onChangeSelectMarket($event)">
+                            <option [value]="NO_AVAILABLE">{{NO_AVAILABLE}}</option>
+                            <option *ngIf="isEspecificReport && marketSelected" [value]="marketSelected.id">
+                                {{marketSelected.name}}</option>
+                            <option *ngFor="let optionMarket of optionMarkets" [value]="optionMarket.id">
+                                {{optionMarket.name}}</option>
+                        </select>
+                        <div class="error-forms"
+                            *ngIf="selectMarket.invalid && (selectMarket.dirty || selectMarket.touched)">
+                            <!-- <div *ngIf="selectMarket.errors?.['']">Debes seleccionar una tienda</div> -->
+                        </div>
+                    </div>
+                    <div class="col">
+                        <select class="form-select" aria-label="Default select example" formControlName="selectProduct"
+                            (change)="onChangeSelectProduct($event)">
+                            <option [value]="NO_AVAILABLE">{{NO_AVAILABLE}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div *ngIf="marketSelected" class="market-info report-info">
+                            <div class="market-info-name">
+                                <h3>{{marketSelected.name}}</h3>
+                            </div>
+                            <div class="market-info-address">
+                                <p>{{marketSelected.address}}</p>
+                            </div>
+                            <div class="market-info-image">
+                                <img [src]="marketSelected.urlImage" alt={{marketSelected.name}}>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div *ngIf="productSelected" class="product-info report-info">
+                            <div class="product-info-name">
+                                <h3>{{productSelected.name}}</h3>
+                            </div>
+                            <div class="product-info-details">
+                                <p>{{productSelected.details}}</p>
+                            </div>
+                            <div class="product-info-price">
+                                <p>Precio: ${{productSelected.price}}</p>
+                            </div>
+                            <div class="product-info-image">
+                                <img [src]="productSelected.urlImage" alt={{productSelected.name}}>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <textarea class="form-control" formControlName="reportContent" placeholder="Escribe aquí tu reporte"
+                        rows="3"></textarea>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-send-report" (click)="createReport()">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>

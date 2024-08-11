@@ -1,0 +1,11 @@
+<ion-card *ngFor="let market of markets">
+  <img [src]="market.urlImg" [alt]="market.name">
+  <ion-card-header>
+      <ion-card-title class="header-title">
+          <div>{{market.name}}</div>
+      </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+      {{market.address}}
+  </ion-card-content>
+</ion-card>
